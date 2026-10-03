@@ -14,7 +14,7 @@ return new class extends Migration
            Schema::create('orders_tbl', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('order_number')->unique();
-            $table->foreignId('users_id')->constrained('users_tbl')->onDelete('cascade');
+            $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('customers_id')->constrained('customers_tbl');
             $table->decimal('total_price', 10, 2);
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
