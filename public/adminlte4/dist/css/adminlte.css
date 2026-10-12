@@ -132,7 +132,7 @@
   --bs-body-color-rgb: 222, 226, 230;
   --bs-body-bg: #212529;
   --bs-body-bg-rgb: 33, 37, 41;
-  --bs-emphasis-color: #fff;
+  --bs-emphasis-color: #343a40
   --bs-emphasis-color-rgb: 255, 255, 255;
   --bs-secondary-color: rgba(222, 226, 230, 0.75);
   --bs-secondary-color-rgb: 222, 226, 230;
@@ -8953,7 +8953,7 @@ textarea.form-control-lg {
 
 .bg-body-secondary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-secondary-bg-rgb), var(--bs-bg-opacity)) !important;
+  background-color: rgba(var(--bs-secondary-bg), var(--bs-bg-opacity)) !important;
 }
 
 .bg-body-tertiary {
@@ -13010,11 +13010,12 @@ textarea.form-control-lg {
 }
 .fixed-header.sidebar-expand .app-sidebar .sidebar-wrapper {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: auto; 
 }
 
 .app-sidebar {
   --lte-sidebar-hover-bg: rgba(0, 0, 0, 0.1);
+  /* --lte-sidebar-color: #343a40; */
   --lte-sidebar-color: #343a40;
   --lte-sidebar-hover-color: #212529;
   --lte-sidebar-active-color: #000;
@@ -13971,21 +13972,24 @@ body:not(.app-loaded) .app-footer {
   animation-duration: 0s !important;
 }
 
-[data-bs-theme=dark].app-sidebar,
-[data-bs-theme=dark] .app-sidebar {
-  --lte-sidebar-hover-bg: rgba(255, 255, 255, 0.1);
-  --lte-sidebar-color: #c2c7d0;
-  --lte-sidebar-hover-color: #fff;
-  --lte-sidebar-active-color: #fff;
-  --lte-sidebar-menu-active-bg: rgba(255, 255, 255, 0.1);
-  --lte-sidebar-menu-active-color: #fff;
+[data-bs-theme=light] .app-sidebar,
+[data-bs-theme=light] .app-sidebar {
+  /* --lte-sidebar-hover-bg: rgba(252, 249, 249, 0.1); */
+  --lte-sidebar-hover-bg: rgba(165, 159, 159, 0.1);
+  /* --lte-sidebar-color: #115ae2; */
+  --lte-sidebar-color: #3a3636;
+  /* --lte-sidebar-hover-color: #fff; */
+  --lte-sidebar-hover-color: #3a3636;
+  --lte-sidebar-active-color: #3a3636;
+  --lte-sidebar-menu-active-bg: rgba(165, 159, 159, 0.1);
+  --lte-sidebar-menu-active-color: #3a3636;
   --lte-sidebar-submenu-bg: transparent;
-  --lte-sidebar-submenu-color: #c2c7d0;
-  --lte-sidebar-submenu-hover-color: #fff;
+  --lte-sidebar-submenu-color: #3a3636;
+  --lte-sidebar-submenu-hover-color: #3a3636;
   --lte-sidebar-submenu-hover-bg: rgba(255, 255, 255, 0.1);
-  --lte-sidebar-submenu-active-color: #fff;
+  --lte-sidebar-submenu-active-color: #3a3636;
   --lte-sidebar-submenu-active-bg: rgba(255, 255, 255, 0.1);
-  --lte-sidebar-header-color: rgb(77.2745098039%, 79.137254902%, 82.4901960784%);
+  --lte-sidebar-header-color: rgb(52, 58, 64);
 }
 
 .app-main {

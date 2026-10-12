@@ -2,16 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Dashboard;
-use App\Livewire\Orders\Index as OrdersIndex;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -19,13 +14,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/', Dashboard::class)
-    ->name('dashboard');
+// dashboard admin
+Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
 
-Route::get('/dashboard', Dashboard::class)
-    ->name('dashboard.home');
+// orders
+Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.index');
 
-Route::get('/orders', OrdersIndex::class)
-    ->name('orders.index');
+
+
+
+
+
 
 require __DIR__.'/auth.php';

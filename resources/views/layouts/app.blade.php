@@ -1,11 +1,11 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <!--begin::Head-->
   <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>SWM SYSTEM| Dashboard</title>
+     <title> {{ $title ?? config('app.name') }} | Swm System</title>
     <script>
       (() => {
         'use strict';
@@ -63,6 +63,8 @@
     
     <meta name="supported-color-schemes" content="light dark" />
     <link rel="preload" href=" {{ asset('adminlte4/dist/css/adminlte.css') }}" as="style" />
+
+     @livewireStyles
    
     <link
       rel="stylesheet"
@@ -125,8 +127,9 @@
 
     {{-- End Sidebar --}}
      {{-- main content --}}
-
-    @yield('content')
+     
+        {{ $slot }}
+   
      {{--end content  --}}
       
       <!--begin::Footer-->
@@ -161,6 +164,8 @@
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src=" {{ asset('adminlte4/dist/js/adminlte.js') }}"  ></script>
+
+    @livewireScripts
     <!--end::Required Plugin(AdminLTE)-->
     <!--begin::OverlayScrollbars Configure-->
     <script>
