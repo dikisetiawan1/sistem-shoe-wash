@@ -43,6 +43,28 @@
               <li class="nav-header">MASTER DATA</li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
+                  {{-- <i class="nav-icon bi bi-file-earmark-text"></i> --}}
+                  <p>
+                    Customers Menu
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('admin.customers.index') }}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Customer List</p>
+                    </a>
+                  </li>
+                  
+                 
+               
+                </ul>
+              </li>
+
+               <li class="nav-header">TRANSACTIONS</li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-file-earmark-text"></i>
                   <p>
                     Orders Menu

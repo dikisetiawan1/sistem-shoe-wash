@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services_tbl', function (Blueprint $table) {
+           Schema::create('shoe_categories', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('name',100);
-            $table->text('description');
-            $table->decimal('price', 10, 2);
-            $table->integer('estimated_days');
             $table->timestamps();
         });
     }

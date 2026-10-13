@@ -4,7 +4,14 @@ use Livewire\Component;
 
 new class extends Component
 {
-    //
+       public function render()
+    {
+        // Return view with layout and title
+        return $this->view([
+        ])
+            ->layout('layouts::app')
+            ->title('Dashboard'); 
+    }
 };
 ?>
 

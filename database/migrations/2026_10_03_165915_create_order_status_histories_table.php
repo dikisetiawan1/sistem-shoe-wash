@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('order_status_histories_tbl', function (Blueprint $table) {
+         Schema::create('order_status_histories', function (Blueprint $table) {
             $table->id()->primary();
-            $table->foreignId('order_details_id')->constrained('order_details_tbl')->onDelete('cascade');
+            $table->foreignId('order_details_id')->constrained('order_details')->onDelete('cascade');
             $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
             $table->enum('status', ['pending', 'in_progress', 'completed', 'cancelled'])->default('pending');
             $table->text('notes')->nullable();

@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-           Schema::create('shoe_categories_tbl', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id()->primary();
-            $table->string('name',100);
+            $table->string('name');
+            $table->string('phone', 20);
+            $table->string('email')->unique();
+            $table->text('address');
             $table->timestamps();
         });
     }
