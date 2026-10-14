@@ -16,19 +16,19 @@ Route::middleware('auth')->group(function () {
 
 // dashboard admin
 Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
-
 // orders
 Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.index');
-
 // customers
 Route::livewire('/customers', 'pages::admin.customers.index')->name('admin.customers.index');
-
+// customers create
 Route::livewire('/customers/create', 'pages::admin.customers.create')->name('admin.customers.create');
-
-
-
-
-
-
+// customers edit
+Route::livewire('/customers/edit/{id}', 'pages::admin.customers.edit')->name('admin.customers.edit');
+// shoetype
+Route::livewire('/shoetype', 'pages::admin.shoetype.index')->name('admin.shoetype.index');
+// shoetype create
+Route::livewire('/shoetype/create', 'pages::admin.shoetype.create')->name('admin.shoetype.create');
+// shoetype edit
+Route::livewire('/shoetype/edit/{id}', 'pages::admin.shoetype.edit')->name('admin.shoetype.edit');
 
 require __DIR__.'/auth.php';

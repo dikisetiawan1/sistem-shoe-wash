@@ -2,18 +2,28 @@
 
 use App\Models\Customers;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 new class extends Component
 {
-    use WithPagination;
 
+
+    public function delete($id)
+    {
+        $customer = Customers::findOrFail($id);
+
+        // delete data
+        $customer->delete();
+
+        // flash message
+        session()->flash('message', 'Data Customer Berhasil Dihapus.');
+        return redirect()->route('admin.customers.index');
+    }
     public function render()
     {
         // Kembalikan view dengan membawa data, layout, dan title
         return $this->view([
 
-            // ambil semua data customers dari db maksimal 5 data per halaman
+            // ambil semua data customers dari db
             'customers' => Customers::latest()->get(),
         ])
             ->layout('layouts::app')
@@ -37,13 +47,13 @@ new class extends Component
              <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h1 class="mb-0 fs-3">Customers</h1>
+                <h1 class="mb-5 fs-3">Our Customers </h1>
               </div>
               <div class="col-sm-6">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb float-sm-end">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Customers</li>
+                    <li class="breadcrumb-item active" aria-current="page">Customers/li>
                   </ol>
                 </nav>
               </div>
@@ -77,12 +87,15 @@ new class extends Component
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->address }}</td>
                                     <td class="text-center">
-                                        <a href="/edit/{{ $customer->id }}" wire:navigate
+                                        <a href="/customers/edit/{{ $customer->id }}" wire:navigate
                                             class="btn btn-sm btn-primary">
                                             EDIT
                                         </a>
 
-                                        <button class="btn btn-sm btn-danger">
+                                         <button
+                                            class="btn btn-sm btn-danger"
+                                            onclick="confirm('delete this data??') || event.stopImmediatePropagation()"
+                                            wire:click="delete({{ $customer->id }})">
                                             DELETE
                                         </button>
                                     </td>
@@ -105,7 +118,7 @@ new class extends Component
 </div>
 
 
-{{-- data datatable --}}
+{{-- datatable --}}
 <script>
     $(document).ready(function() {
         let table = new DataTable('#customersTable', {
@@ -140,9 +153,9 @@ new class extends Component
             ]
         });
 
-        table.on('click', 'tbody tr', function () {
-            let data = table.row(this).data();
-            alert('You clicked on ' + data[0] + "'s row");
-        });
+        // table.on('click', 'tbody tr', function () {
+        //     let data = table.row(this).data();
+        //     alert('You clicked on ' + data[0] + "'s row");
+        // });
     });
 </script>

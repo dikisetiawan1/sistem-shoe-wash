@@ -14,6 +14,8 @@ return new class extends Migration
            Schema::create('shoe_categories', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('name',100);
+            $table->string('brand',100);
+            $table->string('description',255)->nullable();
             $table->timestamps();
         });
     }
