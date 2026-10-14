@@ -10,11 +10,11 @@ new class extends Component
 
     public function render()
     {
-        // Return view with layout and title
+        // Kembalikan view dengan membawa data, layout, dan title
         return $this->view([
 
-            // Get all customers with latest pagination
-            'customers' => Customers::latest()->paginate(5),
+            // ambil semua data customers dari db maksimal 5 data per halaman
+            'customers' => Customers::latest()->get(),
         ])
             ->layout('layouts::app')
             ->title('Customers List'); 
@@ -57,19 +57,19 @@ new class extends Component
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead class="bg-dark text-white">
-                            <tr>
-                                <th scope="col">Customer ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col" style="width: 15%">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($customers as $customer)
+                   <table id="customersTable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th style="width: 15%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               @forelse ($customers as $customer)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $customer->name }}</td>
@@ -92,13 +92,57 @@ new class extends Component
                                     Data Customer belum Tersedia.
                                 </div>
                             @endforelse
-                        </tbody>
-                    </table>
-
-                    {{ $customers->links('vendor.pagination.bootstrap-5') }}
+                                
+                            </tbody>
+                            
+                        </table>
+                  
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+
+{{-- data datatable --}}
+<script>
+    $(document).ready(function() {
+        let table = new DataTable('#customersTable', {
+            destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
+            // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
+            dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',
+            buttons: [
+                { 
+                    extend: 'copy', 
+                    text: '<i class="fas fa-copy"></i>', // Ikon Salin
+                    titleAttr: 'Salin ke Clipboard',      // Tooltip saat kursor diarahkan ke tombol
+                    className: 'btn btn-secondary btn-sm' 
+                },
+                { 
+                    extend: 'excel', 
+                    text: '<i class="fas fa-file-excel"></i>', // Ikon Excel
+                    titleAttr: 'Ekspor ke Excel',
+                    className: 'btn btn-success btn-sm' 
+                },
+                { 
+                    extend: 'pdf', 
+                    text: '<i class="fas fa-file-pdf"></i>', // Ikon PDF
+                    titleAttr: 'Ekspor ke PDF',
+                    className: 'btn btn-danger btn-sm' 
+                },
+                { 
+                    extend: 'print', 
+                    text: '<i class="fas fa-print"></i>', // Ikon Cetak
+                    titleAttr: 'Cetak Tabel',
+                    className: 'btn btn-primary btn-sm' 
+                }
+            ]
+        });
+
+        table.on('click', 'tbody tr', function () {
+            let data = table.row(this).data();
+            alert('You clicked on ' + data[0] + "'s row");
+        });
+    });
+</script>

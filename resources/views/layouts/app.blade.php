@@ -65,7 +65,11 @@
     <link rel="preload" href=" {{ asset('adminlte4/dist/css/adminlte.css') }}" as="style" />
 
      @livewireStyles
-   
+  
+
+
+  <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link
       rel="stylesheet"
       href=" {{ asset('https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css') }}"
@@ -95,6 +99,16 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href=" {{ asset('adminlte4/dist/css/adminlte.css') }}"/> @livewireStyles
     <!--end::Required Plugin(AdminLTE)-->
+    {{-- data datatable --}}
+    {{-- <link rel="stylesheet" href=" {{ asset('https://cdn.datatables.net/3.1.4/css/dataTables.dataTables.min.css') }}" /> --}}
+
+         <!-- 1. CSS DataTables & Buttons -->
+      <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
+
+      <!-- DataTables & Buttons Bootstrap 5 CSS -->
+      <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
 
     <!-- apexcharts -->
     <link
@@ -113,6 +127,8 @@
     />
   </head>
   <!--end::Head-->
+
+  
   <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <!--begin::App Wrapper-->
@@ -126,6 +142,7 @@
      @include('layouts.sidebar')
 
     {{-- End Sidebar --}}
+
      {{-- main content --}}
      
         {{ $slot }}
@@ -237,6 +254,34 @@
     <!--end::Color Mode Toggle-->
 
     <!-- OPTIONAL SCRIPTS -->
+
+    {{-- data datatable --}}
+
+    {{-- <script src=" {{ asset('https://cdn.datatables.net/3.1.4/js/dataTables.min.js') }}"></script> --}}
+
+     <!-- 3. Skrip JavaScript Pendukung & DataTables -->
+          <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <!-- Bootstrap 5 JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- DataTables Core & Bootstrap 5 JS -->
+        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+
+        <!-- Library Export (jszip & pdfmake) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+        <!-- DataTables Buttons & Bootstrap 5 Integration JS -->
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+
+
 
     <!-- sortablejs -->
     <script

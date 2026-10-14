@@ -48,9 +48,25 @@ new class extends Component
 };
 ?>
 
-<div class="container mt-5 mb-5">
+<div class="container-fluid mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
+
+              <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-5 fs-3">Create New Customer</h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create Customer</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">

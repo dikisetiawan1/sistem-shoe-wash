@@ -14,7 +14,7 @@ new class extends Component
         return $this->view([
 
             // Get all orders with latest pagination
-            'orders' => Orders::latest()->paginate(5),
+            'orders' => Orders::latest()->get(),
         ])
             ->layout('layouts::app')
             ->title('Orders List'); 
@@ -41,18 +41,20 @@ new class extends Component
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead class="bg-dark text-white">
+                    <table id="example" class="display">
+                        <thead>
                             <tr>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Users</th>
-                                <th scope="col">Costumer</th>
-                                <th scope="col">Total price</th>
-                                <th scope="col">Payment status</th>
-                                <th scope="col">Payment method</th>
-                                <th scope="col">Entry date</th>
-                                <th scope="col">Estimated date</th>
-                                <th scope="col" style="width: 15%">Actions</th>
+                                <th >Order ID</th>
+                                <th>Users</th>
+                                <th >Costumer</th>
+                                <th >Total price</th>
+                                <th >Payment status</th>
+                                <th >Payment method</th>
+                                <th >Entry date</th>
+                                <th >Estimated date</th>
+                                <th  style="width: 15%">Actions</th>
+
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -86,10 +88,22 @@ new class extends Component
                         </tbody>
                     </table>
 
-                    {{ $orders->links('vendor.pagination.bootstrap-5') }}
+                   
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+
+{{-- data datatable --}}
+<script>
+ let table = new DataTable('#example');
+
+table.on('click', 'tbody tr', function () {
+	let data = table.row(this).data();
+
+	alert('You clicked on ' + data[0] + "'s row");
+});
+   </script>
