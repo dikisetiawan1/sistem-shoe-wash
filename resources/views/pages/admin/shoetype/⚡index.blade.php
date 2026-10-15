@@ -47,13 +47,13 @@ new class extends Component
              <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h1 class="mb-5 fs-3">Shoes Type </h1>
+                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-shoe-prints"></i> Shoes Type  </h1>
               </div>
               <div class="col-sm-6">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb float-sm-end">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Shoes Type</li>
+                    <li class="breadcrumb-item active" aria-current="page">  Shoes Type</li>
                   </ol>
                 </nav>
               </div>

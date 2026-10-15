@@ -12,7 +12,7 @@
             /> --}}
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">SWM SYSTEM</span>
+            <span class="brand-text fw-light text-bold">SWM MANAGEMENT</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -31,7 +31,8 @@
             >
               <li class="nav-item menu-open">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link active">
-                  <i class="nav-icon bi bi-speedometer"></i>
+                  {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
+                  <i class="fa-solid fa-chart-pie"></i>
                   <p>
                     Dashboard
                   </p>
@@ -40,12 +41,14 @@
               </li>
               
 
-              <li class="nav-header">MASTER DATA</li>
+              {{-- <li class="nav-header">MAIN DATA</li> --}}
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  {{-- <i class="nav-icon bi bi-file-earmark-text"></i> --}}
+                  
+                  <i class="fa-solid fa-server"></i>
                   <p>
-                    Customers Menu
+
+                    Master Data
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
@@ -53,21 +56,26 @@
                   <li class="nav-item">
                     <a href="{{ route('admin.customers.index') }}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Customer List</p>
+                      <p>Create Customers</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.shoetype.index') }}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Create Shoe Type</p>
                     </a>
                   </li>
                   
-                 
-               
                 </ul>
               </li>
 
-               <li class="nav-header">TRANSACTIONS</li>
+               {{-- <li class="nav-header">TRANSACTIONS</li> --}}
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-file-earmark-text"></i>
+                  {{-- <i class="nav-icon bi bi-file-earmark-text"></i> --}}
+                  <i class="fa-solid fa-receipt"></i>
                   <p>
-                    Orders Menu
+                    Transactions
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
@@ -75,7 +83,7 @@
                   <li class="nav-item">
                     <a href="{{ route('admin.orders.index') }}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Order List</p>
+                      <p>Create Order</p>
                     </a>
                   </li>
                   
@@ -85,12 +93,13 @@
               </li>
              
 
-              <li class="nav-header">SETTINGS MANAGEMENT</li>
+              {{-- <li class="nav-header">SETTINGS MANAGEMENT</li> --}}
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-box-arrow-in-right"></i>
+                  {{-- <i class="nav-icon bi bi-box-arrow-in-right"></i> --}}
+                  <i class="fa-solid fa-gear"></i>
                   <p>
-                    Auth
+                    Settings Management
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
@@ -99,6 +108,12 @@
                     <a href="#" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Users</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Logout</p>
                     </a>
                   </li>
                   

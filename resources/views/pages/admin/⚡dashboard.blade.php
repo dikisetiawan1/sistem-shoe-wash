@@ -24,7 +24,7 @@ new class extends Component
             <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h1 class="mb-0 fs-3">Dashboard</h1>
+                <h1 class="mb-0 fs-3"> <i class="fa-solid fa-chart-pie"></i> Dashboard</h1>
               </div>
               <div class="col-sm-6">
                 <nav aria-label="breadcrumb">
