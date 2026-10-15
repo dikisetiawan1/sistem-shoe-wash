@@ -30,5 +30,14 @@ Route::livewire('/shoetype', 'pages::admin.shoetype.index')->name('admin.shoetyp
 Route::livewire('/shoetype/create', 'pages::admin.shoetype.create')->name('admin.shoetype.create');
 // shoetype edit
 Route::livewire('/shoetype/edit/{id}', 'pages::admin.shoetype.edit')->name('admin.shoetype.edit');
+// services 
+Route::livewire('/services', 'pages::admin.services.index')->name('admin.services.index');
+
+// services create
+Route::livewire('/services/create', 'pages::admin.services.create')->name('admin.services.create');
+// services edit
+Route::livewire('/services/edit/{id}', 'pages::admin.services.edit')->name('admin.services.edit');
+
+
 
 require __DIR__.'/auth.php';

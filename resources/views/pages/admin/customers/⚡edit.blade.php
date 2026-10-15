@@ -64,7 +64,7 @@ new class extends Component
              <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h1 class="mb-5 fs-3">Update Data Customer</h1>
+                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-pen-to-square"></i> Update Data Customer</h1>
               </div>
               <div class="col-sm-6">
                 <nav aria-label="breadcrumb">

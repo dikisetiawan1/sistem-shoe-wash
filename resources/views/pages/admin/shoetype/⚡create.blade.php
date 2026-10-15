@@ -102,10 +102,6 @@ new class extends Component
                                 </div>
                             @enderror
                         </div>
-
-                        
-                           
-
                         <button type="submit" class="btn btn-md btn-primary">SAVE</button>
                         <a href="/shoetype" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 

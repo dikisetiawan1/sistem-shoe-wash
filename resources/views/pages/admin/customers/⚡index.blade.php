@@ -94,7 +94,7 @@ new class extends Component
 
                                          <button
                                             class="btn btn-sm btn-danger"
-                                            onclick="confirm('delete this data??') || event.stopImmediatePropagation()"
+                                            onclick="confirm('Are you sure you want to delete this data?') || event.stopImmediatePropagation()"
                                             wire:click="delete({{ $customer->id }})">
                                             DELETE
                                         </button>
