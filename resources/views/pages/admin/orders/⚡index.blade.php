@@ -27,7 +27,7 @@ new class extends Component
         <div class="col-md-12">
                <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6 " >
                 <h1 class="mb-5 fs-3"> <i class="fa-solid fa-clipboard-list"></i> Orders List </h1>
               </div>
               <div class="col-sm-6">
@@ -50,7 +50,7 @@ new class extends Component
             <!-- end flash message -->
 
             <a href="/orders/create" wire:navigate
-                class="btn btn-md btn-success rounded shadow-sm border-0 mb-3">
+                class="btn btn-md btn-primary rounded shadow-sm border-0 mb-3">
                 ADD NEW ORDER
             </a>
 
@@ -87,14 +87,19 @@ new class extends Component
                                     <td>{{ $order->estimated_completion_date }}</td>
 
                                     <td class="text-center">
+                                        <a href="/detail/{{ $order->id }}" wire:navigate
+                                            class="btn btn-sm btn-success">
+                                            DETAIL
+                                        </a>
                                         <a href="/edit/{{ $order->id }}" wire:navigate
-                                            class="btn btn-sm btn-primary">
+                                            class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>
-
+                                        
                                         <button class="btn btn-sm btn-danger">
                                             DELETE
                                         </button>
+                                        
                                     </td>
                                 </tr>
                             @empty

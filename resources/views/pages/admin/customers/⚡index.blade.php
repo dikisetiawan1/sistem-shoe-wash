@@ -61,7 +61,7 @@ new class extends Component
             <!--end::Row-->
 
             <a href="/customers/create" wire:navigate
-                class="btn btn-md btn-success rounded shadow-sm border-0 mb-3">
+                class="btn btn-md btn-primary rounded shadow-sm border-0 mb-3">
                 ADD NEW CUSTOMER
             </a>
 
@@ -88,7 +88,7 @@ new class extends Component
                                     <td>{{ $customer->address }}</td>
                                     <td class="text-center">
                                         <a href="/customers/edit/{{ $customer->id }}" wire:navigate
-                                            class="btn btn-sm btn-primary">
+                                            class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>
 

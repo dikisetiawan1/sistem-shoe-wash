@@ -61,7 +61,7 @@ new class extends Component
             <!--end::Row-->
 
             <a href="/shoetype/create" wire:navigate
-                class="btn btn-md btn-success rounded shadow-sm border-0 mb-3">
+                class="btn btn-md btn-primary rounded shadow-sm border-0 mb-3">
                 ADD NEW SHOES
             </a>
 
@@ -86,7 +86,7 @@ new class extends Component
                                     <td>{{ $shoestype->description }}</td>
                                     <td class="text-center">
                                         <a href="/shoetype/edit/{{ $shoestype->id }}" wire:navigate
-                                            class="btn btn-sm btn-primary">
+                                            class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>
 

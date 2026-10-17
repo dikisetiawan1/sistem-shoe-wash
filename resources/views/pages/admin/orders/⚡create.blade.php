@@ -282,8 +282,8 @@ public function save()
                                         <label class="form-label small text-muted">Brand / Series</label>
                                         <input type="text" class="form-control form-control-sm " wire:model="shoes.{{ $index }}.brand" placeholder="Nike Air Jordan">
                                          @error('shoes.' . $index . '.brand')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
+                                                <div class="alert alert-danger mt-2">
+                                        {{ $message }}
                                 </div>
                             @enderror
                                     </div>

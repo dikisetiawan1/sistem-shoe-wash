@@ -61,7 +61,7 @@ new class extends Component
             <!--end::Row-->
 
             <a href="/services/create" wire:navigate
-                class="btn btn-md btn-success rounded shadow-sm border-0 mb-3">
+                class="btn btn-md btn-primary rounded shadow-sm border-0 mb-3">
                 ADD NEW SERVICES
             </a>
 
@@ -89,7 +89,7 @@ new class extends Component
                                     <td>{{ $service->estimated_days }}</td>
                                     <td class="text-center">
                                         <a href="/services/edit/{{ $service->id }}" wire:navigate
-                                            class="btn btn-sm btn-primary">
+                                            class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>
 
