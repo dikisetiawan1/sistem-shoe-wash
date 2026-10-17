@@ -43,10 +43,10 @@ new class extends Component
                 <div class="card-body">
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Order Number</b> <span class="float-end font-monospace fw-bold text-primary">{{ $order->order_number }}</span>
+                            <b>Order ID</b> <span class="float-end font-monospace fw-bold text-primary">{{ $order->order_number }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Customer</b> <span class="float-end">{{ $order->customers_id?? '-' }}</span>
+                            <b>Customer</b> <span class="float-end">{{ $order->customers->name?? '-' }}</span>
                         </li>
                         <li class="list-group-item">
                             <b>Date Entry</b> <span class="float-end">{{ $order->entry_date }}</span>
@@ -58,9 +58,16 @@ new class extends Component
                             <b>Payment Method</b> <span class="float-end">{{ $order->payment_method }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Payment Status</b> 
-                            <span class="float-end badge bg-success">{{ strtoupper($order->payment_status) }}</span>
+                             <b>Payment Status</b>
+                                        @if($order->payment_status == 'paid')
+                                            <span class="badge bg-success float-end">Paid</span>
+                                        @elseif($order->payment_status == 'unpaid')
+                                            <span class="badge bg-danger  float-end">Unpaid</span>
+                                        @else
+                                            <span class="badge bg-dark">{{ $order->payment_status }}</span>
+                                        @endif
                         </li>
+                                            
                         <li class="list-group-item">
                             <b>Total</b> <span class="float-end">Rp. {{ number_format($order->total_price, 0, ',', '.') }}</span>
                         </li>
