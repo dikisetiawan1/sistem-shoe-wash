@@ -45,25 +45,20 @@ new class extends Component
             <!-- end flash message -->
 
              <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-shoe-prints"></i> Shoes Type  </h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                      <li class="breadcrumb-item active" aria-current="page"> Shoes Type</li>
-                    <li class="breadcrumb-item"><a href="#">List</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">Daftar Sepatu</h4>
+                        <small class="text-muted">Kelola seluruh data jenis sepatu</small>
+                    </div>
+                    
+                    {{-- Tombol aksi langsung sejajar di kanan --}}
+                    <a href="/shoetype/create"  wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                        <i class="fa-solid fa-plus me-1"></i> Tambah Jenis Sepatu
+                    </a>
+                </div>
             <!--end::Row-->
 
-            <a href="/shoetype/create" wire:navigate
-                class="btn btn-md btn-primary rounded shadow-sm border-0 mb-3">
-                ADD NEW SHOES
-            </a>
+           
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">

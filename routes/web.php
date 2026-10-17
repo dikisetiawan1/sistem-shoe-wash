@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 
 // Route::get('/dashboard', function () {
@@ -22,6 +23,8 @@ Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.inde
 Route::livewire('/orders/create', 'pages::admin.orders.create')->name('admin.orders.create');
 // orders edit
 Route::livewire('/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.orders.edit');
+
+Volt::route('/orders/{id}', 'pages::admin.orderdetail.index')->name('admin.orderdetail.index');
 // customers
 Route::livewire('/customers', 'pages::admin.customers.index')->name('admin.customers.index');
 // customers create

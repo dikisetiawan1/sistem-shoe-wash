@@ -22,6 +22,7 @@ return new class extends Migration
             $table->datetime('entry_date')->nullable();
             $table->datetime('estimated_completion_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

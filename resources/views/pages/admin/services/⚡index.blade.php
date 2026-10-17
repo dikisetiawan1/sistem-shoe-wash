@@ -36,34 +36,29 @@ new class extends Component
     <div class="row">
         <div class="col-md-12">
 
-            <!-- flash message -->
+           
+
+             <!--begin::Row-->
+             <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h4 class="fw-bold mb-0 text-dark">Daftar Layanan</h4>
+                    <small class="text-muted">Kelola seluruh layanan dan informasi mereka</small>
+                </div>
+                
+                {{-- Tombol aksi langsung sejajar di kanan --}}
+                <a href="/services/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                    <i class="fa-solid fa-plus me-1"></i> Tambah Layanan
+                </a>
+            </div>
+            <!--end::Row-->
+
+             <!-- flash message -->
             @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
                 </div>
             @endif
             <!-- end flash message -->
-
-             <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-hand-holding-hand"></i>  Our Services  </h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                      <li class="breadcrumb-item active" aria-current="page">  Our Services</li>
-                    <li class="breadcrumb-item"><a href="#">List</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-            <!--end::Row-->
-
-            <a href="/services/create" wire:navigate
-                class="btn btn-md btn-primary rounded shadow-sm border-0 mb-3">
-                ADD NEW SERVICES
-            </a>
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">

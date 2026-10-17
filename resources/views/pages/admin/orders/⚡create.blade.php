@@ -9,23 +9,20 @@ use App\Models\Services;
 use App\Models\Customers;
 use Carbon\Carbon;
 
-
 new class extends Component
 {
-#[Validate('required')]
+    #[Validate('required')]
     public $customers_id = '';
-
     #[Validate('required')]
     public $payment_status = 'unpaid';
-
     #[Validate('required')]
     public $payment_method = 'cash';
-
     #[Validate('required|date')]
     public $entry_date = '';
-
     #[Validate('required|date')]
     public $estimated_completion_date = '';
+
+    // untuk menyimpan data sepatu yang akan dicuci
     public $order_number = '';
     public $user_id = null;
     public $shoes = [];
@@ -33,9 +30,8 @@ new class extends Component
     public $customerOptions = [];
 
 
-
-// 2. Mount (Inisialisasi Awal)
- public function mount()  {
+// 2. Mount => akan jalankan saat komponen pertama kali di-render, untuk inisialisasi data awal
+    public function mount()  {
     $this->user_id = auth()->id() ?? 1;
     $this->entry_date = Carbon::now()->format('Y-m-d');
     $this->estimated_completion_date = Carbon::now()->addDays(3)->format('Y-m-d');
@@ -58,7 +54,9 @@ new class extends Component
 }
 
 // Helper: Tambah Sepatu
+// fungsi ini akan menambahkan satu baris sepatu baru ke array $shoes
 public function addShoe() {
+    // masuk ke dalam array $shoes, setiap sepatu memiliki atribut brand, color, services_id, price, notes
     $this->shoes[] = [
         'brand' => '',
         'color' => '',
@@ -142,6 +140,7 @@ public function save()
                 'color' => $shoe['color'],
                 'price' => $shoe['price'],
                 'notes' => $shoe['notes'] ?? null,
+                'status' => 'pending',
             ]);
         }
 
@@ -155,28 +154,20 @@ public function save()
 <div class="container-fluid py-4">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-               <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-cart-shopping"></i>  Create new Orders </h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                      <li class="breadcrumb-item active" aria-current="page">  Orders</li>
-                    <li class="breadcrumb-item"><a href="#">List</a></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-            <!--end::Row-->
+             <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">Buat Pesanan Baru</h4>
+                        <small class="text-muted">Kelola input pesanan baru untuk layanan cuci sepatu</small>
+                    </div>
+                    
+                </div>
             <form wire:submit="save">
                 
                 {{-- Card: Informasi Customer & Transaksi --}}
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
                         <h5 class="card-title mb-0 fw-bold">
-                            <i class="bi bi-journal-plus me-2"></i>Create Order (Shoe Wash)
+                            <i class="bi bi-journal-plus me-2"></i>Formulir Pesanan Baru
                         </h5>
                         <span class="badge bg-light text-primary fs-6 fw-bold">{{ $order_number }}</span>
                     </div>

@@ -21,21 +21,23 @@ new class extends Component
         <div class="app-content-header">
           <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-0 fs-3"> <i class="fa-solid fa-chart-pie"></i> Dashboard</h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                  </ol>
-                </nav>
-              </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="fw-bold mb-1 text-dark">
+                    Selamat Datang, Diki! 👋
+                </h4>
+                <p class="text-muted mb-0 small">
+                    Berikut adalah ringkasan operasional dan transaksi sepatu hari ini.
+                </p>
             </div>
-            <!--end::Row-->
+            <div>
+                {{-- Menampilkan Tanggal Hari Ini --}}
+                <span class="badge bg-white text-dark border px-3 py-2 shadow-sm">
+                    <i class="fa-regular fa-calendar me-2 text-primary"></i>
+                    {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}
+                </span>
+            </div>
+        </div>
           </div>
           <!--end::Container-->
         </div>

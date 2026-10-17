@@ -15,4 +15,15 @@ class OrderDetail extends Model
         'status',
         'notes',
     ];
+
+
+    public function category()
+    {
+        return $this->belongsTo(ShoeCategory::class, 'shoe_categories_id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Services::class, 'services_id');
+    }
 }

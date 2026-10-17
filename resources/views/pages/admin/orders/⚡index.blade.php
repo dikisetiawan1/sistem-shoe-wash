@@ -8,6 +8,20 @@ new class extends Component
 {
     use WithPagination;
 
+
+public function delete($id)
+{
+    $order = Orders::with('items')->findOrFail($id);
+
+    // 1. Soft delete seluruh item detail sepatu terkait
+    $order->items()->delete();
+
+    // 2. Soft delete header order utama
+    $order->delete();
+
+    session()->flash('success', 'Orders ' . $order->order_number . ' berhasil dibatalkan/dihapus.');
+}
+
     public function render()
     {
         // Return view with layout and title
@@ -25,21 +39,19 @@ new class extends Component
 <div class="container-fluid mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
-               <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6 " >
-                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-clipboard-list"></i> Orders List </h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                      <li class="breadcrumb-item active" aria-current="page">  Orders</li>
-                    <li class="breadcrumb-item"><a href="#">List</a></li>
-                  </ol>
-                </nav>
-              </div>
+           
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h4 class="fw-bold mb-0 text-dark">Daftar Transaksi</h4>
+                    <small class="text-muted">Kelola seluruh order dan status cuci sepatu</small>
+                </div>
+                
+                {{-- Tombol aksi langsung sejajar di kanan --}}
+                <a href="/orders/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                    <i class="fa-solid fa-plus me-1"></i> Tambah transaksi
+                </a>
             </div>
-            <!--end::Row-->
+           
 
             <!-- flash message -->
             @if (session()->has('message'))
@@ -48,11 +60,6 @@ new class extends Component
                 </div>
             @endif
             <!-- end flash message -->
-
-            <a href="/orders/create" wire:navigate
-                class="btn btn-md btn-primary rounded shadow-sm border-0 mb-3">
-                ADD NEW ORDER
-            </a>
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">
@@ -80,14 +87,14 @@ new class extends Component
                                     <td>{{ $order->order_number }}</td>
                                     <td>{{ $order->user_id }}</td>
                                     <td>{{ $order->customers_id }}</td>
-                                    <td>{{ $order->total_price }}</td>
+                                    <td>Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
                                     <td>{{ $order->payment_status }}</td>
                                     <td>{{ $order->payment_method }}</td>
                                     <td>{{ $order->entry_date }}</td>
                                     <td>{{ $order->estimated_completion_date }}</td>
 
                                     <td class="text-center">
-                                        <a href="/detail/{{ $order->id }}" wire:navigate
+                                        <a href="/orders/{{ $order->id }}" wire:navigate
                                             class="btn btn-sm btn-success">
                                             DETAIL
                                         </a>
@@ -96,7 +103,10 @@ new class extends Component
                                             EDIT
                                         </a>
                                         
-                                        <button class="btn btn-sm btn-danger">
+                                         <button
+                                            class="btn btn-sm btn-danger"
+                                            onclick="confirm('Are you sure you want to delete this data?') || event.stopImmediatePropagation()"
+                                            wire:click="delete({{ $order->id }})">
                                             DELETE
                                         </button>
                                         
