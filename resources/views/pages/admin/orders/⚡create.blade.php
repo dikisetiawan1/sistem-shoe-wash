@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 new class extends Component
 {
-#[Validate('required', message: 'Silahkan pilih customer terlebih dahulu')]
+#[Validate('required')]
     public $customers_id = '';
 
     #[Validate('required')]
@@ -151,27 +151,32 @@ public function save()
 }
 ?>
 
-@if ($errors->any())
-    <div class="alert alert-danger mb-4">
-        <h6 class="fw-bold">Gagal Menyimpan! Harap periksa error berikut:</h6>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
-<div class="container py-4">
+<div class="container-fluid py-4">
     <div class="row justify-content-center">
         <div class="col-lg-10">
+               <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-cart-shopping"></i>  Create new Orders </h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                      <li class="breadcrumb-item active" aria-current="page">  Orders</li>
+                    <li class="breadcrumb-item"><a href="#">List</a></li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
             <form wire:submit="save">
                 
                 {{-- Card: Informasi Customer & Transaksi --}}
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
                         <h5 class="card-title mb-0 fw-bold">
-                            <i class="bi bi-journal-plus me-2"></i>Buat Order Baru (Shoe Wash)
+                            <i class="bi bi-journal-plus me-2"></i>Create Order (Shoe Wash)
                         </h5>
                         <span class="badge bg-light text-primary fs-6 fw-bold">{{ $order_number }}</span>
                     </div>
@@ -179,46 +184,71 @@ public function save()
                         <div class="row g-3">
                             {{-- Pilih Customer dari DB --}}
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">Pilih Customer <span class="text-danger">*</span></label>
-                                <select class="form-select @error('customers_id') is-invalid @enderror" wire:model="customers_id">
-                                    <option value="">-- Pilih Customer --</option>
+                                <label class="form-label fw-semibold">Customer <span class="text-danger">*</span></label>
+                                <select class="form-select " wire:model="customers_id">
+                                    <option value="">-- Select Customer --</option>
                                     @foreach($customerOptions as $cust)
                                         <option value="{{ $cust['id'] }}">{{ $cust['name'] }} ({{ $cust['phone'] }})</option>
                                     @endforeach
                                 </select>
-                                @error('customers_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                @error('customers_id')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                                
                             </div>
 
                             {{-- Tanggal Masuk --}}
                             <div class="col-md-3">
-                                <label class="form-label fw-semibold">Tanggal Masuk</label>
+                                <label class="form-label fw-semibold">Entry Date</label>
                                 <input type="date" class="form-control" wire:model="entry_date">
+                                 @error('entry_date')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             </div>
 
                             {{-- Estimasi Selesai --}}
                             <div class="col-md-3">
-                                <label class="form-label fw-semibold">Estimasi Selesai</label>
+                                <label class="form-label fw-semibold">Estimated Completion Date</label>
                                 <input type="date" class="form-control @error('estimated_completion_date') is-invalid @enderror" wire:model="estimated_completion_date">
-                                @error('estimated_completion_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                 @error('estimated_completion_date')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                              
                             </div>
 
                             {{-- Status Pembayaran --}}
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">Status Pembayaran</label>
+                                <label class="form-label fw-semibold">Payment Status</label>
                                 <select class="form-select" wire:model="payment_status">
                                     <option value="unpaid">Belum Lunas (Unpaid)</option>
                                     <option value="paid">Lunas (Paid)</option>
                                 </select>
+                                 @error('payment_status')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             </div>
 
                             {{-- Metode Pembayaran --}}
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">Metode Pembayaran</label>
+                                <label class="form-label fw-semibold">Payment Method</label>
                                 <select class="form-select" wire:model="payment_method">
                                     <option value="cash">Cash (Tunai)</option>
                                     <option value="transfer">Transfer Bank</option>
                                     <option value="qris">QRIS</option>
                                 </select>
+                                 @error('payment_method')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             </div>
                         </div>
                     </div>
@@ -228,10 +258,10 @@ public function save()
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 border-bottom">
                         <h6 class="card-title mb-0 fw-bold text-dark">
-                            <i class="bi bi-box-seam me-2"></i>Daftar Sepatu ({{ count($shoes) }} Pasang)
+                            <i class="bi bi-box-seam me-2"></i>Shoe List ({{ count($shoes) }} Pairs)
                         </h6>
                         <button type="button" class="btn btn-sm btn-outline-primary" wire:click="addShoe">
-                            <i class="bi bi-plus-lg me-1"></i>Tambah Sepatu
+                            <i class="bi bi-plus-lg me-1"></i>Add Shoe
                         </button>
                     </div>
                     <div class="card-body p-4">
@@ -239,44 +269,64 @@ public function save()
                         @foreach($shoes as $index => $shoe)
                             <div class="p-3 mb-3 border rounded bg-light position-relative" wire:key="shoe-item-{{ $index }}">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="badge bg-secondary">Sepatu #{{ $index + 1 }}</span>
+                                    <span class="badge bg-secondary">Shoe #{{ $index + 1 }}</span>
                                     @if(count($shoes) > 1)
                                         <button type="button" class="btn btn-sm btn-outline-danger border-0" wire:click="removeShoe({{ $index }})">
-                                            <i class="bi bi-trash me-1"></i>Hapus
+                                            <i class="bi bi-trash me-1"></i>Delete
                                         </button>
                                     @endif
                                 </div>
 
                                 <div class="row g-3">
                                     <div class="col-md-3">
-                                        <label class="form-label small text-muted">Merk / Seri</label>
-                                        <input type="text" class="form-control form-control-sm @error("shoes.$index.brand") is-invalid @enderror" wire:model="shoes.{{ $index }}.brand" placeholder="Nike Air Jordan">
+                                        <label class="form-label small text-muted">Brand / Series</label>
+                                        <input type="text" class="form-control form-control-sm " wire:model="shoes.{{ $index }}.brand" placeholder="Nike Air Jordan">
+                                         @error('shoes.' . $index . '.brand')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                                     </div>
 
                                     <div class="col-md-3">
-                                        <label class="form-label small text-muted">Warna</label>
-                                        <input type="text" class="form-control form-control-sm @error("shoes.$index.color") is-invalid @enderror" wire:model="shoes.{{ $index }}.color" placeholder="Putih">
+                                        <label class="form-label small text-muted">Color</label>
+                                        <input type="text" class="form-control form-control-sm " wire:model="shoes.{{ $index }}.color" placeholder="White">
+                                        @error('shoes.' . $index . '.color')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-3">
-                                        <label class="form-label small text-muted">Layanan</label>
-                                        <select class="form-select form-select-sm @error("shoes.$index.services_id") is-invalid @enderror" wire:model.live="shoes.{{ $index }}.services_id">
-                                            <option value="">-- Pilih Layanan --</option>
+                                        <label class="form-label small text-muted">Service</label>
+                                        <select class="form-select form-select-sm " wire:model.live="shoes.{{ $index }}.services_id">
+                                            <option value="">-- Select Service --</option>
                                             @foreach($serviceOptions as $service)
                                                 <option value="{{ $service['id'] }}">
                                                     {{ $service['name'] }} (Rp {{ number_format($service['price'], 0, ',', '.') }})
                                                 </option>
                                             @endforeach
                                         </select>
+                                        @error('shoes.' . $index . '.services_id')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-3">
-                                        <label class="form-label small text-muted">Harga (Rp)</label>
+                                        <label class="form-label small text-muted">Price (Rp)</label>
                                         <input type="number" class="form-control form-control-sm bg-white" wire:model="shoes.{{ $index }}.price" readonly>
+                                         @error('shoes.' . $index . '.price')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                                     </div>
 
                                     <div class="col-12">
-                                        <input type="text" class="form-control form-control-sm" wire:model="shoes.{{ $index }}.notes" placeholder="Catatan kondisi awal sepatu...">
+                                        <input type="text" class="form-control form-control-sm" wire:model="shoes.{{ $index }}.notes" placeholder="Note about the initial condition of the shoe...">
                                     </div>
                                 </div>
                             </div>
@@ -288,7 +338,7 @@ public function save()
                     <div class="card-footer bg-white p-4 border-top">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="text-muted d-block small">Total Pembayaran</span>
+                                <span class="text-muted d-block small">Total Payment</span>
                                 <h3 class="fw-bold text-primary mb-0">
                                     Rp {{ number_format($this->total, 0, ',', '.') }}
                                 </h3>
@@ -296,10 +346,10 @@ public function save()
                             <div>
                                 <button type="submit" class="btn btn-primary btn-lg px-4">
                                     <span wire:loading.remove wire:target="save">
-                                        <i class="bi bi-check-circle me-1"></i> Simpan Order
+                                        <i class="bi bi-check-circle me-1"></i> Save Order
                                     </span>
                                     <span wire:loading wire:target="save">
-                                        <span class="spinner-border spinner-border-sm me-1"></span> Menyimpan...
+                                        <span class="spinner-border spinner-border-sm me-1"></span> Saving...
                                     </span>
                                 </button>
                             </div>

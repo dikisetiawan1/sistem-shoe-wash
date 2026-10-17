@@ -25,6 +25,21 @@ new class extends Component
 <div class="container-fluid mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
+               <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-clipboard-list"></i> Orders List </h1>
+              </div>
+              <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                      <li class="breadcrumb-item active" aria-current="page">  Orders</li>
+                    <li class="breadcrumb-item"><a href="#">List</a></li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <!--end::Row-->
 
             <!-- flash message -->
             @if (session()->has('message'))
@@ -47,7 +62,7 @@ new class extends Component
                                 <th >#</th>
                                 <th >Order Number</th>
                                 <th>Users</th>
-                                <th >Costumer</th>
+                                <th >Customers</th>
                                 <th >Total price</th>
                                 <th >Payment status</th>
                                 <th >Payment method</th>
@@ -64,7 +79,7 @@ new class extends Component
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $order->order_number }}</td>
                                     <td>{{ $order->user_id }}</td>
-                                    <td>{{ $order->costumer }}</td>
+                                    <td>{{ $order->customers_id }}</td>
                                     <td>{{ $order->total_price }}</td>
                                     <td>{{ $order->payment_status }}</td>
                                     <td>{{ $order->payment_method }}</td>

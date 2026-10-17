@@ -97,8 +97,8 @@
               </li>
 
                {{-- <li class="nav-header">TRANSACTIONS</li> --}}
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item" has-treeview>
+                <a href="#" class="nav-link" data-lte-toggle="treeview">
                   {{-- <i class="nav-icon bi bi-file-earmark-text"></i> --}}
                   <i class="fa-solid fa-receipt"></i>
                   <p>
@@ -108,13 +108,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-link" wire:navigate>
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Create Orders</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-link" wire:navigate>
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Update Orders Status</p>
                     </a>

@@ -183,6 +183,10 @@
     <script src=" {{ asset('adminlte4/dist/js/adminlte.js') }}"  ></script>
 
     @livewireScripts
+
+  
+
+
     <!--end::Required Plugin(AdminLTE)-->
     <!--begin::OverlayScrollbars Configure-->
     <script>
