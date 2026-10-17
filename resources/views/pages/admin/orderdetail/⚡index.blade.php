@@ -20,6 +20,14 @@ new class extends Component
             'items.service'
         ])->findOrFail($id);
     }
+
+    public function render()
+    {
+        // Kembalikan view dengan membawa data, layout, dan title
+        return $this->view([])
+            ->layout('layouts::app')
+            ->title('Orders Detail'); 
+    }   
 }
 ?>
 

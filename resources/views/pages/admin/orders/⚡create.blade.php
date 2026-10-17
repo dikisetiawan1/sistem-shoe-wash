@@ -53,6 +53,14 @@ new class extends Component
     $this->addShoe();
 }
 
+ public function render()
+    {
+        // Kembalikan view dengan membawa data, layout, dan title
+        return $this->view([])
+            ->layout('layouts::app')
+            ->title('Create orders'); 
+    }   
+
 // Helper: Tambah Sepatu
 // fungsi ini akan menambahkan satu baris sepatu baru ke array $shoes
 public function addShoe() {
