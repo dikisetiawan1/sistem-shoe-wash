@@ -18,6 +18,10 @@ Route::middleware('auth')->group(function () {
 Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
 // orders
 Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.index');
+// orders create
+Route::livewire('/orders/create', 'pages::admin.orders.create')->name('admin.orders.create');
+// orders edit
+Route::livewire('/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.orders.edit');
 // customers
 Route::livewire('/customers', 'pages::admin.customers.index')->name('admin.customers.index');
 // customers create
@@ -32,7 +36,6 @@ Route::livewire('/shoetype/create', 'pages::admin.shoetype.create')->name('admin
 Route::livewire('/shoetype/edit/{id}', 'pages::admin.shoetype.edit')->name('admin.shoetype.edit');
 // services 
 Route::livewire('/services', 'pages::admin.services.index')->name('admin.services.index');
-
 // services create
 Route::livewire('/services/create', 'pages::admin.services.create')->name('admin.services.create');
 // services edit

@@ -113,6 +113,12 @@
                       <p>Create Orders</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Update Orders Status</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
             {{-- Menu Reports --}}

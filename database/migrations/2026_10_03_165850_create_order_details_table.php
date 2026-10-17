@@ -14,9 +14,9 @@ return new class extends Migration
          Schema::create('order_details', function (Blueprint $table) {
             $table->id()->primary();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->foreignId('shoe_categories_id')->constrained('shoe_categories')->onDelete('cascade');
             $table->foreignId('services_id')->constrained('services')->onDelete('cascade');
             $table->string('brand', 100);
+            $table->string('color', 100);
             $table->decimal('price', 10, 2);
             $table->enum('status', ['pending', 'in_progress', 'completed', 'cancelled'])->default('pending');
             $table->text('notes')->nullable();

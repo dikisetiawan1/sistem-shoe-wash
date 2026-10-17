@@ -34,7 +34,7 @@ new class extends Component
             @endif
             <!-- end flash message -->
 
-            <a href="/create" wire:navigate
+            <a href="/orders/create" wire:navigate
                 class="btn btn-md btn-success rounded shadow-sm border-0 mb-3">
                 ADD NEW ORDER
             </a>
@@ -44,7 +44,8 @@ new class extends Component
                     <table id="example" class="display">
                         <thead>
                             <tr>
-                                <th >Order ID</th>
+                                <th >#</th>
+                                <th >Order Number</th>
                                 <th>Users</th>
                                 <th >Costumer</th>
                                 <th >Total price</th>
@@ -60,14 +61,15 @@ new class extends Component
                         <tbody>
                             @forelse ($orders as $order)
                                 <tr>
-                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $order->order_number }}</td>
                                     <td>{{ $order->user_id }}</td>
                                     <td>{{ $order->costumer }}</td>
                                     <td>{{ $order->total_price }}</td>
                                     <td>{{ $order->payment_status }}</td>
                                     <td>{{ $order->payment_method }}</td>
                                     <td>{{ $order->entry_date }}</td>
-                                    <td>{{ $order->estimated_date }}</td>
+                                    <td>{{ $order->estimated_completion_date }}</td>
 
                                     <td class="text-center">
                                         <a href="/edit/{{ $order->id }}" wire:navigate
