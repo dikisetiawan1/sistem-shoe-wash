@@ -10,6 +10,9 @@ new class extends Component
     public $name;
 
     #[Validate('required')]
+    public $category;
+
+    #[Validate('required')]
     public $description;
 
      #[Validate('required|numeric')]
@@ -27,6 +30,7 @@ new class extends Component
         // insert data
         Services::create([
             'name' => $this->name,
+            'category' => $this->category,
             'description' => $this->description,
             'price' => $this->price,
             'estimated_days' => $this->estimated_days,
@@ -68,9 +72,18 @@ new class extends Component
 
 
                         <div class="mb-3">
-                            <label class="form-label">Name Service</label>
+                            <label class="form-label">Service</label>
                             <input type="text" class="form-control" wire:model="name">
                             @error('name')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <input type="text" class="form-control" wire:model="name">
+                            @error('category')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>

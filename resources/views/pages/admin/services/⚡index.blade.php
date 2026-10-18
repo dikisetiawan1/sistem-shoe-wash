@@ -67,6 +67,7 @@ new class extends Component
                                 <tr>
                                     <th>#</th>
                                     <th>Service</th>
+                                    <th>Category</th>
                                     <th>Description</th>
                                     <th>Price</th>
                                     <th>Estimated Days</th>
@@ -79,9 +80,10 @@ new class extends Component
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $service->name }}</td>
+                                    <td>{{ $service->category }}</td>
                                     <td>{{ $service->description }}</td>
                                     <td>{{ $service->price }}</td>
-                                    <td>{{ $service->estimated_days }}</td>
+                                    <td>{{ $service->estimated_days }} days</td>
                                     <td class="text-center">
                                         <a href="/services/edit/{{ $service->id }}" wire:navigate
                                             class="btn btn-sm btn-warning">

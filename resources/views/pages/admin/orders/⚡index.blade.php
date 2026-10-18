@@ -104,9 +104,9 @@ public function delete($id)
                                         
                                          <button
                                             class="btn btn-sm btn-danger"
-                                            onclick="confirm('Are you sure you want to delete this data?') || event.stopImmediatePropagation()"
+                                            onclick="confirm('Are you sure you want to cancelled this data?') || event.stopImmediatePropagation()"
                                             wire:click="delete({{ $order->id }})">
-                                            DELETE
+                                            CANCEL
                                         </button>
                                         
                                     </td>

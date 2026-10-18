@@ -45,7 +45,7 @@ new class extends Component {
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
         <div>
             <h4 class="fw-bold mb-1 text-dark">
-                <i class="fa-solid fa-clipboard-list text-primary me-2"></i>Antrean Pengerjaan Harian
+                Antrean Pengerjaan Harian
             </h4>
             <p class="text-muted mb-0 small">Pantau daftar sepatu yang masuk dan harus dikerjakan berdasarkan tanggal</p>
         </div>
@@ -91,7 +91,7 @@ new class extends Component {
     <div class="card border-0 shadow-sm">
         <div class="card-header bg-white py-3 border-bottom">
             <h5 class="card-title fw-bold mb-0 text-dark">
-                <i class="fa-solid fa-shoe-prints text-primary me-2"></i> Rincian Sepatu di Antrean
+                Rincian Sepatu di Antrean
             </h5>
         </div>
         <div class="table-responsive">
@@ -100,12 +100,12 @@ new class extends Component {
                     <tr>
                         <th style="width: 50px;" class="text-center">#</th>
                         <th>No. Order & Customer</th>
-                        <th>Merk & Warna Sepatu</th>
-                        <th>Kategori & Layanan Cuci</th>
-                        <th>Catatan Pengerjaan</th>
+                        <th>Merk & Shoe Color</th>
+                        <th>Category & Service</th>
+                        <th>Note</th>
                         <th>Status</th>
-                        <th class="text-center">Estimasi Selesai</th>
-                        <th class="text-center">Aksi</th>
+                        <th class="text-center">Estimated Finish</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -10,6 +10,7 @@ class Services extends Model
     use SoftDeletes;
     protected $fillable = [
         'name',
+        'category',
         'description',
         'price',
         'estimated_days',

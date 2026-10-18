@@ -85,17 +85,14 @@ new class extends Component
             </div>
         </div>
 
-        
         <div class="col-md-8 mt-3">
              <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
                         <h4 class="fw-bold mb-0 text-dark"></h4>
                         <small class="text-muted"></small>
                     </div> 
-
-
-                      <a href="/customers/create" wire:navigate target="_blank" class="btn btn-primary fw-semibold shadow-sm"">
-                    <i class="fa-solid fa-print me-1"></i> Cetak Nota / Struk
+                      <a href="/orders/{{ $order->id }}/invoice" wire:navigate target="_blank" class="btn btn-primary fw-semibold shadow-sm">
+                    <i class="fa-solid fa-print me-1"></i> Cetak Invoice/ Struk
                 </a>
             </div>
             <div class="card">
@@ -123,7 +120,7 @@ new class extends Component
                                     <small class="text-muted">Warna: {{ $item->color }}</small>
                                 </td>
                                 <td>
-                                    {{ $item->category_id ?? '-' }}<br>
+                                    {{ $item->service_category ?? '-' }}<br>
                                     <small class="text-info">{{ $item->service->name ?? '-' }}</small>
                                 </td>
                                 <td><small class="text-secondary">{{ $item->notes ?? '-' }}</small></td>
@@ -133,16 +130,13 @@ new class extends Component
                                         @if($item->status == 'pending')
                                             <span class="badge bg-secondary">Pending</span>
                                         @elseif($item->status == 'in_progress')
-                                            <span class="badge bg-info text-dark">Sedang Dicuci</span>
+                                            <span class="badge bg-info text-dark">In Progress</span>
                                         @elseif($item->status == 'completed')
-                                            <span class="badge bg-success">Selesai</span>
-                                        @elseif($item->status == 'taken')
-                                            <span class="badge bg-primary">Sudah Diambil</span>
-                                        @else
-                                            <span class="badge bg-dark">{{ $item->status }}</span>
+                                            <span class="badge bg-success">Completed</span>
+                                            
                                         @endif
                                     </td>
-                                                                </tr>
+                            </tr>
                             @endforeach
                         </tbody>
                         <tfoot>

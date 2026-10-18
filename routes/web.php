@@ -27,6 +27,8 @@ Route::livewire('/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.or
 Volt::route('/orders/washqueue', 'pages::admin.washqueue.index')->name('admin.washqueue.index');
 // orders detail
 Volt::route('/orders/{id}', 'pages::admin.orderdetail.index')->name('admin.orderdetail.index');
+// orders print
+Route::livewire('/orders/{id}/invoice', 'pages::admin.orders.invoice')->name('admin.orders.invoice');
 // customers
 Route::livewire('/customers', 'pages::admin.customers.index')->name('admin.customers.index');
 // customers create
