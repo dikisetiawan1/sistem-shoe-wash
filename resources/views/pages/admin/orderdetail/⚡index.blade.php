@@ -6,7 +6,7 @@ use App\Models\Orders;
 new class extends Component
 {
 
-     public $orderId;
+    public $orderId;
     public $order;
 
     public function mount($id)

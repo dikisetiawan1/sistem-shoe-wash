@@ -9,9 +9,10 @@ new class extends Component {
 
     public function mount()
     {
-        // Default tanggal hari ini
+        // tanggal hari ini
         $this->selectedDate = Carbon::today()->format('Y-m-d');
     }
+
 
      public function render()
     {
@@ -133,16 +134,18 @@ new class extends Component {
                                 <td>
                                     <small class="text-secondary">{{ $item->notes ?? 'Tidak ada catatan' }}</small>
                                 </td>
-                                <td class="text-center">
+                                 <td class="text-center">
                                     <span >
                                         @if($item->status == 'pending')
                                             <span class="badge bg-secondary ">Pending</span>
-                                        @elseif($item->status == 'in_progress')
-                                            <span class="badge bg-info ">In Progress</span>
+                                        @elseif($item->status == 'washing')
+                                            <span class="badge bg-info ">Washing</span>
+                                        @elseif($item->status == 'drying')
+                                            <span class="badge bg-warning ">Drying</span>
                                         @elseif($item->status == 'completed')
-                                            <span class="badge bg-success ">Completed</span>
-                                        @elseif($item->status == 'cancelled')
-                                            <span class="badge bg-danger ">Cancelled</span>
+                                            <span class="badge bg-primary ">Completed</span>
+                                        @elseif($item->status == 'received')
+                                            <span class="badge bg-success ">Received</span>
                                         @else
                                             <span class="badge bg-dark">{{ $item->status }}</span>
                                         @endif

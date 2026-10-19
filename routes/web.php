@@ -21,6 +21,10 @@ Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard')
 Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.index');
 // orders create
 Route::livewire('/orders/create', 'pages::admin.orders.create')->name('admin.orders.create');
+// orders history
+Route::livewire('/orders/history', 'pages::admin.orders.history')->name('admin.orders.history');
+// orders update status
+Route::livewire('/orders/updatestatus', 'pages::admin.orders.updatestatus')->name('admin.orders.updatestatus');
 // orders edit
 Route::livewire('/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.orders.edit');
 // order antrean
