@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 new class extends Component
 {
     use WithPagination;
+    
 
 
 public function delete($id)
@@ -25,11 +26,22 @@ public function delete($id)
 
     public function render()
     {
+
+        // ambil branch_id dari session user yg sedang login
+            $user = 2;
+            //tampung data orders
+            $orders = [];
+                if($user){
+                    // ambil data order berdasarkan branch tertentu
+                            $orders = Orders::with(['customers', 'branches'])
+                            ->where('branch_id', $user)
+                            ->latest()
+                            ->get();
+                }
         // Return view with layout and title
         return $this->view([
-
-            // Get all orders with latest pagination
-            'orders' => Orders::with('customers')->latest()->get(),
+            // kembalikan dari orders ke view 
+            'orders' => $orders,
         ])
             ->layout('layouts::app')
             ->title('Orders List'); 

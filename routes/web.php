@@ -17,6 +17,19 @@ Route::middleware('auth')->group(function () {
 
 // dashboard admin
 Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
+
+// masterdata
+Route::livewire('/masterdata', 'pages::masterdata.index')->name('masterdata.index');
+// transactions
+Route::livewire('/transactions', 'pages::transactions.index')->name('transactions.index');
+// reports
+Route::livewire('/reports', 'pages::reports.index')->name('reports.index');
+// branch
+Route::livewire('/branches', 'pages::admin.branches.index')->name('admin.branches.index');
+// branch create
+Route::livewire('/branches/create', 'pages::admin.branches.create')->name('admin.branches.create');
+// branch edit
+Route::livewire('/branches/{id}', 'pages::admin.branches.edit')->name('admin.branches.edit');
 // orders
 Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.index');
 // orders create
@@ -51,6 +64,9 @@ Route::livewire('/services', 'pages::admin.services.index')->name('admin.service
 Route::livewire('/services/create', 'pages::admin.services.create')->name('admin.services.create');
 // services edit
 Route::livewire('/services/edit/{id}', 'pages::admin.services.edit')->name('admin.services.edit');
+
+
+
 
 
 

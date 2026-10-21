@@ -31,4 +31,10 @@ class Orders extends Model
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
+
+    public function branches() : BelongsTo
+    {
+        return $this->belongsTo(Branches::class,'branch_id');
+
+    }
 }

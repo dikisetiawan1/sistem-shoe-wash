@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->foreignId('services_id')->constrained('services')->onDelete('cascade');
+            $table->foreignId('branch_id')->nullable()->constrained('branches')->nullOnDelete();
             $table->string('brand', 100);
             $table->string('color', 100);
             $table->decimal('price', 10, 2);

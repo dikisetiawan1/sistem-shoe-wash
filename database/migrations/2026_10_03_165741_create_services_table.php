@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->integer('estimated_days');
             $table->timestamps();
-            $table->deletesoft();
+            $table->softDeletes();
         });
     }
 

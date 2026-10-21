@@ -60,106 +60,39 @@
                 </a>
                
               </li>
-              
 
-              {{-- <li class="nav-header">MAIN DATA</li> --}}
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  
+
+              <li class="nav-item ">
+                <a href="{{ route('masterdata.index') }}" class="nav-link">
                   <i class="fa-solid fa-server"></i>
                   <p>
-
                     Master Data
-                    <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admin.customers.index') }}" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Create Customers</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('admin.shoetype.index') }}" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Create Shoe Type</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('admin.services.index') }}" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Create Services</p>
-                    </a>
-                  </li>
-                  
-                </ul>
+                </a>               
               </li>
 
-               {{-- <li class="nav-header">TRANSACTIONS</li> --}}
-              <li class="nav-item" has-treeview>
-                <a href="#" class="nav-link" data-lte-toggle="treeview">
-                  {{-- <i class="nav-icon bi bi-file-earmark-text"></i> --}}
+
+              <li class="nav-item ">
+                <a href="{{ route('transactions.index') }}" class="nav-link">
                   <i class="fa-solid fa-receipt"></i>
                   <p>
                     Transactions
-                    <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ route('admin.orders.index') }}" class="nav-link" wire:navigate>
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Create Orders</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('admin.orders.updatestatus') }}" class="nav-link" wire:navigate>
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Update Orders Status</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('admin.orders.history') }}" class="nav-link" wire:navigate>
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>History Orders</p>
-                    </a>
-                  </li>
-                </ul>
+                </a>               
               </li>
-            {{-- Menu Reports --}}
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                 <i class="fa-solid fa-chart-column"></i>
-                
+
+
+              <li class="nav-item ">
+                <a href="{{ route('reports.index') }}" class="nav-link">
+                  <i class="fa-solid fa-chart-column"></i>
                   <p>
                     Reports
-                    <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Report Daily</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Report Monthly</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Report Yearly</p>
-                    </a>
-                  </li>
-                 
-                </ul>
+                </a>               
               </li>
-             
+
+            
+          
 
               {{-- <li class="nav-header">SETTINGS MANAGEMENT</li> --}}
               {{-- menu Setting management --}}

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
@@ -29,5 +29,11 @@ class OrderDetail extends Model
     public function customers()
     {
         return $this->belongsTo(Customers::class, 'customers_id');
+    }
+
+    public function branch() : BelongsTo
+    {
+        return $this->belongsTo(Branches::class,'branch_id');
+
     }
 }

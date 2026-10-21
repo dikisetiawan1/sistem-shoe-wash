@@ -82,7 +82,7 @@ new class extends Component
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Category</label>
-                            <input type="text" class="form-control" wire:model="name">
+                            <input type="text" class="form-control" wire:model="category">
                             @error('category')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
