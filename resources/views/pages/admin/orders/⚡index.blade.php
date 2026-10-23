@@ -83,6 +83,7 @@ public function delete($id)
                                 <th >Order ID</th>
                                 <th >Customers</th>
                                 <th >Total price</th>
+                                <th >Type</th>
                                 <th >Payment status</th>
                                 <th >Payment method</th>
                                 <th >Entry date</th>
@@ -99,6 +100,7 @@ public function delete($id)
                                     <td>{{ $order->order_number }}</td>
                                     <td>{{ $order->customers->name }}</td>
                                     <td>Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
+                                    <td>{{ $order->type}}</td>
                                     <td>{{ $order->payment_status }}</td>
                                     <td>{{ $order->payment_method }}</td>
                                     <td>{{ $order->entry_date }}</td>

@@ -20,7 +20,7 @@ new class extends Component {
             // Menampilkan data pesanan dengan items nya received
             $orders = Orders::with(['customers', 'items' => function ($query) {
             // Hanya ambil item sepatu yang statusnya received saja
-            $query->where('status', 'received'); }, 
+            $query->where('status', 'received',); }, 
                     'items.category', 'items.service'])
             ->whereHas('items', function($query){
                 $query->where('status','received');
@@ -97,7 +97,7 @@ new class extends Component {
                                             <span class="badge bg-success">Paid</span>
                                         @elseif($order->payment_status == 'unpaid')
                                             <span class=" badge bg-danger">Unpaid</span>
-                                            <span class="badge bg-dark">{{ $item->status }}</span>
+                                           
                                         @endif
                                     </span>
                                     </span>

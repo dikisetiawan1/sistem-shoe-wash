@@ -91,39 +91,20 @@
                 </a>               
               </li>
 
-            
-          
-
-              {{-- <li class="nav-header">SETTINGS MANAGEMENT</li> --}}
               {{-- menu Setting management --}}
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  {{-- <i class="nav-icon bi bi-box-arrow-in-right"></i> --}}
+              
                   <i class="fa-solid fa-gear"></i>
                   <p>
                     Settings Management
-                    <i class="nav-arrow bi bi-chevron-right"></i>
+                    
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Users</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Logout</p>
-                    </a>
-                  </li>
-                </ul>
+                
               </li>
             </ul>
             <!--end::Sidebar Menu-->
-
-           
           </nav>
         </div>
         <!--end::Sidebar Wrapper-->

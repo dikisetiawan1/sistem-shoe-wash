@@ -3,14 +3,17 @@
 use Livewire\Component;
 use App\Models\Orders;
 use Carbon\Carbon;
+use Livewire\WithPagination;
 
 new class extends Component {
+    use WithPagination;
     public $selectedDate;
+    
 
     public function mount()
     {
         // tanggal hari ini
-        $this->selectedDate = Carbon::today()->format('Y-m-d');
+        $this->selectedDate = Carbon::now('Asia/Jakarta')->format('Y-m-d');
     }
 
 
@@ -110,7 +113,9 @@ new class extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    @php $no = 1; @endphp
+                    @php 
+                        $no = 1; 
+                    @endphp
                     @forelse($orders as $order)
                         @foreach($order->items as $item)
                             <tr>
@@ -163,6 +168,7 @@ new class extends Component {
                                 </td>
                             </tr>
                         @endforeach
+                         
                     @empty
                         <tr>
                             <td colspan="7" class="text-center py-5 text-muted">
@@ -175,9 +181,14 @@ new class extends Component {
             </table>
         </div>
     </div>
+            {{-- <div class="mt-4">
+                {{ $orders->links() }}
+            </div> --}}
 </div>
-    </div>
 </div>
+   
+</div>
+
 
 
 <script>

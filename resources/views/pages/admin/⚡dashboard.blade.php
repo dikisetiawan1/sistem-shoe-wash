@@ -34,7 +34,7 @@ new class extends Component
                 {{-- Menampilkan Tanggal Hari Ini --}}
                 <span class="badge bg-white text-dark border px-3 py-2 shadow-sm">
                     <i class="fa-regular fa-calendar me-2 text-primary"></i>
-                    {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}
+                    {{ \Carbon\Carbon::now('Asia/Jakarta')->isoFormat('D MMMM Y') }}
                 </span>
             </div>
         </div>

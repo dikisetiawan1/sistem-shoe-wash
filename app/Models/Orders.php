@@ -14,6 +14,7 @@ class Orders extends Model
         'user_id',
         'customers_id',
         'total_price',
+        'type',
         'payment_status',
         'payment_method',
         'entry_date',

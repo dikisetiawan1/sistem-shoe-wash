@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('customers_id')->constrained('customers');
             $table->foreignId('branch_id')->nullable()->constrained('branches')->nullOnDelete();
             $table->decimal('total_price', 10, 2);
+            $table->enum('type',['reguler', 'express'])->default('reguler');
             $table->enum('payment_status', ['unpaid', 'paid'])->default('unpaid');
             $table->enum('payment_method', ['cash', 'qris', 'transfer'])->default('cash');
             $table->datetime('entry_date')->nullable();

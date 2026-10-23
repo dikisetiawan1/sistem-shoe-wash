@@ -150,6 +150,10 @@ new class extends Component
                 <span>Payment Method:</span>
                 <span class="text-uppercase">{{ $order->payment_method }}</span>
             </div>
+            <div class="d-flex justify-content-between">
+                <span>Type:</span>
+                <span class="text-uppercase">{{ $order->type }}</span>
+            </div>
         </div>
 
         <div class="dashed-line"></div>

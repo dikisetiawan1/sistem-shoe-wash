@@ -51,7 +51,7 @@ new class extends Component
               <!--begin::Row-->
             <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <h4 class="fw-bold mb-0 text-dark">Tambah Toko</h4>
+                        <h4 class="fw-bold mb-0 text-dark">Tambah Branch</h4>
                         <small class="text-muted">Kelola seluruh data layanan</small>
                     </div>
             </div>

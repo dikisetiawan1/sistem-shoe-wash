@@ -17,6 +17,8 @@ new class extends Component
     public $payment_status = 'unpaid';
     #[Validate('required')]
     public $payment_method = 'cash';
+    #[Validate('required')]
+    public $type = 'reguler';
     #[Validate('required|date')]
     public $entry_date = '';
     #[Validate('required|date')]
@@ -28,13 +30,14 @@ new class extends Component
     public $shoes = [];
     public $serviceOptions = [];
     public $customerOptions = [];
+  
 
 
-// 2. Mount => akan jalankan saat komponen pertama kali di-render, untuk inisialisasi data awal
+    // 2. Mount => akan jalankan saat komponen pertama kali di-render, untuk inisialisasi data awal
     public function mount()  {
     $this->user_id = auth()->id() ?? 1;
-    $this->entry_date = Carbon::now()->format('Y-m-d');
-    $this->estimated_completion_date = Carbon::now()->addDays(3)->format('Y-m-d');
+    $this->entry_date = Carbon::now('asia/jakarta')->format('Y-m-d');
+    $this->estimated_completion_date = Carbon::now('asia/jakarta')->addDays(3)->format('Y-m-d');
 
     // Ambil data dari database
     $this->serviceOptions = Services::all()->toArray();
@@ -45,10 +48,8 @@ new class extends Component
     $lastOrder = Orders::whereDate('created_at', Carbon::today())
                       ->latest('id')
                       ->first();
-
     $nextSequence = $lastOrder ? ((int) substr($lastOrder->order_number, -3) + 1) : 1;
     $this->order_number = 'SW-' . $todayCode . '-' . str_pad($nextSequence, 3, '0', STR_PAD_LEFT);
-
     // Inisialisasi 1 baris sepatu default
     $this->addShoe();
 }
@@ -123,6 +124,7 @@ public function save()
             'customers_id' => 'required', 
             'payment_status' => 'required|string',
             'payment_method' => 'required|string',
+            'type' => 'required|string',
             'entry_date' => 'required|date',
             'estimated_completion_date' => 'required|date|after_or_equal:entry_date',
             'shoes' => 'required|array|min:1',
@@ -135,6 +137,7 @@ public function save()
             'order_number' => $this->order_number,
             'customers_id' => $this->customers_id,
             'total_price' => $this->total,
+            'type' => $this->type,
             'payment_status' => $this->payment_status,
             'payment_method' => $this->payment_method,
             'entry_date' => $this->entry_date,
@@ -232,7 +235,7 @@ public function save()
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>
-                            @enderror
+                                @enderror
                             </div>
 
                             {{-- Metode Pembayaran --}}
@@ -247,7 +250,21 @@ public function save()
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>
-                            @enderror
+                                @enderror
+                            </div>
+
+                            {{-- Type wash --}}
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Type</label>
+                                <select class="form-select" wire:model="type">
+                                    <option value="reguler">Reguler (3 hari)</option>
+                                    <option value="express">Express (1 hari)</option>
+                                </select>
+                                 @error('type')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                     </div>

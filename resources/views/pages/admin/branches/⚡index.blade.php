@@ -41,13 +41,13 @@ new class extends Component
              <!--begin::Row-->
              <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h4 class="fw-bold mb-0 text-dark">Daftar Toko</h4>
+                    <h4 class="fw-bold mb-0 text-dark">Daftar Branch</h4>
                     <small class="text-muted">Kelola seluruh toko refresh</small>
                 </div>
                 
                 {{-- Tombol aksi langsung sejajar di kanan --}}
                 <a href="/branches/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
-                    <i class="fa-solid fa-plus me-1"></i> Tambah Toko
+                    <i class="fa-solid fa-plus me-1"></i> Tambah Branch
                 </a>
             </div>
             <!--end::Row-->

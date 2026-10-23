@@ -53,7 +53,7 @@ new class extends Component
                         <li class="list-group-item">
                             <b>Order ID</b> <span class="float-end font-monospace fw-bold text-primary">{{ $order->order_number }}</span>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item text-uppercase">
                             <b>Customer</b> <span class="float-end">{{ $order->customers->name?? '-' }}</span>
                         </li>
                         <li class="list-group-item">
@@ -63,21 +63,25 @@ new class extends Component
                             <b>Estimated Completion</b> <span class="float-end">{{ $order->estimated_completion_date }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Payment Method</b> <span class="float-end">{{ $order->payment_method }}</span>
+                            <b>Payment Method</b> <span class="float-end text-uppercase">{{ $order->payment_method }}</span>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item ">
                              <b>Payment Status</b>
                                         @if($order->payment_status == 'paid')
-                                            <span class="badge bg-success float-end">Paid</span>
+                                            <span class="badge bg-success float-end text-uppercase">Paid</span>
                                         @elseif($order->payment_status == 'unpaid')
-                                            <span class="badge bg-danger  float-end">Unpaid</span>
+                                            <span class="badge bg-danger  float-end text-uppercase">Unpaid</span>
                                         @else
-                                            <span class="badge bg-dark">{{ $order->payment_status }}</span>
+                                            <span class="badge bg-dark text-uppercase">{{ $order->payment_status }}</span>
                                         @endif
+                        </li>
+
+                        <li class="list-group-item">
+                            <b>Type</b> <span class="float-end text-uppercase">{{ $order->type }}</span>
                         </li>
                                             
                         <li class="list-group-item">
-                            <b>Total</b> <span class="float-end">Rp. {{ number_format($order->total_price, 0, ',', '.') }}</span>
+                            <b>Total</b> <strong><span class="float-end">Rp. {{ number_format($order->total_price, 0, ',', '.') }}</span></strong>
                         </li>
                         
                     </ul>
@@ -127,13 +131,18 @@ new class extends Component
                                 <td>Rp {{ number_format($item->price, 0, ',', '.') }}</td>
 
                                 <td>
-                                        @if($item->status == 'pending')
-                                            <span class="badge bg-secondary">Pending</span>
-                                        @elseif($item->status == 'in_progress')
-                                            <span class="badge bg-info text-dark">In Progress</span>
+                                         @if($item->status == 'pending')
+                                            <span class="badge bg-secondary ">Pending</span>
+                                        @elseif($item->status == 'washing')
+                                            <span class="badge bg-info ">Washing</span>
+                                        @elseif($item->status == 'drying')
+                                            <span class="badge bg-warning ">Drying</span>
                                         @elseif($item->status == 'completed')
-                                            <span class="badge bg-success">Completed</span>
-                                            
+                                            <span class="badge bg-primary ">Completed</span>
+                                        @elseif($item->status == 'received')
+                                            <span class="badge bg-success ">Received</span>
+                                        @else
+                                            <span class="badge bg-dark">{{ $item->status }}</span>
                                         @endif
                                     </td>
                             </tr>
