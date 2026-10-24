@@ -1,6 +1,11 @@
 <?php
 
 use Livewire\Component;
+use App\Models\Orders;
+use App\Models\Services;
+use App\Models\Customers;
+use App\Models\OrderDetail;
+
 
 new class extends Component
 {
@@ -8,6 +13,13 @@ new class extends Component
     {
         // Return view with layout and title
         return $this->view([
+
+          'orders'=>Orders::get(),
+          'services'=>Services::get(),
+          'customers'=>Customers::get(),
+          'washqueue' => OrderDetail::whereNotIn('status', ['received', 'completed'])
+            ->latest()
+            ->get()
         ])
             ->layout('layouts::app')
             ->title('Dashboard'); 
@@ -24,7 +36,7 @@ new class extends Component
             <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
                 <h4 class="fw-bold mb-1 text-dark">
-                    Selamat Datang, Diki! 👋
+                    Selamat Datang, {{auth()->user()->name}}! 👋
                 </h4>
                 <p class="text-muted mb-0 small">
                     Berikut adalah ringkasan operasional dan transaksi sepatu hari ini.
@@ -53,7 +65,7 @@ new class extends Component
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                   <div class="inner">
-                    <h3>150</h3>
+                    <h3>{{ $orders->count() }}</h3>
 
                     <p>New Orders</p>
                   </div>
@@ -83,7 +95,7 @@ new class extends Component
                 <!--begin::Small Box Widget 2-->
                 <div class="small-box text-bg-success">
                   <div class="inner">
-                    <h3>53<sup class="fs-5">%</sup></h3>
+                    <h3>{{ $services->count() }}</h3>
 
                     <p>Our Services</p>
                   </div>
@@ -113,7 +125,7 @@ new class extends Component
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{ $washqueue->count() }}</h3>
 
                     <p>Wash Queue</p>
                   </div>
@@ -143,7 +155,7 @@ new class extends Component
                 <!--begin::Small Box Widget 4-->
                 <div class="small-box text-bg-danger">
                   <div class="inner">
-                    <h3>65</h3>
+                     <h3>{{ $customers->count() }}</h3>
 
                     <p>Our Customers</p>
                   </div>
@@ -185,48 +197,6 @@ new class extends Component
                 <!-- /.card -->
 
                 
-              </div>
-              <!-- /.Start col -->
-
-              <!-- Start col -->
-              <div class="col-lg-5 connectedSortable">
-                <div class="card text-white bg-primary bg-gradient border-primary mb-4">
-                  <div class="card-header border-0">
-                    <h3 class="card-title">Sales Value</h3>
-                    <div class="card-tools">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        data-lte-toggle="card-collapse"
-                        aria-label="Collapse card"
-                      >
-                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div id="world-map" style="height: 220px"></div>
-                  </div>
-                  <div class="card-footer border-0">
-                    <!--begin::Row-->
-                    <div class="row">
-                      <div class="col-4 text-center">
-                        <div id="sparkline-1" class="text-dark"></div>
-                        <div class="text-white">Visitors</div>
-                      </div>
-                      <div class="col-4 text-center">
-                        <div id="sparkline-2" class="text-dark"></div>
-                        <div class="text-white">Online</div>
-                      </div>
-                      <div class="col-4 text-center">
-                        <div id="sparkline-3" class="text-dark"></div>
-                        <div class="text-white">Sales</div>
-                      </div>
-                    </div>
-                    <!--end::Row-->
-                  </div>
-                </div>
               </div>
               <!-- /.Start col -->
             </div>

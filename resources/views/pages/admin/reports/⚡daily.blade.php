@@ -14,31 +14,48 @@ new class extends Component {
     {
         // Set default tanggal hari ini (WIB)
         $this->selectedDate = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+
     }
 
     public function with()
     {
-        // Ambil data order untuk tabel rincian (dengan pagination)
-        $orders = Orders::with(['customers', 'items.category', 'items.service'])
+        // Ambil data order untuk tabel rincian
+        $orders = Orders::with(['customers', 'items.category','items' => function ($query) {
+            $query->where('status', 'received'); 
+                    }, 'items.service'])
             ->whereDate('entry_date', $this->selectedDate)
+            ->whereHas('items', function ($query) {
+                    $query->where('status', 'received');
+                })
             ->latest()
             ->get();
 
         // Ambil semua data pada tanggal tersebut untuk kalkulasi rekap pembayaran
-        $allOrdersForDate = Orders::whereDate('entry_date', $this->selectedDate)->get();
+        $allOrdersForDate = Orders::with(['items' => function ($query) {
+                                $query->where('status', 'received'); 
+                                        }, 'items.service'])
+                                ->whereDate('entry_date', $this->selectedDate)
+                                ->whereHas('items', function ($query) {
+                                        $query->where('status', 'received');
+                                    })
+                                ->get();
 
-        // Hitung total pembayaran dikelompokkan berdasarkan metode pembayaran (payment_method)
-        // Pastikan kolom di database Anda bernama 'payment_method' dan 'total_price' (atau sesuaikan)
+        //hitung total harga per item dengan payment_method received aja
         $paymentSummary = $allOrdersForDate->groupBy('payment_method')->map(function ($group) {
-            return [
-                'total_amount' => $group->sum('total_price'),
-                'total_transactions' => $group->count()
-            ];
+                return [
+                    'total_amount' => $group->sum(function ($order) {
+                        return $order->items->sum('price'); 
+                    }),
+                    'total_transactions' => $group->count()
+                ];
         });
-
+        // total transaksi pada tanggal yg dipilih user
         $totalTransactions = $allOrdersForDate->count();
-        $totalRevenue = $allOrdersForDate->sum('total_price');
-
+        // total hasil pendapatan pada tanggal tersebut
+        $totalRevenue = $allOrdersForDate->sum(function ($order) {
+            return $order->items->sum('price'); 
+        });
+        // kembalikan ke view
         return [
             'orders' => $orders,
             'paymentSummary' => $paymentSummary,
@@ -121,13 +138,16 @@ new class extends Component {
                         <thead class="table-light">
                             <tr>
                                 <th style="width: 50px;" class="text-center">#</th>
-                                <th>No. Order & Customer</th>
-                                <th>Detail Sepatu (Brand & Warna)</th>
-                                <th>Kategori & Layanan</th>
+                                <th>No. Order </th>
+                                <th> Customer</th>
+                                <th>Detail Sepatu</th>
+                                <th>Brand</th>
+                                <th> Warna</th>
+                                <th>Kategori</th>
+                                <th>Layanan</th>
                                 <th>Metode Pembayaran</th>
                                 <th class="text-center">Status Item</th>
                                 <th class="text-end">Total Order</th>
-                                <th class="text-center d-print-none">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -135,23 +155,31 @@ new class extends Component {
                                 $no =  1; 
                             @endphp
                             @forelse($orders as $order)
+                            {{-- perulangan untuk ambil data item di tabel relasi detail order --}}
                                 @foreach($order->items as $item)
                                     <tr>
                                         <td class="text-center fw-bold text-muted">{{ $no++ }}</td>
-                                        <td>
+                                        <td>                    
                                             <span class="font-monospace fw-bold text-primary">{{ $order->order_number }}</span>
-                                            <br>
+                                        </td>
+                                        <td>
                                             <span class="fw-semibold text-dark">{{ $order->customers->name ?? 'Guest' }}</span>
-                                            <small class="text-muted d-block">{{ $order->customers->phone ?? '-' }}</small>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted text-dark">{{ $order->customers->phone ?? '-' }}</span>
                                         </td>
                                         <td>
                                             <span class="fw-bold text-dark">{{ $item->brand }}</span>
-                                            <small class="text-muted d-block">Warna: {{ $item->color }}</small>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted d-block">{{ $item->color }}</span>
                                         </td>
                                         <td>
                                             <span class="badge bg-light text-dark border">{{ $item->category->name ?? 'Sneakers' }}</span>
+                                        </td>
+                                        <td>
                                             <span class="d-block small text-primary fw-semibold mt-1">
-                                                <i class="fa-solid fa-soap me-1"></i>{{ $item->service->name ?? '-' }}
+                                                </i>{{ $item->service->name ?? '-' }}
                                             </span>
                                         </td>
                                         <td>
@@ -177,11 +205,7 @@ new class extends Component {
                                         <td class="text-end fw-semibold text-dark">
                                             Rp {{ number_format($item->price ?? 0, 0, ',', '.') }}
                                         </td>
-                                        <td class="text-center d-print-none">
-                                            <a href="{{ route('admin.orderdetail.index', $order->id) }}" wire:navigate class="btn btn-sm btn-outline-primary" title="Lihat Detail">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                        </td>
+                                        
                                     </tr>
                                 @endforeach
                             @empty
@@ -260,3 +284,4 @@ new class extends Component {
         // });
     });
 </script>
+

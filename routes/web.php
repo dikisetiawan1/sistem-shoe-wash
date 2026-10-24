@@ -3,11 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+         return view('admin.dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -17,12 +20,14 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
     // dashboard admin
     Route::livewire('/report-daily', 'pages::admin.reports.daily')->name('admin.reports.daily');
-    // masterdata
-    Route::livewire('/masterdata', 'pages::masterdata.index')->name('masterdata.index');
-    // transactions
-    Route::livewire('/transactions', 'pages::transactions.index')->name('transactions.index');
-    // reports
-    Route::livewire('/reports', 'pages::reports.index')->name('reports.index');
+    // masterdata-sidebar
+    Route::livewire('/masterdata', 'pages::sidebarcard.masterdata.index')->name('sidebarcard.masterdata.index');
+    // transactions-sidebar
+    Route::livewire('/transactions', 'pages::sidebarcard.transactions.index')->name('sidebarcard.transactions.index');
+    // reports-sidebar
+    Route::livewire('/reports', 'pages::sidebarcard.reports.index')->name('sidebarcard.reports.index');
+     // settings-sidebar
+    Route::livewire('/settings', 'pages::sidebarcard.settings.index')->name('sidebarcard.settings.index');
     // branch
     Route::livewire('/branches', 'pages::admin.branches.index')->name('admin.branches.index');
     // branch create
@@ -65,8 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/services/edit/{id}', 'pages::admin.services.edit')->name('admin.services.edit');
     });
 
-
-
+   
 
 
 require __DIR__.'/auth.php';

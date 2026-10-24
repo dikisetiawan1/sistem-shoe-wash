@@ -1,3 +1,6 @@
+ 
+ 
+ 
  <!--begin::Sidebar-->
       <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
@@ -12,7 +15,8 @@
             /> --}}
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light text-bold">SWM MANAGEMENT</span>
+            <span class="brand-text fw-bold text-dark">REFRESH SYSTEM </span>
+            
             
             <!--end::Brand Text-->
           </a>
@@ -63,7 +67,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('masterdata.index') }}" class="nav-link">
+                <a href="{{ route('sidebarcard.masterdata.index') }}" class="nav-link">
                   <i class="fa-solid fa-server"></i>
                   <p>
                     Master Data
@@ -73,7 +77,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('transactions.index') }}" class="nav-link">
+                <a href="{{ route('sidebarcard.transactions.index') }}" class="nav-link">
                   <i class="fa-solid fa-receipt"></i>
                   <p>
                     Transactions
@@ -83,7 +87,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('reports.index') }}" class="nav-link">
+                <a href="{{ route('sidebarcard.reports.index') }}" class="nav-link">
                   <i class="fa-solid fa-chart-column"></i>
                   <p>
                     Reports
@@ -93,7 +97,7 @@
 
               {{-- menu Setting management --}}
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('sidebarcard.settings.index')}}" class="nav-link">
               
                   <i class="fa-solid fa-gear"></i>
                   <p>
@@ -102,6 +106,15 @@
                   </p>
                 </a>
                 
+              </li>
+              <li>
+              <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                  @csrf
+                  <button type="submit" class="dropdown-item text-danger mx-3">
+                      <i class="fa-solid fa-right-from-bracket me-2"></i> 
+                      Logout
+                  </button>
+              </form>
               </li>
             </ul>
             <!--end::Sidebar Menu-->
