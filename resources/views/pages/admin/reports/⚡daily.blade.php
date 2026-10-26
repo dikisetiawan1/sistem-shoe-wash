@@ -63,6 +63,18 @@ new class extends Component {
             'totalRevenue' => $totalRevenue,
         ];
     }
+
+      public function render()
+    {
+        // Kembalikan view dengan membawa data, layout, dan title
+        return $this->view([
+        ])
+            ->layout('layouts::app')
+            ->title('Reports Daily'); 
+    }  
+
+     
+    
 }; ?>
 
 <div class="container-fluid mt-4 mb-5">
@@ -140,8 +152,8 @@ new class extends Component {
                                 <th style="width: 50px;" class="text-center">#</th>
                                 <th>No. Order </th>
                                 <th> Customer</th>
-                                <th>Detail Sepatu</th>
-                                <th>Brand</th>
+                                <th>No HP</th>
+                                <th>Detail Sepatu & Brand</th>
                                 <th> Warna</th>
                                 <th>Kategori</th>
                                 <th>Layanan</th>

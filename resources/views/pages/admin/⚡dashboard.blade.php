@@ -4,6 +4,7 @@ use Livewire\Component;
 use App\Models\Orders;
 use App\Models\Services;
 use App\Models\Customers;
+use App\Models\User;
 use App\Models\OrderDetail;
 
 
@@ -11,19 +12,22 @@ new class extends Component
 {
        public function render()
     {
-        // Return view with layout and title
-        return $this->view([
+       // Ambil branch_id user yang sedang login
+    $branchId = Auth::user()->branch_id;
 
-          'orders'=>Orders::get(),
-          'services'=>Services::get(),
-          'customers'=>Customers::get(),
-          'washqueue' => OrderDetail::whereNotIn('status', ['received', 'completed'])
+    return $this->view([
+        'branchId' => $branchId,
+        'orders'   => Orders::where('branch_id', $branchId)->get(),
+        'services' => Services::get(),
+        'customers'=> Customers::where('branch_id', $branchId)->get(),
+        'washqueue' => OrderDetail::whereNotIn('status', ['received', 'completed'])
+            ->where('branch_id', $branchId) 
             ->latest()
             ->get()
-        ])
-            ->layout('layouts::app')
-            ->title('Dashboard'); 
-    }
+    ])
+    ->layout('layouts::app')
+    ->title('Dashboard');
+}
 };
 ?>
 
@@ -82,7 +86,7 @@ new class extends Component
                   </path>
                 </svg>
                   <a
-                    href="#"
+                    href="{{route('admin.orders.index')}}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     Open Orders <i class="bi bi-link-45deg"></i>
@@ -112,7 +116,7 @@ new class extends Component
                     </path>
                   </svg>
                     <a
-                    href="#"
+                    href="{{route('admin.services.index')}}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     Open Services<i class="bi bi-link-45deg"></i>
@@ -142,7 +146,7 @@ new class extends Component
                   </path>
                 </svg>
                   <a
-                    href="#"
+                    href="{{route('admin.washqueue.index')}}"
                     class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     Open Queue <i class="bi bi-link-45deg"></i>
@@ -170,7 +174,7 @@ new class extends Component
                     </path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{route('admin.customers.index')}}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     Open Customers <i class="bi bi-link-45deg"></i>

@@ -33,7 +33,6 @@ new class extends Component
             'category' => $this->category,
             'description' => $this->description,
             'price' => $this->price,
-            'estimated_days' => $this->estimated_days,
         ]);
 
         // flash message
@@ -109,15 +108,7 @@ new class extends Component
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Estimated Days</label>
-                            <input type="number" class="form-control" wire:model="estimated_days">
-                            @error('estimated_days')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                       
 
                         <button type="submit" class="btn btn-md btn-primary">SAVE</button>
                         <a href="/services" wire:navigate class="btn btn-md btn-secondary">BACK</a>

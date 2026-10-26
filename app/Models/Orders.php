@@ -13,6 +13,7 @@ class Orders extends Model
         'order_number',
         'user_id',
         'customers_id',
+        'branch_id',
         'total_price',
         'type',
         'payment_status',

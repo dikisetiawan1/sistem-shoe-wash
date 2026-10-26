@@ -3,10 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use App\Http\Controllers\PublicTrackingController;
 
 
+// Route publik tracking berdasarkan ID atau Resi Order
+Route::get('/tracking-order/{id}', [PublicTrackingController::class, 'show']);
 
 Route::get('/dashboard', function () {
          return view('admin.dashboard');
@@ -18,7 +19,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // dashboard admin
     Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
-    // dashboard admin
+     // tracking create
+    Route::livewire('/tracking', 'pages::admin.tracking.create')->name('admin.tracking.create');
+    // tracking show
+    Route::livewire('/tracking-show', 'pages::admin.tracking.show')->name('admin.tracking.show');
+    // dashboard report-daily
     Route::livewire('/report-daily', 'pages::admin.reports.daily')->name('admin.reports.daily');
     // masterdata-sidebar
     Route::livewire('/masterdata', 'pages::sidebarcard.masterdata.index')->name('sidebarcard.masterdata.index');
@@ -33,7 +38,7 @@ Route::middleware('auth')->group(function () {
     // branch create
     Route::livewire('/branches/create', 'pages::admin.branches.create')->name('admin.branches.create');
     // branch edit
-    Route::livewire('/branches/{id}', 'pages::admin.branches.edit')->name('admin.branches.edit');
+    Route::livewire('/branches/edit/{id}', 'pages::admin.branches.edit')->name('admin.branches.edit');
     // orders
     Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.index');
     // orders create

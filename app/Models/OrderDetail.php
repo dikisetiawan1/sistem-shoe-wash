@@ -9,6 +9,7 @@ class OrderDetail extends Model
     protected $fillable = [
         'order_id',
         'services_id',
+        'branch_id',
         'brand',
         'color',
         'price',

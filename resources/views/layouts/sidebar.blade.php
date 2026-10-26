@@ -54,16 +54,6 @@
                 </a>
                
               </li>
-              <li class="nav-item ">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                  {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
-                  <i class="fa-solid fa-clock-rotate-left"></i>
-                  <p>
-                    Tracking Status
-                  </p>
-                </a>
-               
-              </li>
 
 
               <li class="nav-item ">

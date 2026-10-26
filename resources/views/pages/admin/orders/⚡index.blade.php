@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Orders;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -28,13 +29,13 @@ public function delete($id)
     {
 
         // ambil branch_id dari session user yg sedang login
-            $user = 2;
+            $branchId = Auth::user()->branch_id;
             //tampung data orders
             $orders = [];
-                if($user){
+                if($branchId){
                     // ambil data order berdasarkan branch tertentu
                             $orders = Orders::with(['customers', 'branches'])
-                            ->where('branch_id', $user)
+                            ->where('branch_id', $branchId)
                             ->latest()
                             ->get();
                 }
@@ -55,13 +56,13 @@ public function delete($id)
            
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h4 class="fw-bold mb-0 text-dark">Daftar Transaksi</h4>
+                    <h4 class="fw-bold mb-0 text-dark">Daftar Pesanan</h4>
                     <small class="text-muted">Kelola seluruh order dan status cuci sepatu</small>
                 </div>
                 
                 {{-- Tombol aksi langsung sejajar di kanan --}}
                 <a href="/orders/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
-                    <i class="fa-solid fa-plus me-1"></i> Tambah transaksi
+                    <i class="fa-solid fa-plus me-1"></i> Tambah Pesanan
                 </a>
             </div>
            
@@ -106,15 +107,31 @@ public function delete($id)
                                     <td>{{ $order->entry_date }}</td>
                                     <td>{{ $order->estimated_completion_date }}</td>
 
-                                    <td class="text-center">
+                                    <td class="d-flex align-items-center gap-1">
                                         <a href="/orders/{{ $order->id }}" wire:navigate
                                             class="btn btn-sm btn-success">
                                             DETAIL
                                         </a>
-                                        <a href="/edit/{{ $order->id }}" wire:navigate
+                                        {{-- <a href="/edit/{{ $order->id }}" wire:navigate
                                             class="btn btn-sm btn-warning">
                                             EDIT
-                                        </a>
+                                        </a> --}}
+
+                                        {{-- 📋 TOMBOL COPY LINK TRACKING DI SAMPING DELETE --}}
+                                            <div x-data="{ 
+                                                url: '{{ url('/tracking-order/' . $order->id) }}',
+                                                copied: false,
+                                                copy() {
+                                                    navigator.clipboard.writeText(this.url);
+                                                    this.copied = true;
+                                                    setTimeout(() => this.copied = false, 2000);
+                                                }
+                                            }">
+                                                <button @click="copy()" class="btn btn-sm btn-secondary" :class="copied ? 'btn-info text-white' : ''" :title="copied ? 'Tersalin!' : 'Salin Link Tracking'">
+                                                    <span x-show="!copied">Copy</span>
+                                                    <span x-show="copied">✓ Copied!</span>
+                                                </button>
+                                            </div>
                                         
                                          <button
                                             class="btn btn-sm btn-danger"

@@ -2,6 +2,7 @@
 
 use Livewire\Component;
 use App\Models\Orders;
+use App\Models\User;
 use Carbon\Carbon;
 use Livewire\WithPagination;
 
@@ -28,10 +29,18 @@ new class extends Component {
 
     public function with()
     {
+
+        // ambil branch_id dari session user yg sedang login
+            $branchId = Auth::user()->branch_id;
+        //tampung data orders
+            $orders = [];
         // Ambil order berdasarkan tanggal masuk (atau tanggal estimasi selesai)
         // Beserta item sepatu, kategori, dan layanan
-        $orders = Orders::with(['customers', 'items.category', 'items.service'])
+            $orders = Orders::with(['customers', 'items' => function($query){
+            $query->whereIn('status',['pending','washing','drying','completed']);
+        }, 'items.category', 'items.service'])
             ->whereDate('entry_date', $this->selectedDate)
+            ->where('branch_id',$branchId)
             ->latest()
             ->get();
 

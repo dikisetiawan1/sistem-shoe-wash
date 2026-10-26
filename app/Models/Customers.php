@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 
 class Customers extends Model
 {
@@ -15,4 +16,10 @@ class Customers extends Model
         'email',
         'address',
     ];
+
+    public function branches() : BelongsTo
+    {
+        return $this->belongsTo(Branches::class,'branch_id');
+
+    }
 }

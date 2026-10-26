@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Customers;
+use App\Models\User;
 use Livewire\Component;
 
 new class extends Component
@@ -20,11 +21,22 @@ new class extends Component
     }
     public function render()
     {
+
+        $branchId = Auth::User()->branch_id;
+        $customers = [];
+
+        if($branchId){
+           $customers= Customers::with('branches')
+            ->where('branch_id', $branchId)
+            ->latest()
+            ->get();
+        }
+
         // Kembalikan view dengan membawa data, layout, dan title
         return $this->view([
 
             // ambil semua data customers dari db
-            'customers' => Customers::latest()->get(),
+            'customers' => $customers
         ])
             ->layout('layouts::app')
             ->title('Customers List'); 

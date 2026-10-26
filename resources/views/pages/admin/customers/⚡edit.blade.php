@@ -62,19 +62,13 @@ new class extends Component
         <div class="col-md-12">
 
              <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-pen-to-square"></i> Update Data Customer</h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Update Data Customer</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">Update Customer</h4>
+                        <small class="text-muted">Kelola seluruh customer dan informasi mereka</small>
+                    </div>
+                    
+                </div>
             <!--end::Row-->
 
             <div class="card border-0 rounded shadow-sm">

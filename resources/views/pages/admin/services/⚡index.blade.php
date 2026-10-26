@@ -70,7 +70,6 @@ new class extends Component
                                     <th>Category</th>
                                     <th>Description</th>
                                     <th>Price</th>
-                                    <th>Estimated Days</th>
 
                                     <th style="width: 15%">Actions</th>
                                 </tr>
@@ -83,7 +82,6 @@ new class extends Component
                                     <td>{{ $service->category }}</td>
                                     <td>{{ $service->description }}</td>
                                     <td>{{ $service->price }}</td>
-                                    <td>{{ $service->estimated_days }} days</td>
                                     <td class="text-center">
                                         <a href="/services/edit/{{ $service->id }}" wire:navigate
                                             class="btn btn-sm btn-warning">

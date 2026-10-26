@@ -13,13 +13,13 @@ new class extends Component
     public $name;
 
     #[Validate('required')]
+    public $category;
+
+    #[Validate('required')]
     public $description;
 
     #[Validate('required|numeric|min:0')]
     public $price;
-
-     #[Validate('required')]
-    public $estimated_days;
 
     public function mount($id)
     {
@@ -27,6 +27,7 @@ new class extends Component
 
         // set default value from database
         $this->name = $this->service->name;
+        $this->category = $this->service->category;
         $this->description = $this->service->description;
         $this->price = $this->service->price;
         $this->estimated_days = $this->service->estimated_days;
@@ -39,9 +40,9 @@ new class extends Component
         // update to database
         $this->service->update([
             'name'    => $this->name,
+            'category'    => $this->category,
             'description'   => $this->description,
             'price'   => $this->price,
-            'estimated_days'   => $this->estimated_days,
         ]);
 
         session()->flash('message', 'Data Service Berhasil Diupdate.');
@@ -62,18 +63,11 @@ new class extends Component
         <div class="col-md-12">
 
              <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6">
-                <h1 class="mb-5 fs-3"> <i class="fa-solid fa-pen-to-square"></i> Update Data Service</h1>
-              </div>
-              <div class="col-sm-6">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Update Data Service</li>
-                  </ol>
-                </nav>
-              </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">Update Layanan</h4>
+                        <small class="text-muted">Kelola seluruh data layanan</small>
+                    </div>
             </div>
             <!--end::Row-->
 
@@ -82,9 +76,18 @@ new class extends Component
 
                     <form wire:submit.prevent="update" class="form">
                         <div class="mb-3">
-                            <label class="form-label">Service Name</label>
+                            <label class="form-label">Service </label>
                             <input type="text" class="form-control" wire:model="name">
                             @error('name')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <input type="text" class="form-control" wire:model="category">
+                            @error('category')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>

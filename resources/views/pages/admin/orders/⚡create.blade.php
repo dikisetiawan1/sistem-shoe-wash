@@ -7,6 +7,7 @@ use Livewire\Attributes\Computed;
 use App\Models\Orders;
 use App\Models\Services;
 use App\Models\Customers;
+use App\Models\User;
 use Carbon\Carbon;
 
 new class extends Component
@@ -49,9 +50,27 @@ new class extends Component
                       ->latest('id')
                       ->first();
     $nextSequence = $lastOrder ? ((int) substr($lastOrder->order_number, -3) + 1) : 1;
-    $this->order_number = 'SW-' . $todayCode . '-' . str_pad($nextSequence, 3, '0', STR_PAD_LEFT);
+    
+        $branchId = Auth::user()->branch_id;
+
+        $branchCodes = [
+                1 => 'CKR01',
+                2 => 'CKR02',
+                3 => 'CKR03',
+            ];
+        $branchCode = $branchCodes[$branchId] ?? 'CKR00';
+
+        $this->order_number = "{$branchCode}-{$todayCode}-" . str_pad($nextSequence, 3, '0', STR_PAD_LEFT);
+
+    // if($branchId== 1){
+    //     $this->order_number = 'CKR01-' . $todayCode . '-' . str_pad($nextSequence, 3, '0', STR_PAD_LEFT);
+    //     }elseif ($branchId == 2) {
+    //     $this->order_number = 'CKR02-' . $todayCode . '-' . str_pad($nextSequence, 3, '0', STR_PAD_LEFT);
+    //     }elseif ($branchId == 3) {
+    //     $this->order_number = 'CKR03-' . $todayCode . '-' . str_pad($nextSequence, 3, '0', STR_PAD_LEFT);
+    // }
     // Inisialisasi 1 baris sepatu default
-    $this->addShoe();
+    $this->addShoe();   
 }
 
  public function render()
@@ -142,6 +161,7 @@ public function save()
             'payment_method' => $this->payment_method,
             'entry_date' => $this->entry_date,
             'estimated_completion_date' => $this->estimated_completion_date,
+            'branch_id' => Auth::user()->branch_id,
         ]);
 
         foreach ($this->shoes as $shoe) {
@@ -152,6 +172,7 @@ public function save()
                 'price' => $shoe['price'],
                 'notes' => $shoe['notes'] ?? null,
                 'status' => 'pending',
+                'branch_id' => Auth::user()->branch_id,
             ]);
         }
 
@@ -257,8 +278,8 @@ public function save()
                             <div class="col-md-4">
                                 <label class="form-label fw-semibold">Type</label>
                                 <select class="form-select" wire:model="type">
-                                    <option value="reguler">Reguler (3 hari)</option>
-                                    <option value="express">Express (1 hari)</option>
+                                    <option value="reguler">Reguler</option>
+                                    <option value="express">Express</option>
                                 </select>
                                  @error('type')
                                 <div class="alert alert-danger mt-2">
@@ -274,7 +295,7 @@ public function save()
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 border-bottom">
                         <h6 class="card-title mb-0 fw-bold text-dark">
-                            <i class="bi bi-box-seam me-2"></i>Shoe List ({{ count($shoes) }} Pairs)
+                            <i class="bi bi-box-seam me-2"></i>Order List ({{ count($shoes) }} Pairs)
                         </h6>
                         <button type="button" class="btn btn-sm btn-outline-primary" wire:click="addShoe">
                             <i class="bi bi-plus-lg me-1"></i>Add Shoe
@@ -285,7 +306,7 @@ public function save()
                         @foreach($shoes as $index => $shoe)
                             <div class="p-3 mb-3 border rounded bg-light position-relative" wire:key="shoe-item-{{ $index }}">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="badge bg-secondary">Shoe #{{ $index + 1 }}</span>
+                                    <span class="badge bg-secondary">Order #{{ $index + 1 }}</span>
                                     @if(count($shoes) > 1)
                                         <button type="button" class="btn btn-sm btn-outline-danger border-0" wire:click="removeShoe({{ $index }})">
                                             <i class="bi bi-trash me-1"></i>Delete
