@@ -6,28 +6,53 @@ use App\Models\Services;
 use App\Models\Customers;
 use App\Models\User;
 use App\Models\OrderDetail;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 new class extends Component
 {
-       public function render()
-    {
-       // Ambil branch_id user yang sedang login
-    $branchId = Auth::user()->branch_id;
+  
 
-    return $this->view([
-        'branchId' => $branchId,
-        'orders'   => Orders::where('branch_id', $branchId)->get(),
-        'services' => Services::get(),
-        'customers'=> Customers::where('branch_id', $branchId)->get(),
-        'washqueue' => OrderDetail::whereNotIn('status', ['received', 'completed'])
-            ->where('branch_id', $branchId) 
-            ->latest()
-            ->get()
-    ])
-    ->layout('layouts::app')
-    ->title('Dashboard');
-}
+            public function render()
+          {
+            // Ambil branch_id user yang sedang login
+          $branchId = Auth::user()->branch_id;
+
+            $labels = [];
+            $data = [];
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i);
+            $formattedDate = $date->format('Y-m-d');
+            
+            $chartLabels[] = $date->translatedFormat('d M Y');
+            
+            // Hitung order harian khusus untuk cabang user yang login
+            $count = Orders::where('branch_id', $branchId)
+                           ->whereDate('created_at', $formattedDate)
+                           ->count();
+            $chartData[] = $count;
+        }
+
+          return $this->view([
+              'branchId' => $branchId,
+              'orders'   => Orders::where('branch_id', $branchId)->get(),
+              'services' => Services::get(),
+              'customers'=> Customers::where('branch_id', $branchId)->get(),
+              'washqueue' => OrderDetail::whereNotIn('status', ['received', 'completed'])
+                  ->where('branch_id', $branchId) 
+                  ->latest()
+                  ->get(),
+                  'labels'     => $chartLabels,
+                  'data'       => $chartData
+          ])
+          ->layout('layouts::app')
+          ->title('Dashboard');
+      }
+
+
+       
 };
 ?>
 
@@ -66,34 +91,42 @@ new class extends Component
             <div class="row">
               <!--begin::Col-->
               <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 1-->
-                <div class="small-box text-white" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
-                  <div class="inner">
-                    <h3>{{ $orders->count() }}</h3>
+                <!--begin::Small Box Widget 1 (Diubah menjadi style bg-white modern) -->
+                <div class="small-box bg-white border-0 shadow-sm position-relative overflow-hidden" style="border-radius: 0.5rem;">
+                    <div class="inner p-3">
+                        <!-- Angka dengan efek teks gradasi -->
+                        <h3 class="fw-bold mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            {{ $orders->count() }}
+                        </h3>
+                        <p class="text-muted mb-0 font-weight-normal">Data Pesanan</p>
+                    </div>
 
-                    <p>Data Pesanan</p>
-                  </div>
-               <svg 
-                  class="small-box-icon" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  aria-hidden="true">
-                  <path 
-                    fill-rule="evenodd" 
-                    d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V3.375c0-1.036-.84-1.875-1.875-1.875H5.625ZM7.5 6a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5h-6Z" 
-                    clip-rule="evenodd">
-                  </path>
-                </svg>
-                  <a
-                    href="{{route('admin.orders.index')}}"
-                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                  >
-                    Lihat data <i class="bi bi-link-45deg"></i>
-                  </a>
+                    <!-- Ikon SVG sebagai watermark transparan di pojok kanan bawah -->
+                    <svg 
+                        class="small-box-icon position-absolute" 
+                        style="right: -10px; bottom: -15px; width: 90px; height: 90px; opacity: 0.08; pointer-events: none;"
+                        fill="currentColor" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        aria-hidden="true">
+                        <path 
+                            fill-rule="evenodd" 
+                            d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V3.375c0-1.036-.84-1.875-1.875-1.875H5.625ZM7.5 6a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5h-6Z" 
+                            clip-rule="evenodd">
+                        </path>
+                    </svg>
+
+                    <!-- Footer link aksi -->
+                    <a
+                        href="{{route('admin.orders.index')}}"
+                        class="small-box-footer text-center py-1 d-block text-decoration-none"
+                        style="background: rgba(0, 0, 0, 0.02); color: #6c757d; font-size: 0.85rem;"
+                    >
+                        Lihat data <i class="bi bi-link-45deg"></i>
+                    </a>
                 </div>
                 <!--end::Small Box Widget 1-->
-              </div>
+            </div>
               <!--end::Col-->
 
               <div class="col-lg-3 col-6">
@@ -224,15 +257,70 @@ new class extends Component
             <div class="row">
               <!-- Start col -->
               <div class="col-lg-7 connectedSortable">
-                <div class="card mb-4">
-                  <div class="card-header">
-                    <h3 class="card-title">Sales Value</h3>
-                  </div>
-
-                  <div class="card-body">
-                    <div id="revenue-chart"></div>
-                  </div>
+              <div class="card border-0 shadow-sm bg-white mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        Grafik Orderan per Hari
+                    </h5>
+                    
+                    <!-- Canvas untuk Chart.js -->
+                    <div style="position: relative; height:300px; width:100%">
+                        <canvas id="orderChart"></canvas>
+                    </div>
                 </div>
+            </div>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const ctx = document.getElementById('orderChart').getContext('2d');
+
+                // Membuat efek gradasi warna untuk chart
+                let gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                gradient.addColorStop(0, 'rgba(13, 110, 253, 0.4)'); // Biru transparan di atas
+                gradient.addColorStop(1, 'rgba(102, 16, 242, 0.0)'); // Ungu pudar di bawah
+
+                const orderChart = new Chart(ctx, {
+                    type: 'line', // Bisa diganti 'bar' jika ingin bentuk batang
+                    data: {
+                        labels: {!! json_encode($labels) !!}, // Data Tanggal dari Controller
+                        datasets: [{
+                            label: 'Jumlah Order',
+                            data: {!! json_encode($data) !!}, // Data Total Order dari Controller
+                            borderColor: '#6610f2',
+                            backgroundColor: gradient,
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4 // Membuat garis melengkung halus (smooth curve)
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false // Sembunyikan legenda jika hanya 1 dataset
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+            </script>
                 <!-- /.card -->
 
                 
@@ -246,3 +334,4 @@ new class extends Component
         <!--end::App Content-->
       </main>
 </div>
+

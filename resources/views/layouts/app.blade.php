@@ -133,6 +133,7 @@
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <!--end::Head-->
 
@@ -317,6 +318,7 @@
         <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
 
 
+        
 
     <!-- sortablejs -->
     <script
