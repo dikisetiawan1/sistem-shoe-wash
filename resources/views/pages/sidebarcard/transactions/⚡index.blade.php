@@ -82,6 +82,30 @@ new class extends Component
             </a>
         </div>
 
+        <div class="row g-4">
+              <!-- Card 3: Pembayaran -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <a href="{{ route('admin.orders.payment-confirmation') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+                    <div class="card-body d-flex align-items-center p-4">
+                    <div class="bg-danger bg-opacity-10 text-secondary p-3 rounded-3 me-3 fs-4">
+                           <svg class="bi bi-bank" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.379l.5 2A.5.5 0 0 1 15.5 16H.5a.5.5 0 0 1-.485-.621l.5-2A.5.5 0 0 1 1 13.5V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89L8 0zM3.777 3h8.447L8 1.041 3.777 3zM2 6v7h1V6H2zm2 0v7h2.5V6H4zm3.5 0v7h1V6h-1zm2 0v7H12V6H9.5zM13 6v7h1V6h-1zm2-3V4H1V3h14zM.5 14h15v1H.5v-1z"/>
+                            </svg>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                Konfirmasi Pembayaran
+                            </h5>
+                            <p class="card-text text-muted small mb-0">Kelola riwayat pembayaran</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+
     </div>
 </div>
 

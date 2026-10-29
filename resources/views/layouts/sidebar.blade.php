@@ -99,13 +99,15 @@
                 
               </li>
               <li>
-              <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                  @csrf
-                  <button type="submit" class="dropdown-item mx-3" style="color:rgb(231, 1, 1) !important;">
-                      <i class="fa-solid fa-right-from-bracket me-2"></i> 
-                      Logout
-                  </button>
-              </form>
+              <div class="sidebar-footer p-3 mt-auto">
+                <form action="{{ route('logout') }}" method="POST" class="d-grid">
+                    @csrf
+                    <button type="submit" class="btn btn-light text-danger fw-semibold d-flex align-items-center justify-content-center py-2" style="border: 1px solid rgba(231, 1, 1, 0.2);">
+                        <i class="fa-solid fa-right-from-bracket me-2"></i> 
+                        Logout
+                    </button>
+                </form>
+            </div>
               </li>
             </ul>
             <!--end::Sidebar Menu-->

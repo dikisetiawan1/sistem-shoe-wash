@@ -8,8 +8,6 @@ use Carbon\Carbon;
 
 new class extends Component {
 
-
-
      // method update status pesanan
     public function updateStatus($itemId, $newStatus)
     {

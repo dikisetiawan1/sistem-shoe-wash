@@ -103,12 +103,12 @@ new class extends Component
 
                     <!-- Ikon SVG sebagai watermark transparan di pojok kanan bawah -->
                     <svg 
-                        class="small-box-icon position-absolute" 
-                        style="right: -10px; bottom: -15px; width: 90px; height: 90px; opacity: 0.08; pointer-events: none;"
-                        fill="currentColor" 
-                        viewBox="0 0 24 24" 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        aria-hidden="true">
+                        class="small-box-icon text-black-50" 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24" 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      aria-hidden="true"
+                      style="opacity: 0.15;">
                         <path 
                             fill-rule="evenodd" 
                             d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V3.375c0-1.036-.84-1.875-1.875-1.875H5.625ZM7.5 6a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5h-6Z" 
@@ -119,8 +119,8 @@ new class extends Component
                     <!-- Footer link aksi -->
                     <a
                         href="{{route('admin.orders.index')}}"
-                        class="small-box-footer text-center py-1 d-block text-decoration-none"
-                        style="background: rgba(0, 0, 0, 0.02); color: #6c757d; font-size: 0.85rem;"
+                         class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
+                      style="background-color: rgba(0,0,0,0.02);"
                     >
                         Lihat data <i class="bi bi-link-45deg"></i>
                     </a>

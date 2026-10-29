@@ -7,39 +7,31 @@ use Livewire\Component;
 new class extends Component
 {
 
-
     public function delete($id)
     {
-        $customer = Customers::findOrFail($id);
+        $users = User::findOrFail($id);
 
         // delete data
-        $customer->delete();
+        $users->delete();
 
         // flash message
-        session()->flash('message', 'Data Customer Berhasil Dihapus.');
-        return redirect()->route('admin.customers.index');
+        session()->flash('message', 'Data User Berhasil Dihapus.');
+        return redirect()->route('admin.user.index');
     }
     public function render()
     {
-
-        $branchId = Auth::User()->branch_id;
-        $customers = [];
-
-        if($branchId){
-           $customers= Customers::with('branches')
-            ->where('branch_id', $branchId)
+           $users = User::with('branches')
             ->latest()
             ->get();
-        }
-
+       
         // Kembalikan view dengan membawa data, layout, dan title
         return $this->view([
 
             // ambil semua data customers dari db
-            'customers' => $customers
+            'users' => $users
         ])
             ->layout('layouts::app')
-            ->title('Customers List'); 
+            ->title('User List'); 
     }
 };
 ?>
@@ -52,12 +44,12 @@ new class extends Component
              <!--begin::Row-->
              <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h4 class="fw-bold mb-0 text-dark">Daftar Customers</h4>
-                    <small class="text-muted">Kelola seluruh customer dan informasi mereka</small>
+                    <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Daftar Users</h4>
+                    <small class="text-muted">Kelola seluruh users </small>
                 </div>
                 
-                <a href="/masterdata/customers/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
-                    <i class="fa-solid fa-plus me-1"></i> Tambah Customer
+                <a href="/settings/user/create" wire:navigate class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
+                    <i class="fa-solid fa-plus me-1"></i> Tambah Users
                 </a>
 
             </div>
@@ -79,22 +71,22 @@ new class extends Component
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Phone</th>
+                                    <th>Branch</th>
                                     <th>Email</th>
-                                    <th>Address</th>
+                                    <th>Role</th>
                                     <th style="width: 15%">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                               @forelse ($customers as $customer)
+                               @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $customer->name }}</td>
-                                    <td>{{ $customer->phone }}</td>
-                                    <td>{{ $customer->email }}</td>
-                                    <td>{{ $customer->address }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->branches->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->role }}</td>
                                     <td class="text-center">
-                                        <a href="/masterdata/customers/edit/{{ $customer->id }}" wire:navigate
+                                        <a href="/settings/user/edit/{{ $user->id }}" wire:navigate
                                             class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>
@@ -102,7 +94,7 @@ new class extends Component
                                          <button
                                             class="btn btn-sm btn-danger"
                                             onclick="confirm('Are you sure you want to delete this data?') || event.stopImmediatePropagation()"
-                                            wire:click="delete({{ $customer->id }})">
+                                            wire:click="delete({{ $user->id }})">
                                             DELETE
                                         </button>
                                     </td>

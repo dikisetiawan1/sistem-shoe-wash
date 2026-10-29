@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <p class="mb-1 text-muted">Status Keseluruhan:</p>
-                                <h5><span class="badge bg-info text-dark">{{ ucfirst($order->status ?? 'Proses') }}</span></h5>
+                                <h5><span class="badge bg-warning text-dark">{{ ucfirst($order->status ?? 'Proses') }}</span></h5>
                             </div>
                         </div>
                     </div>

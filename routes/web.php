@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
     // branch edit
     Route::livewire('/masterdata/branches/edit/{id}', 'pages::admin.branches.edit')->name('admin.branches.edit');
     // orders
+    Route::livewire('/transactions/orders/payment-confirmation', 'pages::admin.orders.payment-confirmation')->name('admin.orders.payment-confirmation');
+    // orders
     Route::livewire('/transactions/orders', 'pages::admin.orders.index')->name('admin.orders.index');
     // orders create
     Route::livewire('/transactions/orders/create', 'pages::admin.orders.create')->name('admin.orders.create');
