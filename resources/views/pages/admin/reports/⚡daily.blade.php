@@ -2,6 +2,7 @@
 
 use Livewire\Component;
 use App\Models\Orders;
+use App\Models\User;
 use Carbon\Carbon;
 use Livewire\WithPagination;
 
@@ -19,6 +20,9 @@ new class extends Component {
 
     public function with()
     {
+
+        $branchId = Auth::user()->branch_id;
+        $orders = [];
         // Ambil data order untuk tabel rincian
         $orders = Orders::with(['customers', 'items.category','items' => function ($query) {
             $query->where('status', 'received'); 
@@ -27,9 +31,11 @@ new class extends Component {
             ->whereHas('items', function ($query) {
                     $query->where('status', 'received');
                 })
+            ->where('branch_id',$branchId)
             ->latest()
             ->get();
 
+        $allOrdersForDate = [];
         // Ambil semua data pada tanggal tersebut untuk kalkulasi rekap pembayaran
         $allOrdersForDate = Orders::with(['items' => function ($query) {
                                 $query->where('status', 'received'); 
@@ -38,6 +44,7 @@ new class extends Component {
                                 ->whereHas('items', function ($query) {
                                         $query->where('status', 'received');
                                     })
+                                ->where('branch_id',$branchId)
                                 ->get();
 
         //hitung total harga per item dengan payment_method received aja
@@ -94,7 +101,7 @@ new class extends Component {
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 bg-white p-4 rounded shadow-sm border">
                 <div>
                     <h4 class="fw-bold mb-1 text-dark">
-                        <i class="fa-solid fa-file-invoice-dollar text-primary me-2"></i> Laporan Harian Cuci Sepatu
+                        <i class="fa-solid fa-file-invoice-dollar text-primary me-2"></i> Laporan Harian 
                     </h4>
                     <p class="text-muted mb-0 small">Rekapitulasi metode pembayaran dan rincian item sepatu masuk</p>
                 </div>

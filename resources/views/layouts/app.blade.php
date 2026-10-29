@@ -165,6 +165,29 @@
     <!--end::App Wrapper-->
     <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
+
+    <script>
+    document.addEventListener('livewire:navigated', () => {
+        initDataTable();
+    });
+
+    document.addEventListener('livewire:updated', () => {
+        // Re-inisialisasi setelah Livewire memperbarui data tabel
+        initDataTable();
+    });
+
+    function initDataTable() {
+        if ($.fn.DataTable.isDataTable('#reportDailyTable')) {
+            $('#reportDailyTable').DataTable().destroy();
+        }
+        $('#reportDailyTable').DataTable({
+            responsive: true,
+            paging: true,
+            searching: true,
+            buttons: ['print', 'excel']
+        });
+    }
+</script>
     <script
       src="{{ asset('https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js') }}"
       crossorigin="anonymous"

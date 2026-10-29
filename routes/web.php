@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/tracking-show', 'pages::admin.tracking.show')->name('admin.tracking.show');
     // dashboard report-daily
     Route::livewire('/report-daily', 'pages::admin.reports.daily')->name('admin.reports.daily');
+    // dashboard report-monthly
+    Route::livewire('/report-monthly', 'pages::admin.reports.monthly')->name('admin.reports.monthly');
     // masterdata-sidebar
     Route::livewire('/masterdata', 'pages::sidebarcard.masterdata.index')->name('sidebarcard.masterdata.index');
     // transactions-sidebar
