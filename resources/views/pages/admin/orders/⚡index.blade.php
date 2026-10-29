@@ -61,7 +61,7 @@ public function delete($id)
                 </div>
                 
                 {{-- Tombol aksi langsung sejajar di kanan --}}
-                <a href="/orders/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                <a href="/transactions/orders/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
                     <i class="fa-solid fa-plus me-1"></i> Tambah Pesanan
                 </a>
             </div>
@@ -108,7 +108,7 @@ public function delete($id)
                                     <td>{{ $order->estimated_completion_date }}</td>
 
                                     <td class="d-flex align-items-center gap-1">
-                                        <a href="/orders/{{ $order->id }}" wire:navigate
+                                        <a href="/transactions/orders/{{ $order->id }}" wire:navigate
                                             class="btn btn-sm btn-success">
                                             DETAIL
                                         </a>

@@ -116,7 +116,7 @@ new class extends Component
                         </div>
 
                         <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
-                        <a href="/customers" wire:navigate class="btn btn-md btn-secondary">BACK</a>
+                        <a href="/masterdata/customers" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>
 

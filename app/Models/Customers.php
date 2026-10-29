@@ -15,6 +15,7 @@ class Customers extends Model
         'phone',
         'email',
         'address',
+        'branch_id',
     ];
 
     public function branches() : BelongsTo

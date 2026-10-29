@@ -10,13 +10,11 @@ new class extends Component {
     use WithPagination;
     public $selectedDate;
     
-
     public function mount()
     {
         // tanggal hari ini
         $this->selectedDate = Carbon::now('Asia/Jakarta')->format('Y-m-d');
     }
-
 
      public function render()
     {
@@ -25,7 +23,6 @@ new class extends Component {
             ->layout('layouts::app')
             ->title('Wash Queue List'); 
     }   
-
 
     public function with()
     {

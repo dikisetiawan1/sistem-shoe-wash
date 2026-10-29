@@ -13975,14 +13975,14 @@ body:not(.app-loaded) .app-footer {
 [data-bs-theme=light] .app-sidebar,
 [data-bs-theme=light] .app-sidebar {
   /* --lte-sidebar-hover-bg: rgba(252, 249, 249, 0.1); */
-  --lte-sidebar-hover-bg: rgba(165, 159, 159, 0.1);
+  --lte-sidebar-hover-bg: rgba(81, 84, 238, 0.1);
   /* --lte-sidebar-color: #115ae2; */
   --lte-sidebar-color: #3a3636;
   /* --lte-sidebar-hover-color: #fff; */
   --lte-sidebar-hover-color: #3a3636;
   --lte-sidebar-active-color: #3a3636;
-  --lte-sidebar-menu-active-bg: rgba(165, 159, 159, 0.1);
-  --lte-sidebar-menu-active-color: #3a3636;
+  --lte-sidebar-menu-active-bg: #115ae2;
+  --lte-sidebar-menu-active-color: #ffffff;
   --lte-sidebar-submenu-bg: transparent;
   --lte-sidebar-submenu-color: #3a3636;
   --lte-sidebar-submenu-hover-color: #3a3636;

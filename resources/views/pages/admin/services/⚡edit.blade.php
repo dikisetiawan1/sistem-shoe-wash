@@ -86,7 +86,11 @@ new class extends Component
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Category</label>
-                            <input type="text" class="form-control" wire:model="category">
+                            {{-- <input type="text" class="form-control" wire:model="category"> --}}
+                             <select type="text" class="form-control" name="category" id="" wire:model="category">
+                                <option value="sepatu">Sepatu</option>
+                                <option value="other">Other</option>
+                            </select>
                             @error('category')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
@@ -114,18 +118,8 @@ new class extends Component
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Estimated Days</label>
-                            <input type="number" class="form-control" wire:model="estimated_days">
-                            @error('estimated_days')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
                         <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
-                        <a href="/services" wire:navigate class="btn btn-md btn-secondary">BACK</a>
+                        <a href="/masterdata/services" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>
 

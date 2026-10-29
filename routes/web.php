@@ -18,6 +18,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // dashboard admin
+    Route::livewire('/settings/user', 'pages::admin.user.index')->name('admin.user.index');
+    // dashboard admin
+    Route::livewire('/settings/user/create', 'pages::admin.user.create')->name('admin.user.create');
+    // dashboard admin
+    Route::livewire('/settings/user/edit/{id}', 'pages::admin.user.edit')->name('admin.user.edit');
+    // dashboard admin
     Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
      // tracking create
     Route::livewire('/tracking', 'pages::admin.tracking.create')->name('admin.tracking.create');
@@ -34,33 +40,33 @@ Route::middleware('auth')->group(function () {
      // settings-sidebar
     Route::livewire('/settings', 'pages::sidebarcard.settings.index')->name('sidebarcard.settings.index');
     // branch
-    Route::livewire('/branches', 'pages::admin.branches.index')->name('admin.branches.index');
+    Route::livewire('/masterdata/branches', 'pages::admin.branches.index')->name('admin.branches.index');
     // branch create
-    Route::livewire('/branches/create', 'pages::admin.branches.create')->name('admin.branches.create');
+    Route::livewire('/masterdata/branches/create', 'pages::admin.branches.create')->name('admin.branches.create');
     // branch edit
-    Route::livewire('/branches/edit/{id}', 'pages::admin.branches.edit')->name('admin.branches.edit');
+    Route::livewire('/masterdata/branches/edit/{id}', 'pages::admin.branches.edit')->name('admin.branches.edit');
     // orders
-    Route::livewire('/orders', 'pages::admin.orders.index')->name('admin.orders.index');
+    Route::livewire('/transactions/orders', 'pages::admin.orders.index')->name('admin.orders.index');
     // orders create
-    Route::livewire('/orders/create', 'pages::admin.orders.create')->name('admin.orders.create');
+    Route::livewire('/transactions/orders/create', 'pages::admin.orders.create')->name('admin.orders.create');
     // orders history
-    Route::livewire('/orders/history', 'pages::admin.orders.history')->name('admin.orders.history');
+    Route::livewire('/transactions/orders/history', 'pages::admin.orders.history')->name('admin.orders.history');
     // orders update status
-    Route::livewire('/orders/updatestatus', 'pages::admin.orders.updatestatus')->name('admin.orders.updatestatus');
+    Route::livewire('/transactions/orders/updatestatus', 'pages::admin.orders.updatestatus')->name('admin.orders.updatestatus');
     // orders edit
-    Route::livewire('/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.orders.edit');
+    Route::livewire('/transactions/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.orders.edit');
     // order antrean
     Volt::route('/orders/washqueue', 'pages::admin.washqueue.index')->name('admin.washqueue.index');
     // orders detail
-    Volt::route('/orders/{id}', 'pages::admin.orderdetail.index')->name('admin.orderdetail.index');
+    Volt::route('/transactions/orders/{id}', 'pages::admin.orderdetail.index')->name('admin.orderdetail.index');
     // orders print
     Route::livewire('/orders/{id}/invoice', 'pages::admin.orders.invoice')->name('admin.orders.invoice');
     // customers
-    Route::livewire('/customers', 'pages::admin.customers.index')->name('admin.customers.index');
+    Route::livewire('/masterdata/customers', 'pages::admin.customers.index')->name('admin.customers.index');
     // customers create
-    Route::livewire('/customers/create', 'pages::admin.customers.create')->name('admin.customers.create');
+    Route::livewire('/masterdata/customers/create', 'pages::admin.customers.create')->name('admin.customers.create');
     // customers edit
-    Route::livewire('/customers/edit/{id}', 'pages::admin.customers.edit')->name('admin.customers.edit');
+    Route::livewire('/masterdata/customers/edit/{id}', 'pages::admin.customers.edit')->name('admin.customers.edit');
     // shoetype
     Route::livewire('/shoetype', 'pages::admin.shoetype.index')->name('admin.shoetype.index');
     // shoetype create
@@ -68,11 +74,11 @@ Route::middleware('auth')->group(function () {
     // shoetype edit
     Route::livewire('/shoetype/edit/{id}', 'pages::admin.shoetype.edit')->name('admin.shoetype.edit');
     // services 
-    Route::livewire('/services', 'pages::admin.services.index')->name('admin.services.index');
+    Route::livewire('/masterdata/services', 'pages::admin.services.index')->name('admin.services.index');
     // services create
-    Route::livewire('/services/create', 'pages::admin.services.create')->name('admin.services.create');
+    Route::livewire('/masterdata/services/create', 'pages::admin.services.create')->name('admin.services.create');
     // services edit
-    Route::livewire('/services/edit/{id}', 'pages::admin.services.edit')->name('admin.services.edit');
+    Route::livewire('/masterdata/services/edit/{id}', 'pages::admin.services.edit')->name('admin.services.edit');
     });
 
    

@@ -139,38 +139,29 @@
             <!--end::Color Mode Toggle-->
 
             <!--begin::User Menu Dropdown-->
-            <li class="nav-item dropdown user-menu">
+           <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img
-                  src="{{ asset('adminlte4/dist/assets/img/user2-160x160.jpg') }}"
-                  class="user-image rounded-circle shadow"
-                  alt="Alexander Pierce"
-                />
-                <span class="d-none d-md-inline">Diki Setiawan</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <!--begin::User Image-->
-                <li class="user-header text-bg-primary">
                   <img
-                    src="{{ asset('adminlte4/dist/assets/img/user2-160x160.jpg') }}"
-                    class="rounded-circle shadow"
-                    alt="Diki Setiawan"
+                      src="{{ asset('adminlte4/dist/assets/img/user2-160x160.jpg') }}"
+                      class="user-image rounded-circle shadow"
+                      alt="Diki Setiawan"
                   />
-                  <p>
-                    Diki Setiawan
-                    <div class="badge bg-secondary">Admin</div>
-                  </p>
-                </li>
-                <!--end::User Image-->
+                  <span class="d-none d-md-inline">{{ Auth::user()->name ?? 'User' }} - {{Auth::User()->role}} </span>
+              </a>
               
-                <!--begin::Menu Footer-->
-                <li class="user-footer">
-                  <a href="#" class="btn btn-outline-secondary">Profile</a>
-                  <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
-                </li>
-                <!--end::Menu Footer-->
+              <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                  <!--begin::User Image-->
+                  <li class="user-header text-bg-primary">
+                      <img
+                          src="{{ asset('adminlte4/dist/assets/img/user2-160x160.jpg') }}"
+                          class="rounded-circle shadow"
+                          alt="user"
+                      />
+                  </li>
+                  <!--end::User Image-->
+                  
               </ul>
-            </li>
+          </li>
             <!--end::User Menu Dropdown-->
           </ul>
           <!--end::End Navbar Links-->

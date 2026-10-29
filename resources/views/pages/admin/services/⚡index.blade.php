@@ -46,7 +46,7 @@ new class extends Component
                 </div>
                 
                 {{-- Tombol aksi langsung sejajar di kanan --}}
-                <a href="/services/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                <a href="/masterdata/services/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
                     <i class="fa-solid fa-plus me-1"></i> Tambah Layanan
                 </a>
             </div>
@@ -83,7 +83,7 @@ new class extends Component
                                     <td>{{ $service->description }}</td>
                                     <td>{{ $service->price }}</td>
                                     <td class="text-center">
-                                        <a href="/services/edit/{{ $service->id }}" wire:navigate
+                                        <a href="/masterdata/services/edit/{{ $service->id }}" wire:navigate
                                             class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>

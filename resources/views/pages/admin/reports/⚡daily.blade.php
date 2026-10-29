@@ -55,12 +55,24 @@ new class extends Component {
         $totalRevenue = $allOrdersForDate->sum(function ($order) {
             return $order->items->sum('price'); 
         });
+
+
+        // total per method pembayaran
+        $totalCash = $allOrdersForDate->where('payment_method', 'cash')->sum('total_price');
+        $totalTransfer = $allOrdersForDate->where('payment_method', 'transfer')->sum('total_price');
+        $totalQris = $allOrdersForDate->where('payment_method', 'qris')->sum('total_price');
+
+
+
         // kembalikan ke view
         return [
             'orders' => $orders,
             'paymentSummary' => $paymentSummary,
             'totalTransactions' => $totalTransactions,
             'totalRevenue' => $totalRevenue,
+            'totalCash'=>$totalCash,
+            'totalTransfer'=>$totalTransfer,
+            'totalQris'=>$totalQris,
         ];
     }
 
@@ -72,9 +84,6 @@ new class extends Component {
             ->layout('layouts::app')
             ->title('Reports Daily'); 
     }  
-
-     
-    
 }; ?>
 
 <div class="container-fluid mt-4 mb-5">
@@ -96,9 +105,6 @@ new class extends Component {
                         <label for="filterDate" class="fw-semibold text-muted small mb-0">Pilih Tanggal:</label>
                         <input type="date" id="filterDate" wire:model.live="selectedDate" class="form-control form-control-sm">
                     </div>
-                    <button onclick="window.print()" class="btn btn-outline-dark btn-sm d-print-none">
-                        <i class="fa-solid fa-print me-1"></i> Cetak Laporan
-                    </button>
                 </div>
             </div>
 
@@ -217,9 +223,10 @@ new class extends Component {
                                         <td class="text-end fw-semibold text-dark">
                                             Rp {{ number_format($item->price ?? 0, 0, ',', '.') }}
                                         </td>
-                                        
+
                                     </tr>
                                 @endforeach
+                                  
                             @empty
                                 <tr>
                                     <td colspan="8" class="text-center py-5 text-muted">
@@ -228,8 +235,27 @@ new class extends Component {
                                     </td>
                                 </tr>
                             @endforelse
-                        </tbody>
-                    </table>
+
+                            
+                            <tr class="table-light">
+                                <td class="text-start text-secondary">Cash (Tunai):</td>
+                                <td class="text-dark">Rp {{ number_format($totalCash ?? 0, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr class="table-light">
+                                <td class="text-start text-secondary">Transfer Bank:</td>
+                                <td  class="text-dark">Rp {{ number_format($totalTransfer ?? 0, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr class="table-light">
+                                <td  class="text-start text-secondary">QRIS:</td>
+                                <td  class="text-dark">Rp {{ number_format($totalQris ?? 0, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr class="table-light fw-bold">
+                                <td class="text-start">Total Pendapatan:</td>
+                                <td  class="text-success">Rp {{ number_format($totalRevenue ?? 0, 0, ',', '.') }}</td>
+                            </tr>
+                    </tbody>        
+                </table>
+
                 </div>
             </div>
 

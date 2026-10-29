@@ -28,7 +28,7 @@ new class extends Component
         
         <!-- Card 1: Branch -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.reports.daily') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.user.index') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 me-3 fs-4">
                         <i class="fa-solid fa-users"></i>
@@ -63,11 +63,16 @@ new class extends Component
 <!-- Tambahan sedikit CSS agar card ada efek naik saat kursor diarahkan (Hover) -->
 <style>
     .hover-card {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                    box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        
+        will-change: transform, box-shadow;
+        
+        -webkit-font-smoothing: antialiased;
     }
     .hover-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 .5rem 1rem rgba(53, 53, 247, 0.1) !important;
+        box-shadow: 0 1rem 2rem rgba(53, 53, 247, 0.1) !important;
     }
 </style>
 </div>

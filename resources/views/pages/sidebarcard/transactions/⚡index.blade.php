@@ -76,12 +76,17 @@ new class extends Component
 
 <!-- Tambahan sedikit CSS agar card ada efek naik saat kursor diarahkan (Hover) -->
 <style>
-    .hover-card {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+     .hover-card {
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                    box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        
+        will-change: transform, box-shadow;
+        
+        -webkit-font-smoothing: antialiased;
     }
     .hover-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 .5rem 1rem rgba(53, 53, 247, 0.1) !important;
+        box-shadow: 0 1rem 2rem rgba(53, 53, 247, 0.1) !important;
     }
 </style>
 </div>

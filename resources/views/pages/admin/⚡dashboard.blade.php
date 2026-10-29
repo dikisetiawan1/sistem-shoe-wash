@@ -71,7 +71,7 @@ new class extends Component
                   <div class="inner">
                     <h3>{{ $orders->count() }}</h3>
 
-                    <p>New Orders</p>
+                    <p>Data Pesanan</p>
                   </div>
                <svg 
                   class="small-box-icon" 
@@ -89,7 +89,7 @@ new class extends Component
                     href="{{route('admin.orders.index')}}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
-                    Open Orders <i class="bi bi-link-45deg"></i>
+                    Lihat data <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
                 <!--end::Small Box Widget 1-->
@@ -101,7 +101,7 @@ new class extends Component
                   <div class="inner">
                     <h3>{{ $services->count() }}</h3>
 
-                    <p>Our Services</p>
+                    <p>Data Layanan</p>
                   </div>
                     <svg 
                     class="small-box-icon" 
@@ -119,7 +119,7 @@ new class extends Component
                     href="{{route('admin.services.index')}}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
-                    Open Services<i class="bi bi-link-45deg"></i>
+                    Lihat data<i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
                 <!--end::Small Box Widget 2-->
@@ -131,7 +131,7 @@ new class extends Component
                   <div class="inner">
                     <h3>{{ $washqueue->count() }}</h3>
 
-                    <p>Wash Queue</p>
+                    <p>Data antrean (harian)</p>
                   </div>
                <svg 
                   class="small-box-icon" 
@@ -149,7 +149,7 @@ new class extends Component
                     href="{{route('admin.washqueue.index')}}"
                     class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
-                    Open Queue <i class="bi bi-link-45deg"></i>
+                    Lihat data<i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
                 <!--end::Small Box Widget 3-->
@@ -161,7 +161,7 @@ new class extends Component
                   <div class="inner">
                      <h3>{{ $customers->count() }}</h3>
 
-                    <p>Our Customers</p>
+                    <p>Data Pelanggan</p>
                   </div>
                   <svg 
                     class="small-box-icon" 
@@ -177,7 +177,7 @@ new class extends Component
                     href="{{route('admin.customers.index')}}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
-                    Open Customers <i class="bi bi-link-45deg"></i>
+                    Lihat data <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
                 <!--end::Small Box Widget 4-->

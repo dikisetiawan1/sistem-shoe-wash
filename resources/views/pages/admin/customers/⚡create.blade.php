@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Customers;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 
@@ -30,6 +31,7 @@ new class extends Component
             'email' => $this->email,
             'phone' => $this->phone,
             'address' => $this->address,
+            'branch_id' => Auth::user()->branch_id,
         ]);
 
         // flash message
@@ -108,7 +110,7 @@ new class extends Component
                            
 
                         <button type="submit" class="btn btn-md btn-primary">SAVE</button>
-                        <a href="/customers" wire:navigate class="btn btn-md btn-secondary">BACK</a>
+                        <a href="/masterdata/customers" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>
 

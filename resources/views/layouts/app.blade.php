@@ -5,7 +5,7 @@
   <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-     <title> {{ $title ?? config('app.name') }} | Swm System</title>
+     <title> {{ $title ?? config('app.name') }} | Refresh System</title>
     <script>
       (() => {
         'use strict';
@@ -154,7 +154,7 @@
    
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; SWM SYSTEM&nbsp;
+          Copyright &copy; REFRESH SYSTEM&nbsp;2026
        
         </strong>
         All rights reserved.

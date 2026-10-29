@@ -95,7 +95,7 @@ new class extends Component
                        
 
                         <button type="submit" class="btn btn-md btn-primary">SAVE</button>
-                        <a href="/branches" wire:navigate class="btn btn-md btn-secondary">BACK</a>
+                        <a href="/masterdata/branches" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>
 

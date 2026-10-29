@@ -46,7 +46,7 @@ new class extends Component
                 </div>
                 
                 {{-- Tombol aksi langsung sejajar di kanan --}}
-                <a href="/branches/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                <a href="/masterdata/branches/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
                     <i class="fa-solid fa-plus me-1"></i> Tambah Branch
                 </a>
             </div>
@@ -81,7 +81,7 @@ new class extends Component
                                     <td>{{ $branch->address }}</td>
                                     <td>{{ $branch->notlp }}</td>
                                     <td class="text-center">
-                                        <a href="/branches/edit/{{ $branch->id }}" wire:navigate
+                                        <a href="/masterdata/branches/edit/{{ $branch->id }}" wire:navigate
                                             class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>

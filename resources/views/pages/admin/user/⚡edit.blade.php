@@ -9,5 +9,5 @@ new class extends Component
 ?>
 
 <div>
-    {{-- Simplicity is an acquired taste. - Katharine Gerould --}}
+    {{-- Walk as if you are kissing the Earth with your feet. - Thich Nhat Hanh --}}
 </div>

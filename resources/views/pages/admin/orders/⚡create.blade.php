@@ -177,7 +177,7 @@ public function save()
         }
 
     session()->flash('success', 'Order ' . $this->order_number . ' berhasil disimpan!');
-    return redirect()->to('/orders');
+    return redirect()->to('/transactions/orders');
 }
 }
 ?>
@@ -197,15 +197,16 @@ public function save()
                 
                 {{-- Card: Informasi Customer & Transaksi --}}
                 <div class="card shadow-sm border-0 mb-4">
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+                   <div class="card-header bg-primary text-white d-flex flex-column flex-md-row justify-content-between align-items-md-center py-3 gap-2">
                         <h5 class="card-title mb-0 fw-bold">
                             <i class="bi bi-journal-plus me-2"></i>Formulir Pesanan Baru
                         </h5>
-                        <span class="badge bg-light text-primary fs-6 fw-bold">{{ $order_number }}</span>
+                        <span class="badge bg-light text-primary fs-6 fw-bold align-self-start align-self-md-center">
+                            {{ $order_number }}
+                        </span>
                     </div>
                     <div class="card-body p-4">
                         <div class="row g-3">
-                            {{-- Pilih Customer dari DB --}}
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Customer <span class="text-danger">*</span></label>
                                 <select class="form-select " wire:model="customers_id">

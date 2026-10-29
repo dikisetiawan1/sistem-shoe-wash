@@ -1,6 +1,4 @@
- 
- 
- 
+
  <!--begin::Sidebar-->
       <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
@@ -15,8 +13,11 @@
             /> --}}
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-bold text-dark">REFRESH SYSTEM </span>
-            
+            <div class="d-flex flex-column">
+                <span class="fw-bold text-dark ">REFRESH SYSTEM</span>
+              <small class="bg-secondary text-white px-2 rounded mb-2 align-self-start" style="font-size: 0.75rem;"> {{Auth::User()->branches->name ?? 'Pusat'}} </small>
+            </div>
+       
             
             <!--end::Brand Text-->
           </a>
@@ -34,8 +35,8 @@
               data-accordion="false"
               id="navigation"
             >
-              <li class="nav-item menu-open">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link active">
+              <li class="nav-item">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                   {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
                   <i class="fa-solid fa-chart-pie"></i>
                   <p>
@@ -45,7 +46,7 @@
                
               </li>
               <li class="nav-item ">
-                <a href="{{ route('admin.washqueue.index') }}" class="nav-link">
+                <a href="{{ route('admin.washqueue.index') }}" class="nav-link {{ request()->routeIs('admin.washqueue.index') ? 'active' : '' }}">
                   {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
                   <i class="fa-solid fa-list-check"></i>
                   <p>
@@ -57,7 +58,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('sidebarcard.masterdata.index') }}" class="nav-link">
+                <a href="{{ route('sidebarcard.masterdata.index') }}" class="nav-link {{ request()->routeIs('sidebarcard.masterdata.index') ? 'active' : '' }}">
                   <i class="fa-solid fa-server"></i>
                   <p>
                     Master Data
@@ -67,7 +68,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('sidebarcard.transactions.index') }}" class="nav-link">
+                <a href="{{ route('sidebarcard.transactions.index') }}" class="nav-link {{ request()->routeIs('sidebarcard.transactions.index') ? 'active' : '' }}">
                   <i class="fa-solid fa-receipt"></i>
                   <p>
                     Transactions
@@ -77,7 +78,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('sidebarcard.reports.index') }}" class="nav-link">
+                <a href="{{ route('sidebarcard.reports.index') }}" class="nav-link {{ request()->routeIs('sidebarcard.reports.index') ? 'active' : '' }}">
                   <i class="fa-solid fa-chart-column"></i>
                   <p>
                     Reports
@@ -87,7 +88,7 @@
 
               {{-- menu Setting management --}}
               <li class="nav-item">
-                <a href="{{route('sidebarcard.settings.index')}}" class="nav-link">
+                <a href="{{route('sidebarcard.settings.index')}}" class="nav-link {{ request()->routeIs('sidebarcard.settings.index') ? 'active' : '' }}">
               
                   <i class="fa-solid fa-gear"></i>
                   <p>
@@ -100,7 +101,7 @@
               <li>
               <form action="{{ route('logout') }}" method="POST" class="d-inline">
                   @csrf
-                  <button type="submit" class="dropdown-item text-danger mx-3">
+                  <button type="submit" class="dropdown-item text-danger mx-3" >
                       <i class="fa-solid fa-right-from-bracket me-2"></i> 
                       Logout
                   </button>

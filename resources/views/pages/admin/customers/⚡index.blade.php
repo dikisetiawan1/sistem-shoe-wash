@@ -56,7 +56,7 @@ new class extends Component
                     <small class="text-muted">Kelola seluruh customer dan informasi mereka</small>
                 </div>
                 
-                <a href="/customers/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                <a href="/masterdata/customers/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
                     <i class="fa-solid fa-plus me-1"></i> Tambah Customer
                 </a>
 
@@ -94,7 +94,7 @@ new class extends Component
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->address }}</td>
                                     <td class="text-center">
-                                        <a href="/customers/edit/{{ $customer->id }}" wire:navigate
+                                        <a href="/masterdata/customers/edit/{{ $customer->id }}" wire:navigate
                                             class="btn btn-sm btn-warning">
                                             EDIT
                                         </a>
