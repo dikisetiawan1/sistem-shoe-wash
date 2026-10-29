@@ -37,7 +37,7 @@ new class extends Component
 
              <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <h4 class="fw-bold mb-0 text-dark">Detail Pesanan</h4>
+                        <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Detail Pesanan</h4>
                         <small class="text-muted">Kelola informasi pesanan untuk layanan cuci sepatu</small>
                     </div> 
                     
@@ -95,7 +95,7 @@ new class extends Component
                         <h4 class="fw-bold mb-0 text-dark"></h4>
                         <small class="text-muted"></small>
                     </div> 
-                      <a href="/orders/{{ $order->id }}/invoice" wire:navigate target="_blank" class="btn btn-primary fw-semibold shadow-sm">
+                      <a href="/orders/{{ $order->id }}/invoice" wire:navigate target="_blank" class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
                     <i class="fa-solid fa-print me-1"></i> Cetak Invoice/ Struk
                 </a>
             </div>

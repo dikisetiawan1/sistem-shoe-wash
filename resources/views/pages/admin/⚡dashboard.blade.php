@@ -39,8 +39,8 @@ new class extends Component
           <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h4 class="fw-bold mb-1 text-dark">
-                    Selamat Datang, {{auth()->user()->name}}! 👋
+                <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Selamat Datang, {{auth()->user()->name}}! 
                 </h4>
                 <p class="text-muted mb-0 small">
                     Berikut adalah ringkasan operasional dan transaksi sepatu hari ini.
@@ -67,7 +67,7 @@ new class extends Component
               <!--begin::Col-->
               <div class="col-lg-3 col-6">
                 <!--begin::Small Box Widget 1-->
-                <div class="small-box text-bg-primary">
+                <div class="small-box text-white" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
                   <div class="inner">
                     <h3>{{ $orders->count() }}</h3>
 
@@ -95,95 +95,130 @@ new class extends Component
                 <!--end::Small Box Widget 1-->
               </div>
               <!--end::Col-->
+
               <div class="col-lg-3 col-6">
                 <!--begin::Small Box Widget 2-->
-                <div class="small-box text-bg-success">
+                <div class="small-box bg-white text-dark shadow-sm border-0">
                   <div class="inner">
-                    <h3>{{ $services->count() }}</h3>
-
-                    <p>Data Layanan</p>
+                      <!-- Angka dengan efek gradasi modern -->
+                      <h3 class="fw-bold" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                          {{ $services->count() }}
+                      </h3>
+                      <p class="text-secondary mb-0">Data Layanan</p>
                   </div>
-                    <svg 
-                    class="small-box-icon" 
-                    fill="currentColor" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    aria-hidden="true">
-                    <path 
-                      fill-rule="evenodd" 
-                      d="M2.25 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V6Zm0 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V12Zm0 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V18ZM6.75 6.75a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Zm0 6a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Zm0 6a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Z" 
-                      clip-rule="evenodd">
-                    </path>
+
+                  <!-- Ikon SVG dengan warna abu-abu elegan agar kontras di background putih -->
+                  <svg 
+                      class="small-box-icon text-black-50" 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24" 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      aria-hidden="true"
+                      style="opacity: 0.15;">
+                      <path 
+                          fill-rule="evenodd" 
+                          d="M2.25 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V6Zm0 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V12Zm0 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V18ZM6.75 6.75a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Zm0 6a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Zm0 6a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Z" 
+                          clip-rule="evenodd">
+                      </path>
                   </svg>
-                    <a
-                    href="{{route('admin.services.index')}}"
-                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+
+                  <!-- Footer small-box disesuaikan agar teksnya terlihat jelas di background putih -->
+                  <a
+                      href="{{ route('admin.services.index') }}"
+                      class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
+                      style="background-color: rgba(0,0,0,0.02);"
                   >
-                    Lihat data<i class="bi bi-link-45deg"></i>
+                      Lihat data <i class="bi bi-link-45deg"></i>
                   </a>
-                </div>
+              </div>
                 <!--end::Small Box Widget 2-->
               </div>
-              <!--end::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 3-->
-                <div class="small-box text-bg-warning">
-                  <div class="inner">
-                    <h3>{{ $washqueue->count() }}</h3>
 
-                    <p>Data antrean (harian)</p>
-                  </div>
-               <svg 
-                  class="small-box-icon" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  aria-hidden="true">
-                  <path 
-                    fill-rule="evenodd" 
-                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .2.079.39.22.53l3.75 3.75a.75.75 0 1 0 1.06-1.06l-3.53-3.53V6Z" 
-                    clip-rule="evenodd">
-                  </path>
-                </svg>
-                  <a
-                    href="{{route('admin.washqueue.index')}}"
-                    class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
-                  >
-                    Lihat data<i class="bi bi-link-45deg"></i>
-                  </a>
+
+
+              <!--end::Col-->
+          <div class="col-lg-3 col-6">
+            <!--begin::Small Box Widget 3-->
+            <div class="small-box bg-white text-dark shadow-sm border-0">
+                <div class="inner">
+                    <!-- Angka dengan efek gradasi modern -->
+                    <h3 class="fw-bold" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        {{ $washqueue->count() }}
+                    </h3>
+
+                    <p class="text-secondary mb-0">Data antrean (harian)</p>
                 </div>
-                <!--end::Small Box Widget 3-->
-              </div>
-              <!--end::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 4-->
-                <div class="small-box text-bg-danger">
-                  <div class="inner">
-                     <h3>{{ $customers->count() }}</h3>
 
-                    <p>Data Pelanggan</p>
-                  </div>
-                  <svg 
-                    class="small-box-icon" 
+                <!-- Ikon SVG dengan opasitas tipis sebagai watermark -->
+                <svg 
+                    class="small-box-icon text-black-50" 
                     fill="currentColor" 
                     viewBox="0 0 24 24" 
                     xmlns="http://www.w3.org/2000/svg" 
-                    aria-hidden="true">
+                    aria-hidden="true"
+                    style="opacity: 0.15;">
                     <path 
-                      d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a11.54 11.54 0 0 1-1.192 3.123 14.542 14.542 0 0 0 5.193-1.428.75.75 0 0 0 .364-.63l.001-.122a7.125 7.125 0 0 0-4.365-6.559 5.625 5.625 0 0 1 0 5.472Z">
+                        fill-rule="evenodd" 
+                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .2.079.39.22.53l3.75 3.75a.75.75 0 1 0 1.06-1.06l-3.53-3.53V6Z" 
+                        clip-rule="evenodd">
                     </path>
-                  </svg>
-                  <a
-                    href="{{route('admin.customers.index')}}"
-                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                  >
+                </svg>
+
+                <!-- Footer kecil dengan warna yang kontras di background putih -->
+                <a
+                    href="{{ route('admin.washqueue.index') }}"
+                    class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
+                    style="background-color: rgba(0,0,0,0.02);"
+                >
                     Lihat data <i class="bi bi-link-45deg"></i>
-                  </a>
+                </a>
+                      </div>
+              <!--end::Small Box Widget 3-->
+          </div>
+
+
+              <!--end::Col-->
+             <div class="col-lg-3 col-6">
+                <!--begin::Small Box Widget 4-->
+                <div class="small-box bg-white text-dark shadow-sm border-0">
+                    <div class="inner">
+                        <!-- Angka dengan efek gradasi modern -->
+                        <h3 class="fw-bold" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            {{ $customers->count() }}
+                        </h3>
+
+                        <p class="text-secondary mb-0">Data Pelanggan</p>
+                    </div>
+
+                    <!-- Ikon SVG dengan opasitas tipis sebagai watermark -->
+                    <svg 
+                        class="small-box-icon text-black-50" 
+                        fill="currentColor" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        aria-hidden="true"
+                        style="opacity: 0.15;">
+                        <path 
+                            d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a11.54 11.54 0 0 1-1.192 3.123 14.542 14.542 0 0 0 5.193-1.428.75.75 0 0 0 .364-.63l.001-.122a7.125 7.125 0 0 0-4.365-6.559 5.625 5.625 0 0 1 0 5.472Z">
+                        </path>
+                    </svg>
+
+                    <!-- Footer kecil dengan warna yang kontras dan elegan -->
+                    <a
+                        href="{{ route('admin.customers.index') }}"
+                        class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
+                        style="background-color: rgba(0,0,0,0.02);"
+                    >
+                        Lihat data <i class="bi bi-link-45deg"></i>
+                    </a>
                 </div>
                 <!--end::Small Box Widget 4-->
-              </div>
-              <!--end::Col-->
             </div>
+                          <!--end::Col-->
+                        </div>
+
+
+
             <!--end::Row-->
             <!--begin::Row-->
             <div class="row">

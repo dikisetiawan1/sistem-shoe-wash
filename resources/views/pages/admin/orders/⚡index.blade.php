@@ -56,12 +56,12 @@ public function delete($id)
            
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h4 class="fw-bold mb-0 text-dark">Daftar Pesanan</h4>
+                    <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Daftar Pesanan</h4>
                     <small class="text-muted">Kelola seluruh order dan status cuci sepatu</small>
                 </div>
                 
                 {{-- Tombol aksi langsung sejajar di kanan --}}
-                <a href="/transactions/orders/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                <a href="/transactions/orders/create" wire:navigate class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
                     <i class="fa-solid fa-plus me-1"></i> Tambah Pesanan
                 </a>
             </div>

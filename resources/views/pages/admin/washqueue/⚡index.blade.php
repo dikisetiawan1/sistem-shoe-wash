@@ -54,7 +54,7 @@ new class extends Component {
     {{-- Header Halaman & Filter Tanggal --}}
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
         <div>
-            <h4 class="fw-bold mb-1 text-dark">
+            <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Antrean Pengerjaan Harian
             </h4>
             <p class="text-muted mb-0 small">Pantau daftar sepatu yang masuk dan harus dikerjakan berdasarkan tanggal</p>
@@ -70,28 +70,31 @@ new class extends Component {
     {{-- Kartu Ringkasan Cepat Antrean Hari Ini --}}
     <div class="row g-3 mb-4">
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm bg-primary text-white">
-                <div class="card-body py-3">
-                    <h6 class="text-white-50 mb-1">Total Order Masuk</h6>
-                    <h3 class="fw-bold mb-0">{{ count($orders) }} Transaksi</h3>
-                </div>
-            </div>
+    <!-- Card dengan background gradasi dan teks putih -->
+    <div class="card border-0 shadow-sm text-white" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
+        <div class="card-body py-3">
+            <h6 class="text-white-50 mb-1">Total Order Masuk</h6>
+            <h5 class="fw-bold mb-0 text-white">
+                {{ count($orders) }} Transaksi
+            </h5>
         </div>
+    </div>
+</div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm bg-info text-dark">
+            <div class="card border-0 shadow-sm bg-white text-dark">
                 <div class="card-body py-3">
-                    <h6 class="text-dark mb-1">Total Pasang Sepatu</h6>
-                    <h3 class="fw-bold mb-0">
+                    <h6 class="text-dark mb-1 text-secondary" >Total Pasang Sepatu</h6>
+                    <h5 class="fw-bold mb-0" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                         {{ $orders->sum(function($order) { return $order->items->count(); }) }} Pasang
-                    </h3>
+                    </h5>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm bg-success text-white">
+            <div class="card border-0 shadow-sm bg-white text-dark">
                 <div class="card-body py-3">
-                    <h6 class="text-white-50 mb-1">Tanggal Antrean Aktif</h6>
-                    <h5 class="fw-bold mb-0 mt-1">{{ Carbon::parse($selectedDate)->translatedFormat('d F Y') }}</h5>
+                    <h6 class="text-dark mb-1 text-secondary">Tanggal Antrean Aktif</h6>
+                    <h5 class="fw-bold mb-0 mt-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{ Carbon::parse($selectedDate)->translatedFormat('d F Y') }}</h5>
                 </div>
             </div>
         </div>

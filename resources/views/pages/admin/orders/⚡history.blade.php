@@ -2,6 +2,7 @@
 
 use Livewire\Component;
 use App\Models\Orders;
+use App\Models\User;
 use Carbon\Carbon;
 
 new class extends Component {
@@ -17,6 +18,8 @@ new class extends Component {
 
     public function with()
     {
+            $branchId = Auth::user()->branch_id;
+            $orders = [];
             // Menampilkan data pesanan dengan items nya received
             $orders = Orders::with(['customers', 'items' => function ($query) {
             // Hanya ambil item sepatu yang statusnya received saja
@@ -25,6 +28,7 @@ new class extends Component {
             ->whereHas('items', function($query){
                 $query->where('status','received');
             })
+            ->where('branch_id',$branchId)
             ->latest()
             ->get();
         return [
@@ -40,7 +44,7 @@ new class extends Component {
     {{-- Header Halaman & Filter Tanggal --}}
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
         <div>
-            <h4 class="fw-bold mb-1 text-dark">
+            <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Riwayat Pesanan
             </h4>
             <p class="text-muted mb-0 small">Riwayat pesanan yang sudah diterima oleh customers</p>

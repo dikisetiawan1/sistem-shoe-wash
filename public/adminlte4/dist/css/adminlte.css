@@ -13971,7 +13971,10 @@ body:not(.app-loaded) .app-footer {
 .hold-transition .nav-badge {
   animation-duration: 0s !important;
 }
-
+:root {
+    /* Gradasi dari biru ke ungu dengan transparansi sekitar 85% */
+    --lte-sidebar-menu-active-bg: linear-gradient(135deg, rgba(13, 110, 253, 0.85) 0%, rgba(102, 16, 242, 0.85) 100%);
+}
 [data-bs-theme=light] .app-sidebar,
 [data-bs-theme=light] .app-sidebar {
   /* --lte-sidebar-hover-bg: rgba(252, 249, 249, 0.1); */
@@ -13981,7 +13984,7 @@ body:not(.app-loaded) .app-footer {
   /* --lte-sidebar-hover-color: #fff; */
   --lte-sidebar-hover-color: #3a3636;
   --lte-sidebar-active-color: #3a3636;
-  --lte-sidebar-menu-active-bg: #115ae2;
+  --lte-sidebar-menu-active-bg: rgba(13, 110, 253, 0.85);
   --lte-sidebar-menu-active-color: #ffffff;
   --lte-sidebar-submenu-bg: transparent;
   --lte-sidebar-submenu-color: #3a3636;

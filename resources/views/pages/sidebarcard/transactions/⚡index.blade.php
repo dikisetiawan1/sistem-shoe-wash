@@ -18,10 +18,12 @@ new class extends Component
 <div>
   <div class="container-fluid px-4 py-4">
     <!-- Header Halaman -->
-    <div class="mb-4">
-        <h2 class="fw-bold text-dark">Transactions</h2>
-        <p class="text-muted">Pilih menu di bawah ini untuk mengelola transaksi aplikasi Shoewash.</p>
-    </div>
+        <div class="mb-4">
+            <h4 class="fw-bold mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Transactions
+            </h4>
+            <p class="text-secondary small mb-0">Pilih menu di bawah ini untuk mengelola transaksi aplikasi Shoewash.</p>
+        </div>
 
     <!-- Grid Cards -->
     <div class="row g-4">
@@ -34,9 +36,12 @@ new class extends Component
                         📦
                     </div>
                     <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Data Pesanan</h5>
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Data Pesanan
+                        </h5>
                         <p class="card-text text-muted small mb-0">Kelola daftar Pesanan pelanggan</p>
                     </div>
+                    
                 </div>
             </a>
         </div>
@@ -48,10 +53,13 @@ new class extends Component
                    <div class="bg-info bg-opacity-10 text-info p-3 rounded-3 me-3 fs-4">
                         🔄
                     </div>
-                   <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Update Status Pesanan</h5>
+                    <div class="d-flex flex-column">
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Update Status Pesanan
+                        </h5>
                         <p class="card-text text-muted small mb-0">Kelola status pesanan pelanggan</p>
                     </div>
+                    
                 </div>
             </a>
         </div>
@@ -63,8 +71,11 @@ new class extends Component
                    <div class="bg-secondary bg-opacity-10 text-secondary p-3 rounded-3 me-3 fs-4">
                         🕒
                     </div>
+
                     <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Data Riwayat Pesanan</h5>
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Data Riwayat Pesanan
+                        </h5>
                         <p class="card-text text-muted small mb-0">Kelola riwayat pesanan pelanggan</p>
                     </div>
                 </div>

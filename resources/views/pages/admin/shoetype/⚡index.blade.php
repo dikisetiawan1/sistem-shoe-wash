@@ -47,7 +47,7 @@ new class extends Component
              <!--begin::Row-->
             <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <h4 class="fw-bold mb-0 text-dark">Daftar Sepatu</h4>
+                        <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Daftar Sepatu</h4>
                         <small class="text-muted">Kelola seluruh data jenis sepatu</small>
                     </div>
                     

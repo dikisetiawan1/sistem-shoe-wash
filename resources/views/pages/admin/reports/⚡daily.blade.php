@@ -64,10 +64,16 @@ new class extends Component {
         });
 
 
-        // total per method pembayaran
-        $totalCash = $allOrdersForDate->where('payment_method', 'cash')->sum('total_price');
-        $totalTransfer = $allOrdersForDate->where('payment_method', 'transfer')->sum('total_price');
-        $totalQris = $allOrdersForDate->where('payment_method', 'qris')->sum('total_price');
+         // total per method pembayaran
+        $totalCash = $allOrdersForDate->where('payment_method', 'cash')->sum(function ($order) {
+                        return $order->items->sum('price'); 
+                    });
+        $totalTransfer = $allOrdersForDate->where('payment_method', 'transfer')->sum(function ($order) {
+                        return $order->items->sum('price'); 
+                    });
+        $totalQris = $allOrdersForDate->where('payment_method', 'qris')->sum(function ($order) {
+                        return $order->items->sum('price'); 
+                    });
 
 
 
@@ -100,8 +106,8 @@ new class extends Component {
             {{-- Header Halaman & Filter Tanggal --}}
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 bg-white p-4 rounded shadow-sm border">
                 <div>
-                    <h4 class="fw-bold mb-1 text-dark">
-                        <i class="fa-solid fa-file-invoice-dollar text-primary me-2"></i> Laporan Harian 
+                    <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <i class="fa-solid fa-file-invoice-dollar text-primary me-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i> Laporan Harian 
                     </h4>
                     <p class="text-muted mb-0 small">Rekapitulasi metode pembayaran dan rincian item sepatu masuk</p>
                 </div>
@@ -118,7 +124,7 @@ new class extends Component {
             {{-- Ringkasan Total per Metode Pembayaran --}}
             <div class="row g-3 mb-4">
                 <div class="col-md-3">
-                    <div class="card border-0 shadow-sm bg-success text-white">
+                    <div class="card border-0 shadow-sm  text-white"  style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
                         <div class="card-body py-3">
                             <h6 class="text-white-50 mb-1">Total Pendapatan</h6>
                             <h4 class="fw-bold mb-0">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h4>
@@ -135,7 +141,7 @@ new class extends Component {
                                 <h6 class="text-uppercase text-muted mb-1 small fw-bold">
                                     <i class="fa-solid fa-wallet me-1 text-primary"></i> {{ $method ? $method : 'Belum Ditentukan' }}
                                 </h6>
-                                <h4 class="fw-bold mb-0 text-dark">Rp {{ number_format($data['total_amount'], 0, ',', '.') }}</h4>
+                                <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Rp {{ number_format($data['total_amount'], 0, ',', '.') }}</h4>
                                 <small class="text-muted">{{ $data['total_transactions'] }} Transaksi</small>
                             </div>
                         </div>

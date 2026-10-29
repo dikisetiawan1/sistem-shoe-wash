@@ -18,11 +18,13 @@ new class extends Component
 <div>
   <div class="container-fluid px-4 py-4">
     <!-- Header Halaman -->
-    <div class="mb-4">
-        <h2 class="fw-bold text-dark">Master Data</h2>
-        <p class="text-muted">Pilih menu di bawah ini untuk mengelola data master aplikasi Shoewash.</p>
-    </div>
-
+     <div class="mb-4">
+            <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Master Data
+            </h4>
+            <p class="text-secondary small mb-0">Pilih menu di bawah ini untuk mengelola data master aplikasi Shoewash.</p>
+        </div>
+    
     <!-- Grid Cards -->
     <div class="row g-4">
         
@@ -34,8 +36,10 @@ new class extends Component
                         🏢
                     </div>
                     <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Data Branch</h5>
-                        <p class="card-text text-muted small mb-0">Kelola daftar cabang outlet</p>
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Data Branches
+                        </h5>
+                        <p class="card-text text-muted small mb-0">Kelola data branch</p>
                     </div>
                 </div>
             </a>
@@ -49,7 +53,9 @@ new class extends Component
                         👥
                     </div>
                    <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Data Customer</h5>
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Data Customer
+                        </h5>
                         <p class="card-text text-muted small mb-0">Kelola data pelanggan</p>
                     </div>
                 </div>
@@ -63,9 +69,11 @@ new class extends Component
                     <div class="bg-purple bg-opacity-10 text-purple p-3 rounded-3 me-3 fs-4" style="background-color: rgba(111, 66, 193, 0.1) !important; color: #6f42c1;">
                         <i class="fa-solid fa-hand-sparkles"></i>
                     </div>
-                    <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Data Layanan</h5>
-                        <p class="card-text text-muted small mb-0">Kelola jenis cuci/treatment</p>
+                     <div class="d-flex flex-column">
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Data Layanan
+                        </h5>
+                        <p class="card-text text-muted small mb-0">Kelola Jenis cuci/treatment</p>
                     </div>
                 </div>
             </a>

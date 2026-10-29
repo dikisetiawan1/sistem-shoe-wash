@@ -64,7 +64,7 @@ new class extends Component
              <!--begin::Row-->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <h4 class="fw-bold mb-0 text-dark">Update Customer</h4>
+                        <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Update Customer</h4>
                         <small class="text-muted">Kelola seluruh customer dan informasi mereka</small>
                     </div>
                     
@@ -115,7 +115,7 @@ new class extends Component
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
+                        <button type="submit" class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">UPDATE</button>
                         <a href="/masterdata/customers" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>

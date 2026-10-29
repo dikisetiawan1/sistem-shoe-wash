@@ -13,9 +13,9 @@
             /> --}}
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column mt-3 mb-2">
                 <span class="fw-bold text-dark ">REFRESH SYSTEM</span>
-              <small class="bg-secondary text-white px-2 rounded mb-2 align-self-start" style="font-size: 0.75rem;"> {{Auth::User()->branches->name ?? 'Pusat'}} </small>
+              <small class="bg-secondary text-white px-2 rounded mb-2 align-self-center" style=" font-size: 0.75rem;background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);"> {{Auth::User()->branches->name ?? 'Pusat'}} </small>
             </div>
        
             
@@ -101,7 +101,7 @@
               <li>
               <form action="{{ route('logout') }}" method="POST" class="d-inline">
                   @csrf
-                  <button type="submit" class="dropdown-item text-danger mx-3" >
+                  <button type="submit" class="dropdown-item mx-3" style="color:rgb(231, 1, 1) !important;">
                       <i class="fa-solid fa-right-from-bracket me-2"></i> 
                       Logout
                   </button>

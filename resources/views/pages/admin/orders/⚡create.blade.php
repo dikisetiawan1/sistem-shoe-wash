@@ -188,7 +188,7 @@ public function save()
         <div class="col-lg-10">
              <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <h4 class="fw-bold mb-0 text-dark">Buat Pesanan Baru</h4>
+                        <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Buat Pesanan Baru</h4>
                         <small class="text-muted">Kelola input pesanan baru untuk layanan cuci sepatu</small>
                     </div>
                     
@@ -197,7 +197,7 @@ public function save()
                 
                 {{-- Card: Informasi Customer & Transaksi --}}
                 <div class="card shadow-sm border-0 mb-4">
-                   <div class="card-header bg-primary text-white d-flex flex-column flex-md-row justify-content-between align-items-md-center py-3 gap-2">
+                   <div class="card-header bg-primary text-white d-flex flex-column flex-md-row justify-content-between align-items-md-center py-3 gap-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
                         <h5 class="card-title mb-0 fw-bold">
                             <i class="bi bi-journal-plus me-2"></i>Formulir Pesanan Baru
                         </h5>
@@ -298,7 +298,7 @@ public function save()
                         <h6 class="card-title mb-0 fw-bold text-dark">
                             <i class="bi bi-box-seam me-2"></i>Order List ({{ count($shoes) }} Pairs)
                         </h6>
-                        <button type="button" class="btn btn-sm btn-outline-primary" wire:click="addShoe">
+                        <button type="button" class="btn btn-sm btn-outline-primary" wire:click="addShoe"  style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                             <i class="bi bi-plus-lg me-1"></i>Add Shoe
                         </button>
                     </div>
@@ -307,7 +307,7 @@ public function save()
                         @foreach($shoes as $index => $shoe)
                             <div class="p-3 mb-3 border rounded bg-light position-relative" wire:key="shoe-item-{{ $index }}">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="badge bg-secondary">Order #{{ $index + 1 }}</span>
+                                    <span class="badge bg-secondary"style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">Order #{{ $index + 1 }}</span>
                                     @if(count($shoes) > 1)
                                         <button type="button" class="btn btn-sm btn-outline-danger border-0" wire:click="removeShoe({{ $index }})">
                                             <i class="bi bi-trash me-1"></i>Delete
@@ -377,12 +377,12 @@ public function save()
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="text-muted d-block small">Total Payment</span>
-                                <h3 class="fw-bold text-primary mb-0">
+                                <h3 class="fw-bold text-primary mb-0" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" >
                                     Rp {{ number_format($this->total, 0, ',', '.') }}
                                 </h3>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary btn-lg px-4">
+                                <button type="submit" class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
                                     <span wire:loading.remove wire:target="save">
                                         <i class="bi bi-check-circle me-1"></i> Save Order
                                     </span>

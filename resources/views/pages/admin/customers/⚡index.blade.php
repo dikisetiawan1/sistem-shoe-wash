@@ -52,11 +52,11 @@ new class extends Component
              <!--begin::Row-->
              <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h4 class="fw-bold mb-0 text-dark">Daftar Customers</h4>
+                    <h4 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Daftar Customers</h4>
                     <small class="text-muted">Kelola seluruh customer dan informasi mereka</small>
                 </div>
                 
-                <a href="/masterdata/customers/create" wire:navigate class="btn btn-primary fw-semibold shadow-sm">
+                <a href="/masterdata/customers/create" wire:navigate class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
                     <i class="fa-solid fa-plus me-1"></i> Tambah Customer
                 </a>
 

@@ -6,7 +6,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
      <title> {{ $title ?? config('app.name') }} | Refresh System</title>
-    <script>
+    {{-- <script>
       (() => {
         'use strict';
         const root = document.documentElement;
@@ -43,7 +43,7 @@
           root.setAttribute('data-lte-theme-resolved', '');
         }
       })();
-    </script>
+    </script> --}}
   
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
@@ -66,7 +66,15 @@
 
      @livewireStyles
   
-
+        <style>
+          /* Menimpa background menu aktif sidebar menjadi gradasi transparan RGBA */
+        .sidebar-menu .nav-item .nav-link.active,
+        .app-sidebar .nav-sidebar .nav-item .nav-link.active {
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.85) 0%, rgba(102, 16, 242, 0.85) 100%) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 10px rgba(102, 16, 242, 0.2); /* Opsional: Tambah sedikit bayangan agar elegan */
+        }
+      </style>
 
   <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">

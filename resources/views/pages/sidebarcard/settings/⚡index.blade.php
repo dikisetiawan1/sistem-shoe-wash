@@ -18,10 +18,12 @@ new class extends Component
 <div>
   <div class="container-fluid px-4 py-4">
     <!-- Header Halaman -->
-    <div class="mb-4">
-        <h2 class="fw-bold text-dark">Settings Management</h2>
-        <p class="text-muted">Pilih menu di bawah ini untuk mengelola users.</p>
-    </div>
+        <div class="mb-4">
+            <h4 class="fw-bold mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Settings management
+            </h4>
+            <p class="text-secondary small mb-0">Pilih menu di bawah ini untuk mengelola users.</p>
+        </div>
 
     <!-- Grid Cards -->
     <div class="row g-4">
@@ -33,8 +35,10 @@ new class extends Component
                     <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 me-3 fs-4">
                         <i class="fa-solid fa-users"></i>
                     </div>
-                    <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Users</h5>
+                     <div class="d-flex flex-column">
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Users
+                        </h5>
                         <p class="card-text text-muted small mb-0">Kelola akses users</p>
                     </div>
                 </div>
@@ -48,8 +52,10 @@ new class extends Component
                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-3 me-3 fs-4">
                         <i class="fa-solid fa-user-gear"></i>
                     </div>
-                   <div class="d-flex flex-column">
-                        <h5 class="card-title fw-bold text-dark mb-1">Profile</h5>
+                      <div class="d-flex flex-column">
+                        <h5 class="card-title fw-bold mb-1" style="background: linear-gradient(45deg, #0d6efd, #6610f2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Profile
+                        </h5>
                         <p class="card-text text-muted small mb-0">Kelola Profile</p>
                     </div>
                 </div>
