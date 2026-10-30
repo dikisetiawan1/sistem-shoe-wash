@@ -81,7 +81,7 @@ new class extends Component
     <div class="receipt-container">
         <!-- Header Toko -->
         <div class="text-center mb-2">
-            <h4 class="fw-bold mb-0">SHOE WASH</h4>
+            <h4 class="fw-bold mb-0">REFRESH</h4>
             <small class="d-block">Jl. Raya Clean Shoes No. 123</small>
             <small class="d-block">WA / Telp: 0812-3456-7890</small>
         </div>
@@ -116,7 +116,7 @@ new class extends Component
 
         <!-- Rincian Item Sepatu -->
         <div class="small">
-            <div class="fw-bold mb-1">DETAIL SHOES:</div>
+            <div class="fw-bold mb-1">DETAIL ITEMS:</div>
             @foreach($order->items as $index => $item)
                 <div class="mb-2">
                     <div class="d-flex justify-content-between">
@@ -160,7 +160,7 @@ new class extends Component
 
         <!-- Catatan / Ketentuan Service -->
         <div class="text-center small" style="font-size: 0.75rem;">
-            <p class="fw-bold mb-1">KETENTUAN WASH SHOES:</p>
+            <p class="fw-bold mb-1">KETENTUAN REFRESH:</p>
             <ol class="ps-3 text-start mb-2" style="padding-left: 1rem !important;">
                 <li>Pengambilan barang wajib membawa invoice ini.</li>
                 <li>Barang yang tidak diambil > 3 hari di luar tanggung jawab kami.</li>
