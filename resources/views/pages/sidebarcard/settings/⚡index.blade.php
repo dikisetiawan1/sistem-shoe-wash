@@ -29,8 +29,9 @@ new class extends Component
     <div class="row g-4">
         
         <!-- Card 1: Branch -->
+        @if(auth()->check() && auth()->user()->role == "owner")
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.user.index') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.user.index') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 me-3 fs-4">
                         <i class="fa-solid fa-users"></i>
@@ -44,10 +45,11 @@ new class extends Component
                 </div>
             </a>
         </div>
+        @endif
 
-        <!-- Card 2: Customers -->
+        <!-- Card 2: Profile -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="#" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="/profile" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-3 me-3 fs-4">
                         <i class="fa-solid fa-user-gear"></i>

@@ -169,16 +169,16 @@ new class extends Component {
                         <thead class="table-light">
                             <tr>
                                 <th style="width: 50px;" class="text-center">#</th>
-                                <th>No. Order </th>
-                                <th> Customer</th>
-                                <th>No HP</th>
-                                <th>Detail Sepatu & Brand</th>
-                                <th> Warna</th>
-                                <th>Kategori</th>
-                                <th>Layanan</th>
-                                <th>Metode Pembayaran</th>
-                                <th class="text-center">Status Item</th>
-                                <th class="text-end">Total Order</th>
+                                <th>ORDER ID </th>
+                                <th>CUSTOMERS</th>
+                                <th>NO HP</th>
+                                <th>DETAIL SHOES & BRAND</th>
+                                <th>COLOR</th>
+                                <th>CATEGORY</th>
+                                <th>SERVICES</th>
+                                <th>PAYMENT METHOD</th>
+                                <th class="text-center">ITEMS STATUS</th>
+                                <th class="text-end">TOTAL ORDER</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -298,6 +298,7 @@ new class extends Component {
 <script>
     $(document).ready(function() {
         let table = new DataTable('#reportDailyTable', {
+            pageLength:50,
             destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
             // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
             dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',

@@ -70,11 +70,11 @@ new class extends Component
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Branch</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th style="width: 15%">Actions</th>
+                                    <th>USERNAME</th>
+                                    <th>BRANCH</th>
+                                    <th>EMAIL</th>
+                                    <th>ROLE</th>
+                                    <th style="width: 15%">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,6 +121,7 @@ new class extends Component
 <script>
     $(document).ready(function() {
         let table = new DataTable('#customersTable', {
+            pageLength:50,
             destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
             // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
             dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',

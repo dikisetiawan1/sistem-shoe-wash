@@ -69,7 +69,7 @@ new class extends Component
 
 
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" wire:model="name">
                             @error('name')
                                 <div class="alert alert-danger mt-2">
@@ -79,7 +79,7 @@ new class extends Component
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control" wire:model="email">
                             @error('email')
                                 <div class="alert alert-danger mt-2">
@@ -89,7 +89,7 @@ new class extends Component
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Phone</label>
+                            <label class="form-label">Phone <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" wire:model="phone">
                             @error('phone')
                                 <div class="alert alert-danger mt-2">
@@ -99,7 +99,7 @@ new class extends Component
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Address</label>
+                            <label class="form-label">Address <span class="text-danger">*</span></label>
                             <textarea class="form-control" wire:model="address" rows="3"></textarea>
                             @error('address')
                                 <div class="alert alert-danger mt-2">
@@ -109,7 +109,13 @@ new class extends Component
                         </div>
                            
 
-                        <button type="submit" class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">SAVE</button>
+                         <button type="submit" wire:navigate  class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
+                                    <span wire:loading.remove>SAVE</span>
+                                    <span wire:loading>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="status"></span>
+                                        Saving...
+                                    </span>
+                        </button>
                         <a href="/masterdata/customers" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>

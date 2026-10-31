@@ -81,15 +81,15 @@ public function delete($id)
                         <thead>
                             <tr>
                                 <th >#</th>
-                                <th >Order ID</th>
-                                <th >Customers</th>
-                                <th >Total price</th>
-                                <th >Type</th>
-                                <th >Payment status</th>
-                                <th >Payment method</th>
-                                <th >Entry date</th>
-                                <th >Estimated date</th>
-                                <th  style="width: 15%">Actions</th>
+                                <th >ORDER ID</th>
+                                <th >CUSTOMERS</th>
+                                <th >TOTAL PRICE</th>
+                                <th >TYPE</th>
+                                <th >PAYMENT STATUS</th>
+                                <th >PAYMENT METHOD</th>
+                                <th >ENTRY DATE</th>
+                                <th >ESTIMATED DATE</th>
+                                <th  style="width: 15%">ACTIONS</th>
 
                                 
                             </tr>
@@ -109,7 +109,7 @@ public function delete($id)
 
                                     <td class="d-flex align-items-center gap-1">
                                         <a href="/transactions/orders/{{ $order->id }}" wire:navigate
-                                            class="btn btn-sm btn-success">
+                                            class="btn btn-sm btn-success" wire:navigate >
                                             DETAIL
                                         </a>
                                         {{-- <a href="/edit/{{ $order->id }}" wire:navigate
@@ -163,6 +163,7 @@ public function delete($id)
 <script>
     $(document).ready(function() {
         let table = new DataTable('#ordersTable', {
+            pageLength:50,
             destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
             // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
             dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',

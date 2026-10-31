@@ -36,7 +36,7 @@
               id="navigation"
             >
               <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboard') }}" wire:navigate class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                   {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
                   <i class="fa-solid fa-chart-pie"></i>
                   <p>
@@ -46,7 +46,7 @@
                
               </li>
               <li class="nav-item ">
-                <a href="{{ route('admin.washqueue.index') }}" class="nav-link {{ request()->routeIs('admin.washqueue.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.washqueue.index') }}" wire:navigate class="nav-link {{ request()->routeIs('admin.washqueue.index') ? 'active' : '' }}">
                   {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
                   <i class="fa-solid fa-list-check"></i>
                   <p>
@@ -58,7 +58,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('sidebarcard.masterdata.index') }}" class="nav-link {{ request()->routeIs('sidebarcard.masterdata.index') ? 'active' : '' }}">
+                <a href="{{ route('sidebarcard.masterdata.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.masterdata.index') ? 'active' : '' }}">
                   <i class="fa-solid fa-server"></i>
                   <p>
                     Master Data
@@ -68,7 +68,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('sidebarcard.transactions.index') }}" class="nav-link {{ request()->routeIs('sidebarcard.transactions.index') ? 'active' : '' }}">
+                <a href="{{ route('sidebarcard.transactions.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.transactions.index') ? 'active' : '' }}">
                   <i class="fa-solid fa-receipt"></i>
                   <p>
                     Transactions
@@ -78,7 +78,7 @@
 
 
               <li class="nav-item ">
-                <a href="{{ route('sidebarcard.reports.index') }}" class="nav-link {{ request()->routeIs('sidebarcard.reports.index') ? 'active' : '' }}">
+                <a href="{{ route('sidebarcard.reports.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.reports.index') ? 'active' : '' }}">
                   <i class="fa-solid fa-chart-column"></i>
                   <p>
                     Reports
@@ -88,7 +88,7 @@
 
               {{-- menu Setting management --}}
               <li class="nav-item">
-                <a href="{{route('sidebarcard.settings.index')}}" class="nav-link {{ request()->routeIs('sidebarcard.settings.index') ? 'active' : '' }}">
+                <a href="{{route('sidebarcard.settings.index')}}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.settings.index') ? 'active' : '' }}">
               
                   <i class="fa-solid fa-gear"></i>
                   <p>
@@ -102,7 +102,7 @@
               <div class="sidebar-footer p-3 mt-auto">
                 <form action="{{ route('logout') }}" method="POST" class="d-grid">
                     @csrf
-                    <button type="submit" class="btn btn-light text-danger fw-semibold d-flex align-items-center justify-content-center py-2" style="border: 1px solid rgba(231, 1, 1, 0.2);">
+                    <button type="submit"  class="btn btn-light text-danger fw-semibold d-flex align-items-center justify-content-center py-2" style="border: 1px solid rgba(231, 1, 1, 0.2);">
                         <i class="fa-solid fa-right-from-bracket me-2"></i> 
                         Logout
                     </button>

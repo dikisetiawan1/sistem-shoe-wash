@@ -30,7 +30,7 @@ new class extends Component
         
         <!-- Card 1: Branch -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.orders.index') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.orders.index') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-3 me-3 fs-4">
                         📦
@@ -48,7 +48,7 @@ new class extends Component
 
         <!-- Card 2: Customers -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.orders.updatestatus') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.orders.updatestatus') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                    <div class="bg-info bg-opacity-10 text-info p-3 rounded-3 me-3 fs-4">
                         🔄
@@ -66,7 +66,7 @@ new class extends Component
 
         <!-- Card 3: Services -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.orders.history') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.orders.history') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                    <div class="bg-secondary bg-opacity-10 text-secondary p-3 rounded-3 me-3 fs-4">
                         🕒
@@ -85,7 +85,7 @@ new class extends Component
         <div class="row g-4">
               <!-- Card 3: Pembayaran -->
             <div class="col-12 col-md-6 col-lg-4">
-                <a href="{{ route('admin.orders.payment-confirmation') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+                <a href="{{ route('admin.orders.payment-confirmation') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                     <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-danger bg-opacity-10 text-secondary p-3 rounded-3 me-3 fs-4">
                            <svg class="bi bi-bank" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

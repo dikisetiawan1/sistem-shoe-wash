@@ -77,11 +77,11 @@ new class extends Component {
                 <thead class="table-light">
                     <tr>
                         <th style="width: 50px;" class="text-center">#</th>
-                        <th>No. Order & Customer</th>
-                        <th>Merk & Shoe Color</th>
-                        <th>Category & Service</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Update Status</th>
+                        <th>ORDER ID & CUSTOMER</th>
+                        <th>MERK & COLOR</th>
+                        <th>CATEGORY & SERVICE</th>
+                        <th class="text-center">STATUS</th>
+                        <th class="text-center">DATE </th>
                     </tr>
                 </thead>
                 <tbody>

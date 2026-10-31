@@ -30,7 +30,7 @@ new class extends Component
         
         <!-- Card 1: Branch -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.branches.index') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.branches.index') }}" wire:navigate class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 me-3 fs-4">
                         🏢
@@ -47,7 +47,7 @@ new class extends Component
 
         <!-- Card 2: Customers -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.customers.index') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.customers.index') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-success bg-opacity-10 text-success p-3 rounded-3 me-3 fs-4">
                         👥
@@ -64,7 +64,7 @@ new class extends Component
 
         <!-- Card 3: Services -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.services.index') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.services.index') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-purple bg-opacity-10 text-purple p-3 rounded-3 me-3 fs-4" style="background-color: rgba(111, 66, 193, 0.1) !important; color: #6f42c1;">
                         <i class="fa-solid fa-hand-sparkles"></i>

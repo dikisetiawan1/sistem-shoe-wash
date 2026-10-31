@@ -71,7 +71,7 @@ new class extends Component
 
 
                         <div class="mb-3">
-                            <label class="form-label">Service</label>
+                            <label class="form-label">Service <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" wire:model="name">
                             @error('name')
                                 <div class="alert alert-danger mt-2">
@@ -80,7 +80,7 @@ new class extends Component
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Category</label>
+                            <label class="form-label">Category <span class="text-danger">*</span></label>
                             {{-- <input type="text" class="form-control" wire:model="category"> --}}
                             <select type="text" class="form-control" name="category" id="" wire:model="category">
                                 <option value="sepatu">Sepatu</option>
@@ -94,7 +94,7 @@ new class extends Component
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label">Description</label>
+                            <label class="form-label">Description <span class="text-danger">*</span></label>
                             <textarea class="form-control" wire:model="description" rows="3"></textarea>
                             @error('description')
                                 <div class="alert alert-danger mt-2">
@@ -103,7 +103,7 @@ new class extends Component
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Price</label>
+                            <label class="form-label">Price <span class="text-danger">*</span></label>
                             <input type="number" class="form-control" wire:model="price">
                             @error('price')
                                 <div class="alert alert-danger mt-2">
@@ -111,10 +111,13 @@ new class extends Component
                                 </div>
                             @enderror
                         </div>
-
-                       
-
-                        <button type="submit" class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">SAVE</button>
+                         <button type="submit" wire:navigate  class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
+                                    <span wire:loading.remove>SAVE</span>
+                                    <span wire:loading>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="status"></span>
+                                        Saving...
+                                    </span>
+                        </button>
                         <a href="/masterdata/services" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>

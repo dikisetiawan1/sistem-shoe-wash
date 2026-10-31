@@ -1,17 +1,17 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h4 class="fw-bold mb-1 text-dark">
             {{ __('Delete Account') }}
-        </h2>
+        </h4>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="text-secondary small mb-2">
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
         </p>
     </header>
 
     <x-danger-button
         x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion') " class="btn btn-danger fw-semibold border-0 shadow-sm px-3 py-2"
     >{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
@@ -34,7 +34,7 @@
                     id="password"
                     name="password"
                     type="password"
-                    class="mt-1 block w-3/4"
+                    class="mt-1 block w-3/4 "
                     placeholder="{{ __('Password') }}"
                 />
 
@@ -42,11 +42,11 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+                <x-secondary-button class="btn btn-secondary " x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ms-3">
+                <x-danger-button class="ms-3 btn btn-danger">
                     {{ __('Delete Account') }}
                 </x-danger-button>
             </div>

@@ -45,6 +45,21 @@ new class extends Component
         $this->dispatch('close-payment-modal');
     }
 
+    public function updatePaymentMethod($orderId, $updatePayment){
+
+                    $item = Orders::find($orderId);
+
+                    if($item){
+                        $item->payment_method = $updatePayment;
+                        $item->save();
+                    }
+
+                     // flash message
+            session()->flash('message', "Payment Method Pesanan {$item->name} Berhasil Di Update.");
+            return redirect()->route('admin.orders.payment-confirmation');
+
+    }
+
     public function render()
     {
         $branchId = Auth::user()->branch_id;
@@ -110,11 +125,12 @@ new class extends Component
                             <thead class="table-light text-uppercase fs-7">
                                 <tr>
                                     <th class="ps-4">Order ID</th>
-                                    <th>Customers</th>
-                                    <th>Tanggal Masuk</th>
-                                    <th>Total Biaya</th>
-                                    <th>Status</th>
-                                    <th class="text-end pe-4">Action</th>
+                                    <th>CUSTOMERS</th>
+                                    <th>ENTRY DATE</th>
+                                    <th>TOTAL PRICE</th>
+                                    <th>PAYMENT METHOD</th>
+                                    <th>STATUS</th>
+                                    <th class="text-end pe-4">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,6 +140,15 @@ new class extends Component
                                         <td>{{ $order->customers->name ?? 'Pelanggan Umum' }}</td>
                                         <td>{{ \Carbon\Carbon::parse($order->created_at)->translatedFormat('d M Y, H:i') }}</td>
                                         <td class="fw-semibold">Rp {{ number_format($order->total_price ?? 0, 0, ',', '.') }}</td>
+                                        <td class="fw-semibold">
+                                                <select 
+                                                wire:change="updatePaymentMethod({{ $order->id }}, $event.target.value)" 
+                                                class="form-select form-select-sm text-xs rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                                                <option value="cash" {{ $order->payment_method == 'cash' ? 'selected' : '' }}>Cash</option>
+                                                <option value="transfer" {{ $order->payment_method == 'transfer' ? 'selected' : '' }}>Transfer</option>
+                                                <option value="qris" {{ $order->payment_method == 'qris' ? 'selected' : '' }}>qris</option>
+                                              
+                                    </td>
                                         <td>
                                                 @if($order->payment_status == 'paid')
                                                     <span class="badge bg-success float-end text-uppercase">Paid</span>

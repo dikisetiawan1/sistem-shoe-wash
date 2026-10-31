@@ -99,9 +99,13 @@ new class extends Component
                                 </div>
                             @enderror
                         </div>
-
-
-                        <button type="submit" class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">UPDATE</button>
+                         <button type="submit" wire:navigate  class="btn text-white fw-semibold border-0 shadow-sm px-3 py-2" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
+                                    <span wire:loading.remove>SAVE</span>
+                                    <span wire:loading>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="status"></span>
+                                        Saving...
+                                    </span>
+                        </button>
                         <a href="/masterdata/branches" wire:navigate class="btn btn-md btn-secondary">BACK</a>
 
                     </form>

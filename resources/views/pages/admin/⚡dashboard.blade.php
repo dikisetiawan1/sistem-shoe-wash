@@ -88,173 +88,66 @@ new class extends Component
           <!--begin::Container-->
           <div class="container-fluid">
             <!--begin::Row-->
-            <div class="row">
+            <div class="row mb-3">
               <!--begin::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 1 (Diubah menjadi style bg-white modern) -->
-                <div class="small-box bg-white border-0 shadow-sm position-relative overflow-hidden" style="border-radius: 0.5rem;">
-                    <div class="inner p-3">
-                        <!-- Angka dengan efek teks gradasi -->
-                        <h3 class="fw-bold mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                            {{ $orders->count() }}
-                        </h3>
-                        <p class="text-muted mb-0 font-weight-normal">Data Pesanan</p>
-                    </div>
-
-                    <!-- Ikon SVG sebagai watermark transparan di pojok kanan bawah -->
-                    <svg 
-                        class="small-box-icon text-black-50" 
-                      fill="currentColor" 
-                      viewBox="0 0 24 24" 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      aria-hidden="true"
-                      style="opacity: 0.15;">
-                        <path 
-                            fill-rule="evenodd" 
-                            d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V3.375c0-1.036-.84-1.875-1.875-1.875H5.625ZM7.5 6a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5h-9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5h-6Z" 
-                            clip-rule="evenodd">
-                        </path>
-                    </svg>
-
-                    <!-- Footer link aksi -->
-                    <a
-                        href="{{route('admin.orders.index')}}"
-                         class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
-                      style="background-color: rgba(0,0,0,0.02);"
-                    >
-                        Lihat data <i class="bi bi-link-45deg"></i>
-                    </a>
-                </div>
-                <!--end::Small Box Widget 1-->
-            </div>
+             <div class="col-lg-3 col-6">
+                        <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
+                            <div class="card-body py-3">
+                                <h6 class="text-uppercase text-muted mb-1 small fw-bold">
+                                    {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Pesanan 
+                                </h6>
+                                <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$orders->count()}}</h4>
+                                <small class="text-muted">Data Pesanan masuk </small>
+                            </div>
+                        </div>
+              </div>
               <!--end::Col-->
 
               <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 2-->
-                <div class="small-box bg-white text-dark shadow-sm border-0">
-                  <div class="inner">
-                      <!-- Angka dengan efek gradasi modern -->
-                      <h3 class="fw-bold" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                          {{ $services->count() }}
-                      </h3>
-                      <p class="text-secondary mb-0">Data Layanan</p>
-                  </div>
-
-                  <!-- Ikon SVG dengan warna abu-abu elegan agar kontras di background putih -->
-                  <svg 
-                      class="small-box-icon text-black-50" 
-                      fill="currentColor" 
-                      viewBox="0 0 24 24" 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      aria-hidden="true"
-                      style="opacity: 0.15;">
-                      <path 
-                          fill-rule="evenodd" 
-                          d="M2.25 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V6Zm0 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V12Zm0 6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V18ZM6.75 6.75a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Zm0 6a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Zm0 6a.75.75 0 0 0 0 1.5h14.25a.75.75 0 0 0 0-1.5H6.75Z" 
-                          clip-rule="evenodd">
-                      </path>
-                  </svg>
-
-                  <!-- Footer small-box disesuaikan agar teksnya terlihat jelas di background putih -->
-                  <a
-                      href="{{ route('admin.services.index') }}"
-                      class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
-                      style="background-color: rgba(0,0,0,0.02);"
-                  >
-                      Lihat data <i class="bi bi-link-45deg"></i>
-                  </a>
-              </div>
-                <!--end::Small Box Widget 2-->
+                        <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
+                            <div class="card-body py-3">
+                                <h6 class="text-uppercase text-muted mb-1 small fw-bold">
+                                    {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Layanan 
+                                </h6>
+                                <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$services->count()}}</h4>
+                                <small class="text-muted">Data Layanan tersedia </small>
+                            </div>
+                        </div>
               </div>
 
 
 
               <!--end::Col-->
           <div class="col-lg-3 col-6">
-            <!--begin::Small Box Widget 3-->
-            <div class="small-box bg-white text-dark shadow-sm border-0">
-                <div class="inner">
-                    <!-- Angka dengan efek gradasi modern -->
-                    <h3 class="fw-bold" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        {{ $washqueue->count() }}
-                    </h3>
 
-                    <p class="text-secondary mb-0">Data antrean (harian)</p>
-                </div>
-
-                <!-- Ikon SVG dengan opasitas tipis sebagai watermark -->
-                <svg 
-                    class="small-box-icon text-black-50" 
-                    fill="currentColor" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    aria-hidden="true"
-                    style="opacity: 0.15;">
-                    <path 
-                        fill-rule="evenodd" 
-                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .2.079.39.22.53l3.75 3.75a.75.75 0 1 0 1.06-1.06l-3.53-3.53V6Z" 
-                        clip-rule="evenodd">
-                    </path>
-                </svg>
-
-                <!-- Footer kecil dengan warna yang kontras di background putih -->
-                <a
-                    href="{{ route('admin.washqueue.index') }}"
-                    class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
-                    style="background-color: rgba(0,0,0,0.02);"
-                >
-                    Lihat data <i class="bi bi-link-45deg"></i>
-                </a>
-                      </div>
-              <!--end::Small Box Widget 3-->
-          </div>
-
+                        <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
+                            <div class="card-body py-3">
+                                <h6 class="text-uppercase text-muted mb-1 small fw-bold">
+                                    {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Antrean 
+                                </h6>
+                                <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$washqueue->count()}}</h4>
+                                <small class="text-muted">Data Antrean per hari </small>
+                            </div>
+                        </div>
+        </div>
+          
 
               <!--end::Col-->
              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 4-->
-                <div class="small-box bg-white text-dark shadow-sm border-0">
-                    <div class="inner">
-                        <!-- Angka dengan efek gradasi modern -->
-                        <h3 class="fw-bold" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                            {{ $customers->count() }}
-                        </h3>
-
-                        <p class="text-secondary mb-0">Data Pelanggan</p>
-                    </div>
-
-                    <!-- Ikon SVG dengan opasitas tipis sebagai watermark -->
-                    <svg 
-                        class="small-box-icon text-black-50" 
-                        fill="currentColor" 
-                        viewBox="0 0 24 24" 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        aria-hidden="true"
-                        style="opacity: 0.15;">
-                        <path 
-                            d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a11.54 11.54 0 0 1-1.192 3.123 14.542 14.542 0 0 0 5.193-1.428.75.75 0 0 0 .364-.63l.001-.122a7.125 7.125 0 0 0-4.365-6.559 5.625 5.625 0 0 1 0 5.472Z">
-                        </path>
-                    </svg>
-
-                    <!-- Footer kecil dengan warna yang kontras dan elegan -->
-                    <a
-                        href="{{ route('admin.customers.index') }}"
-                        class="small-box-footer link-primary link-underline-opacity-0 link-underline-opacity-75-hover fw-semibold"
-                        style="background-color: rgba(0,0,0,0.02);"
-                    >
-                        Lihat data <i class="bi bi-link-45deg"></i>
-                    </a>
-                </div>
-                <!--end::Small Box Widget 4-->
-            </div>
-                          <!--end::Col-->
+                        <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
+                            <div class="card-body py-3">
+                                <h6 class="text-uppercase text-muted mb-1 small fw-bold">
+                                    {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Customers 
+                                </h6>
+                                <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$customers->count()}}</h4>
+                                <small class="text-muted">Data customer Aktif</small>
+                            </div>
                         </div>
-
-
+            </div>
 
             <!--end::Row-->
             <!--begin::Row-->
-            <div class="row">
+            <div class="row mt-5">
               <!-- Start col -->
               <div class="col-lg-7 connectedSortable">
               <div class="card border-0 shadow-sm bg-white mb-4">
@@ -269,61 +162,79 @@ new class extends Component
                     </div>
                 </div>
             </div>
-
+            @script
             <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const ctx = document.getElementById('orderChart').getContext('2d');
+                    // Variabel global untuk menyimpan instance chart agar bisa di-destroy nantinya
+                    let myOrderChart = null;
 
-                // Membuat efek gradasi warna untuk chart
-                let gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                gradient.addColorStop(0, 'rgba(13, 110, 253, 0.4)'); // Biru transparan di atas
-                gradient.addColorStop(1, 'rgba(102, 16, 242, 0.0)'); // Ungu pudar di bawah
+                    // Jalankan saat pertama kali halaman dimuat (full reload) atau setelah navigasi Livewire
+                    document.addEventListener('DOMContentLoaded', initChart);
+                    document.addEventListener('livewire:navigated', initChart);
 
-                const orderChart = new Chart(ctx, {
-                    type: 'line', // Bisa diganti 'bar' jika ingin bentuk batang
-                    data: {
-                        labels: {!! json_encode($labels) !!}, // Data Tanggal dari Controller
-                        datasets: [{
-                            label: 'Jumlah Order',
-                            data: {!! json_encode($data) !!}, // Data Total Order dari Controller
-                            borderColor: '#6610f2',
-                            backgroundColor: gradient,
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.4 // Membuat garis melengkung halus (smooth curve)
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false // Sembunyikan legenda jika hanya 1 dataset
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    stepSize: 1
-                                },
-                                grid: {
-                                    color: 'rgba(0, 0, 0, 0.05)'
-                                }
-                            },
-                            x: {
-                                grid: {
-                                    display: false
-                                }
-                            }
+                    function initChart() {
+                        const canvas = document.getElementById('orderChart');
+                        
+                        // Pastikan elemen canvas benar-benar ada di halaman saat ini
+                        if (!canvas) return; 
+
+                        const ctx = canvas.getContext('2d');
+
+                        // 1. Hancurkan chart lama jika sudah ada (mencegah error canvas is already in use)
+                        if (myOrderChart) {
+                            myOrderChart.destroy();
                         }
+
+                        // 2. Buat ulang efek gradasi warna
+                        let gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                        gradient.addColorStop(0, 'rgba(13, 110, 253, 0.4)');
+                        gradient.addColorStop(1, 'rgba(102, 16, 242, 0.0)');
+
+                        // 3. Render chart baru dan simpan ke variabel global
+                        myOrderChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: {!! json_encode($labels) !!},
+                                datasets: [{
+                                    label: 'Jumlah Order',
+                                    data: {!! json_encode($data) !!},
+                                    borderColor: '#6610f2',
+                                    backgroundColor: gradient,
+                                    borderWidth: 3,
+                                    fill: true,
+                                    tension: 0.4
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            stepSize: 1
+                                        },
+                                        grid: {
+                                            color: 'rgba(0, 0, 0, 0.05)'
+                                        }
+                                    },
+                                    x: {
+                                        grid: {
+                                            display: false
+                                        }
+                                    }
+                                }
+                            }
+                        });
                     }
-                });
-            });
             </script>
+            @endscript
                 <!-- /.card -->
 
-                
               </div>
               <!-- /.Start col -->
             </div>

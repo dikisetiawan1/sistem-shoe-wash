@@ -58,13 +58,13 @@ new class extends Component {
                 <thead class="table-light">
                     <tr>
                         <th style="width: 50px;" class="text-center">#</th>
-                        <th>No. Order & Customer</th>
-                        <th>Merk & Shoe Color</th>
-                        <th>Category & Service</th>
-                        <th class="text-center">Total Price</th>
-                        <th>Payment status & method</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Received</th>
+                        <th>ORDER ID & CUSTOMERS</th>
+                        <th>MERK & COLOR</th>
+                        <th>CATEGORY & SERVICES</th>
+                        <th class="text-center">TOTAL PRICE</th>
+                        <th>PAYMENT STATUS & METHOD</th>
+                        <th class="text-center">STATUS</th>
+                        <th class="text-center">RECEIVED</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -31,7 +31,7 @@ new class extends Component
         
         <!-- Card 1: Branch -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.reports.daily') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.reports.daily') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                     <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3 me-3 fs-4">
                         📅
@@ -49,7 +49,7 @@ new class extends Component
 
         <!-- Card 2: Customers -->
         <div class="col-12 col-md-6 col-lg-4">
-            <a href="{{ route('admin.reports.monthly') }}" class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
+            <a href="{{ route('admin.reports.monthly') }}" wire:navigate  class="card text-decoration-none shadow-sm h-100 border-0 hover-card transition-all">
                 <div class="card-body d-flex align-items-center p-4">
                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-3 me-3 fs-4">
                         📈

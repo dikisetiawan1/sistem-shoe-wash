@@ -112,13 +112,13 @@ new class extends Component {
                 <thead class="table-light">
                     <tr>
                         <th style="width: 50px;" class="text-center">#</th>
-                        <th>No. Order & Customer</th>
-                        <th>Merk & Shoe Color</th>
-                        <th>Category & Service</th>
-                        <th>Note</th>
-                        <th>Status</th>
-                        <th class="text-center">Estimated Finish</th>
-                        <th class="text-center">Actions</th>
+                        <th>ORDER ID & CUSTOMERS</th>
+                        <th>MERK & COLOR</th>
+                        <th>CATEGORY & SERVICES</th>
+                        <th>NOTED</th>
+                        <th>STATU</th>
+                        <th class="text-center">ESTIMATED FINISH </th>
+                        <th class="text-center">ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -190,19 +190,17 @@ new class extends Component {
             </table>
         </div>
     </div>
-            {{-- <div class="mt-4">
-                {{ $orders->links() }}
-            </div> --}}
+
 </div>
 </div>
    
 </div>
 
 
-
 <script>
     $(document).ready(function() {
         let table = new DataTable('#washqueueTable', {
+            pageLength:100,
             destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
             // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
             dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',

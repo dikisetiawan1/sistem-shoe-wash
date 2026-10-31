@@ -51,22 +51,22 @@ new class extends Component
                 <div class="card-body">
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Order ID</b> <span class="float-end font-monospace fw-bold text-primary">{{ $order->order_number }}</span>
+                            <b>ORDER ID</b> <span class="float-end font-monospace fw-bold text-primary">{{ $order->order_number }}</span>
                         </li>
                         <li class="list-group-item text-uppercase">
-                            <b>Customer</b> <span class="float-end">{{ $order->customers->name?? '-' }}</span>
+                            <b>CUSTOMER</b> <span class="float-end">{{ $order->customers->name?? '-' }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Date Entry</b> <span class="float-end">{{ $order->entry_date }}</span>
+                            <b>ENTRY DATE</b> <span class="float-end">{{ $order->entry_date }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Estimated Completion</b> <span class="float-end">{{ $order->estimated_completion_date }}</span>
+                            <b>ESTIMATED COMPLETION</b> <span class="float-end">{{ $order->estimated_completion_date }}</span>
                         </li>
                         <li class="list-group-item">
-                            <b>Payment Method</b> <span class="float-end text-uppercase">{{ $order->payment_method }}</span>
+                            <b>PAYMENT METHOD</b> <span class="float-end text-uppercase">{{ $order->payment_method }}</span>
                         </li>
                         <li class="list-group-item ">
-                             <b>Payment Status</b>
+                             <b>PAYMENT STATUS</b>
                                         @if($order->payment_status == 'paid')
                                             <span class="badge bg-success float-end text-uppercase">Paid</span>
                                         @elseif($order->payment_status == 'unpaid')
@@ -77,11 +77,11 @@ new class extends Component
                         </li>
 
                         <li class="list-group-item">
-                            <b>Type</b> <span class="float-end text-uppercase">{{ $order->type }}</span>
+                            <b>TYPE</b> <span class="float-end text-uppercase">{{ $order->type }}</span>
                         </li>
                                             
                         <li class="list-group-item">
-                            <b>Total</b> <strong><span class="float-end">Rp. {{ number_format($order->total_price, 0, ',', '.') }}</span></strong>
+                            <b>TOTAL</b> <strong><span class="float-end">Rp. {{ number_format($order->total_price, 0, ',', '.') }}</span></strong>
                         </li>
                         
                     </ul>
@@ -108,11 +108,11 @@ new class extends Component
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Shoe (Brand/Color)</th>
-                                <th>Category & Service</th>
-                                <th>Noted</th>
-                                <th>Price</th>
-                                <th>Status</th>
+                                <th>SHOE (Brand/Color)</th>
+                                <th>CATEGORY & SERVICES</th>
+                                <th>NOTED</th>
+                                <th>PRICE</th>
+                                <th>STATUS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -150,7 +150,7 @@ new class extends Component
                         </tbody>
                         <tfoot>
                             <tr class="fw-bold">
-                                <td colspan="4" class="text-end">Total Payment:</td>
+                                <td colspan="4" class="text-end">TOTAL PAYMENT:</td>
                                 <td class="text-end text-success fs-5">Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
                             </tr>
                         </tfoot>
@@ -160,7 +160,7 @@ new class extends Component
 
             {{-- Tombol Aksi di Bawah --}}
             <div class="d-flex justify-content-between mt-3">
-                <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.orders.index') }}"wire:navigate class="btn btn-secondary">
                     <i class="fa-solid fa-arrow-left me-1"></i> Back to Orders
                 </a>
                

@@ -225,7 +225,7 @@ public function save()
 
                             {{-- Tanggal Masuk --}}
                             <div class="col-md-3">
-                                <label class="form-label fw-semibold">Entry Date</label>
+                                <label class="form-label fw-semibold">Entry Date <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control" wire:model="entry_date">
                                  @error('entry_date')
                                 <div class="alert alert-danger mt-2">
@@ -236,7 +236,7 @@ public function save()
 
                             {{-- Estimasi Selesai --}}
                             <div class="col-md-3">
-                                <label class="form-label fw-semibold">Estimated Completion Date</label>
+                                <label class="form-label fw-semibold">Estimated Completion Date <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control @error('estimated_completion_date') is-invalid @enderror" wire:model="estimated_completion_date">
                                  @error('estimated_completion_date')
                                 <div class="alert alert-danger mt-2">
@@ -248,7 +248,7 @@ public function save()
 
                             {{-- Status Pembayaran --}}
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">Payment Status</label>
+                                <label class="form-label fw-semibold">Payment Status <span class="text-danger">*</span></label>
                                 <select class="form-select" wire:model="payment_status">
                                     <option value="unpaid">Belum Lunas (Unpaid)</option>
                                     <option value="paid">Lunas (Paid)</option>
@@ -262,7 +262,7 @@ public function save()
 
                             {{-- Metode Pembayaran --}}
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">Payment Method</label>
+                                <label class="form-label fw-semibold">Payment Method <span class="text-danger">*</span></label>
                                 <select class="form-select" wire:model="payment_method">
                                     <option value="cash">Cash (Tunai)</option>
                                     <option value="transfer">Transfer Bank</option>
@@ -277,7 +277,7 @@ public function save()
 
                             {{-- Type wash --}}
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">Type</label>
+                                <label class="form-label fw-semibold">Type <span class="text-danger">*</span></label>
                                 <select class="form-select" wire:model="type">
                                     <option value="reguler">Reguler</option>
                                     <option value="express">Express</option>
@@ -317,7 +317,7 @@ public function save()
 
                                 <div class="row g-3">
                                     <div class="col-md-3">
-                                        <label class="form-label small text-muted">Brand / Series</label>
+                                        <label class="form-label small text-muted">Brand / Series <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control form-control-sm " wire:model="shoes.{{ $index }}.brand" placeholder="Nike Air Jordan">
                                          @error('shoes.' . $index . '.brand')
                                                 <div class="alert alert-danger mt-2">
@@ -327,7 +327,7 @@ public function save()
                                     </div>
 
                                     <div class="col-md-3">
-                                        <label class="form-label small text-muted">Color</label>
+                                        <label class="form-label small text-muted">Color <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control form-control-sm " wire:model="shoes.{{ $index }}.color" placeholder="White">
                                         @error('shoes.' . $index . '.color')
                                             <div class="alert alert-danger mt-2">
@@ -337,7 +337,7 @@ public function save()
                                     </div>
 
                                     <div class="col-md-3">
-                                        <label class="form-label small text-muted">Service</label>
+                                        <label class="form-label small text-muted">Service <span class="text-danger">*</span></label>
                                         <select class="form-select form-select-sm " wire:model.live="shoes.{{ $index }}.services_id">
                                             <option value="">-- Select Service --</option>
                                             @foreach($serviceOptions as $service)
