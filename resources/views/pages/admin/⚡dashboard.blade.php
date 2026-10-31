@@ -14,7 +14,7 @@ new class extends Component
 {
   
 
-            public function render()
+    public function render()
           {
             // Ambil branch_id user yang sedang login
           $branchId = Auth::user()->branch_id;
@@ -35,6 +35,35 @@ new class extends Component
             $chartData[] = $count;
         }
 
+            $today = Carbon::today();
+            $yesterday = Carbon::yesterday();
+
+            // 1. Total Pendapatan Hari Ini (Order yang status bayarnya 'paid'/'lunas')
+            $todayRevenue = Orders::whereDate('created_at', $today)
+                ->where('payment_status', 'paid')
+                ->sum('total_price');
+
+            // 2. Pendapatan Kemarin (untuk perbandingan persentase)
+            $yesterdayRevenue = Orders::whereDate('created_at', $yesterday)
+                ->where('payment_status', 'paid')
+                ->sum('total_price');
+
+            // Hitung persentase kenaikan/penurunan
+            $percentageChange = 0;
+            if ($yesterdayRevenue > 0) {
+                $percentageChange = (($todayRevenue - $yesterdayRevenue) / $yesterdayRevenue) * 100;
+            } else {
+                $percentageChange = $todayRevenue > 0 ? 100 : 0;
+            }
+
+            // 3. Breakdown per Metode Pembayaran (Cash, QRIS, Transfer)
+            $breakdown = Orders::whereDate('created_at', $today)
+                ->where('payment_status', 'paid')
+                ->selectRaw('payment_method, sum(total_price) as total')
+                ->groupBy('payment_method')
+                ->pluck('total', 'payment_method')
+                ->toArray();
+
           return $this->view([
               'branchId' => $branchId,
               'orders'   => Orders::where('branch_id', $branchId)->get(),
@@ -45,7 +74,10 @@ new class extends Component
                   ->latest()
                   ->get(),
                   'labels'     => $chartLabels,
-                  'data'       => $chartData
+                  'data'       => $chartData,
+                  'todayRevenue' => $todayRevenue,
+              'percentageChange' => round($percentageChange, 1),
+              'breakdown' => $breakdown
           ])
           ->layout('layouts::app')
           ->title('Dashboard');
@@ -144,15 +176,14 @@ new class extends Component
                             </div>
                         </div>
             </div>
-
             <!--end::Row-->
             <!--begin::Row-->
-            <div class="row mt-5">
+    <div class="row mt-5">
               <!-- Start col -->
-              <div class="col-lg-7 connectedSortable">
-              <div class="card border-0 shadow-sm bg-white mb-4">
+        <div class="col-lg-7 connectedSortable">
+            <div class="card border-0 shadow-sm bg-white mb-4">
                 <div class="card-body">
-                    <h5 class="fw-bold mb-3" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    <h5 class="fw-bold mb-3" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                         Grafik Orderan per Hari
                     </h5>
                     
@@ -162,7 +193,83 @@ new class extends Component
                     </div>
                 </div>
             </div>
-            @script
+        </div>
+        
+
+            <div class="col-lg-5">
+            <!-- Tambahkan wire:poll agar data otomatis refresh setiap 30 detik -->
+                <div class="card border-0 shadow-sm bg-white mb-4" style="background: linear-gradient(135deg, rgba(13, 110, 253, 0.85) 0%, rgba(102, 16, 242, 0.85) 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+                    <div class="flex items-center justify-between card-body">
+                        <div>
+                            <h5 class="fw-bold mb-3 text-white" >Pendapatan Hari Ini</h4>
+                            <h3 class="text-2xl font-bold text-gray mt-1 ">
+                                Rp {{ number_format($todayRevenue, 0, ',', '.') }}
+                            </h3>
+                        </div>
+
+                </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- Indikator Perbandingan dengan Kemarin -->
+                    <div class="mt-4 flex items-center text-sm card-body">
+                        @if($percentageChange >= 0)
+                            <span class="text-emerald-600 font-semibold flex items-center">
+                                ↗ +{{ $percentageChange }}%
+                            </span>
+                        @else
+                            <span class="text-rose-600 font-semibold flex items-center">
+                                ↘ {{ $percentageChange }}%
+                            </span>
+                        @endif
+                        <span class="text-gray-500 ml-2">dari kemarin</span>
+                    </div>
+                    </div>
+                <div class="col-lg-6">
+
+                    <!-- Breakdown Metode Pembayaran -->
+                    <div class="mt-4 pt-4 border-t border-gray-100 text-white">
+                            <p >Rincian Metode Pembayaran</p>
+                            
+                            <div class="grid grid-cols-3 gap-3">
+                                <!-- Card Cash -->
+                                <div class="bg-gray-50/80 hover:bg-gray-50 border border-gray-200/60 p-2.5 rounded-lg text-center transition-all">
+                                    <div class="flex items-center justify-center space-x-1 mb-1">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        <span class="text-xs font-medium text-gray-500 fw-bold">Cash</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-gray-800 block">
+                                        Rp {{ number_format($breakdown['cash'] ?? 0, 0, ',', '.') }}
+                                    </span>
+                                </div>
+
+                                <!-- Card QRIS -->
+                                <div class="bg-gray-50/80 hover:bg-gray-50 border border-gray-200/60 p-2.5 rounded-lg text-center transition-all">
+                                    <div class="flex items-center justify-center space-x-1 mb-1">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                        <span class="text-xs font-medium text-gray-500 fw-bold">QRIS</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-gray-800 block">
+                                        Rp {{ number_format($breakdown['qris'] ?? 0, 0, ',', '.') }}
+                                    </span>
+                                </div>
+
+                                <!-- Card Transfer -->
+                                <div class="bg-gray-50/80 hover:bg-gray-50 border border-gray-200/60 p-2.5 rounded-lg text-center transition-all">
+                                    <div class="flex items-center justify-center space-x-1 mb-1">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                                        <span class="text-xs font-medium text-gray-500 fw-bold" >Transfer</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-gray-800 block">
+                                        Rp {{ number_format($breakdown['transfer'] ?? 0, 0, ',', '.') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+             </div>
+    
+    </div>
+        @script
             <script>
                     // Variabel global untuk menyimpan instance chart agar bisa di-destroy nantinya
                     let myOrderChart = null;
@@ -233,16 +340,19 @@ new class extends Component
                     }
             </script>
             @endscript
-                <!-- /.card -->
-
-              </div>
-              <!-- /.Start col -->
+        
+                </div>
             </div>
+
+            </div>
+              <!-- /.Start col -->
+        </div>
             <!-- /.row (main row) -->
           </div>
           <!--end::Container-->
         </div>
         <!--end::App Content-->
+          
       </main>
 </div>
 

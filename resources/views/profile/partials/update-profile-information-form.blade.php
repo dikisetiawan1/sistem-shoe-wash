@@ -1,6 +1,5 @@
 
 <section>
-
     <header class="mb-3">
         <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
             {{ __('Profile Information') }}
