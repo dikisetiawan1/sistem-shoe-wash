@@ -19,7 +19,7 @@ new class extends Component
   <div class="container-fluid px-4 py-4">
     <!-- Header Halaman -->
      <div class="mb-4">
-            <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <h4 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Master Data
             </h4>
             <p class="text-secondary small mb-0">Pilih menu di bawah ini untuk mengelola data master aplikasi Shoewash.</p>

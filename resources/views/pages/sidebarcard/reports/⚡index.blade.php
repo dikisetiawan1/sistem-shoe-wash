@@ -20,7 +20,7 @@ new class extends Component
     <!-- Header Halaman -->
 
         <div class="mb-4">
-            <h4 class="fw-bold mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <h4 class="fw-bold mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Reports
             </h4>
             <p class="text-secondary small mb-0">Pilih menu di bawah ini untuk mengunduh reports aplikasi Shoewash.</p>

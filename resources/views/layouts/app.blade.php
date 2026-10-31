@@ -5,7 +5,7 @@
   <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-     <title> {{ $title ?? config('app.name') }} | Refresh System</title>
+     <title> {{ $title ?? '' }} | Refresh System</title>
     {{-- <script>
       (() => {
         'use strict';

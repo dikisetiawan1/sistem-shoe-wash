@@ -38,7 +38,7 @@
               <li class="nav-item">
                 <a href="{{ route('admin.dashboard') }}" wire:navigate class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                   {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
-                  <i class="fa-solid fa-chart-pie"></i>
+                  <i class="fa-solid fa-chart-pie" style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                   <p>
                     Dashboard
                   </p>
@@ -48,7 +48,7 @@
               <li class="nav-item ">
                 <a href="{{ route('admin.washqueue.index') }}" wire:navigate class="nav-link {{ request()->routeIs('admin.washqueue.index') ? 'active' : '' }}">
                   {{-- <i class="nav-icon bi bi-speedometer"></i> --}}
-                  <i class="fa-solid fa-list-check"></i>
+                  <i class="fa-solid fa-list-check" style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                   <p>
                     Wash Queue
                   </p>
@@ -59,7 +59,7 @@
 
               <li class="nav-item ">
                 <a href="{{ route('sidebarcard.masterdata.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.masterdata.index') ? 'active' : '' }}">
-                  <i class="fa-solid fa-server"></i>
+                  <i class="fa-solid fa-server" style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                   <p>
                     Master Data
                   </p>
@@ -69,7 +69,7 @@
 
               <li class="nav-item ">
                 <a href="{{ route('sidebarcard.transactions.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.transactions.index') ? 'active' : '' }}">
-                  <i class="fa-solid fa-receipt"></i>
+                  <i class="fa-solid fa-receipt"  style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                   <p>
                     Transactions
                   </p>
@@ -79,7 +79,7 @@
 
               <li class="nav-item ">
                 <a href="{{ route('sidebarcard.reports.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.reports.index') ? 'active' : '' }}">
-                  <i class="fa-solid fa-chart-column"></i>
+                  <i class="fa-solid fa-chart-column" style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                   <p>
                     Reports
                   </p>
@@ -90,7 +90,7 @@
               <li class="nav-item">
                 <a href="{{route('sidebarcard.settings.index')}}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.settings.index') ? 'active' : '' }}">
               
-                  <i class="fa-solid fa-gear"></i>
+                  <i class="fa-solid fa-gear" style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                   <p>
                     Settings Management
                     

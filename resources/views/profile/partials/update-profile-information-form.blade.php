@@ -6,7 +6,7 @@
         </h4>
 
         <p class="text-secondary small mb-0">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Perbarui informasi profil dan alamat email akun Anda.") }}
         </p>
     </header>
 
