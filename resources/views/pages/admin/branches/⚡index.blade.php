@@ -27,7 +27,7 @@ new class extends Component
             'branches' => Branches::latest()->get(),
         ])
             ->layout('layouts::app')
-            ->title('Branches List'); 
+            ->title('Branches'); 
     }   
 };
 ?>

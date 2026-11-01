@@ -45,7 +45,7 @@ public function delete($id)
             'orders' => $orders,
         ])
             ->layout('layouts::app')
-            ->title('Orders List'); 
+            ->title('Orders'); 
     }
 };
 ?>

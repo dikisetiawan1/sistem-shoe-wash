@@ -39,7 +39,7 @@ new class extends Component
             'customers' => $customers
         ])
             ->layout('layouts::app')
-            ->title('Customers List'); 
+            ->title('Customers'); 
     }
 };
 ?>

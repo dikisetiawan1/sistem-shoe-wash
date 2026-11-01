@@ -22,20 +22,14 @@
 
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto ">
-            <!--begin::Search (small screens: the field above is hidden, so link to the search page)-->
-            <li class="nav-item d-md-none">
-              <a class="nav-link" href="{{ asset('adminlte4/dist/pages/search-results.html') }}" aria-label="Search">
-                <i class="bi bi-search" aria-hidden="true"></i>
-              </a>
-            </li>
-            <!--end::Search-->
           
             <!--begin::Notifications Dropdown Menu-->
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown  " wire:ignore>
               <a
-                class="nav-link"
+                class="nav-link "
                 data-bs-toggle="dropdown"
                 href="#"
+                role="button"
                 aria-label="Notifications: 15 unread"
               >
                 <i class="bi bi-bell-fill"></i>
@@ -62,8 +56,8 @@
                 <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
               </div>
             </li>
-            <!--end::Notifications Dropdown Menu-->
 
+      
 
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">

@@ -21,7 +21,7 @@ new class extends Component {
         // Kembalikan view dengan membawa data, layout, dan title
         return $this->view([])
             ->layout('layouts::app')
-            ->title('Wash Queue List'); 
+            ->title('Wash Queue'); 
     }   
 
     public function with()

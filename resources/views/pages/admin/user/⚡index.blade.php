@@ -31,7 +31,7 @@ new class extends Component
             'users' => $users
         ])
             ->layout('layouts::app')
-            ->title('User List'); 
+            ->title('Users'); 
     }
 };
 ?>

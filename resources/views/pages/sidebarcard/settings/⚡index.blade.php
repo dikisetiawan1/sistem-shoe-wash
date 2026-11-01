@@ -10,7 +10,7 @@ new class extends Component
         return $this->view([
         ])
             ->layout('layouts::app')
-            ->title('Reports'); 
+            ->title('Settings'); 
     }   
 };
 ?>

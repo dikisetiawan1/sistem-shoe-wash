@@ -81,7 +81,7 @@ new class extends Component {
                         <th>MERK & COLOR</th>
                         <th>CATEGORY & SERVICE</th>
                         <th class="text-center">STATUS</th>
-                        <th class="text-center">DATE </th>
+                        <th class="text-center">DUE DATE </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,7 +122,7 @@ new class extends Component {
                                 </td>
                                 <td class="text-center">
                                     <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">
-                                        {{ Carbon::parse($item->update_at)->format('d M Y') }}
+                                        {{ $order->estimated_completion_date ? \Carbon\Carbon::parse($order->estimated_completion_date)->format('d M Y') : '-' }}
                                     </span>
                                 </td>
                                

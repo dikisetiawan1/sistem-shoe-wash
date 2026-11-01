@@ -27,7 +27,7 @@ new class extends Component
             'services' => Services::latest()->get(),
         ])
             ->layout('layouts::app')
-            ->title('Services List'); 
+            ->title('Services'); 
     }   
 };
 ?>

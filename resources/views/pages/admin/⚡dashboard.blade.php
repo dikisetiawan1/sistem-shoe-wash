@@ -100,7 +100,7 @@ new class extends Component
                 ->toArray();
 
             // data setelah dashboard card
-           // 1. Total order hari ini & total pasang dari relasi items->sum('quantity')
+           // 1. Total order hari ini & total pasang dari relasi items
                 $totalOrderToday = Orders::whereDate('created_at', $today)->count();
                 
                 // Menghitung total pasang langsung via database query
@@ -128,6 +128,13 @@ new class extends Component
                     ->where('branch_id', $branchId)
                     ->get();
 
+                // antrean hari ini
+                $queueCount = OrderDetail::whereNotIn('status', ['received', 'completed'])
+                    ->where('branch_id', $branchId)
+                    ->whereDate('created_at', $today)
+                    ->latest()
+                    ->get();
+
 
 
           return $this->view([
@@ -148,6 +155,7 @@ new class extends Component
               'totalPairsToday' => $totalPairsToday,
               'finishedPairsToday' => $finishedPairsToday,
               'overdueCount' => $overdueCount,
+              'queueCount' => $queueCount,
 
           ])
           ->layout('layouts::app')
@@ -168,12 +176,8 @@ new class extends Component
           <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h5 class="fw-bold mb-1 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    SELAMAT DATANG, {{auth()->user()->name}}! 
-                </h5>
-                <p class="text-muted mb-0 small">
-                    Berikut adalah ringkasan operasional dan transaksi sepatu hari ini.
-                </p>
+               <i class="fa-solid fa-circle fa-xs" style="color: rgb(14, 135, 2);"></i> <span class="text-secondary fw-semibold">Online</span>
+                
             </div>
             <div>
                 {{-- Menampilkan Tanggal Hari Ini --}}
@@ -206,7 +210,21 @@ new class extends Component
               </div>
               <!--end::Col-->
 
-              <div class="col-lg-3 col-6">
+              <!--end::Col-->
+                <div class="col-lg-3 col-6">
+
+                            <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
+                                <div class="card-body py-3">
+                                    <h6 class="text-uppercase text-muted mb-1 small fw-bold">
+                                        {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Total pendapatan
+                                    </h6>
+                                    <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Rp {{ number_format($orders->sum('total_price'), 0, ',', '.') }}</h4>
+                                    <small class="text-muted">Data pendapatan keseluruhan </small>
+                                </div>
+                            </div>
+                </div>
+
+                 <div class="col-lg-3 col-6">
                         <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
                             <div class="card-body py-3">
                                 <h6 class="text-uppercase text-muted mb-1 small fw-bold">
@@ -217,20 +235,6 @@ new class extends Component
                             </div>
                         </div>
               </div>
-
-              <!--end::Col-->
-                <div class="col-lg-3 col-6">
-
-                            <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
-                                <div class="card-body py-3">
-                                    <h6 class="text-uppercase text-muted mb-1 small fw-bold">
-                                        {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Antrean 
-                                    </h6>
-                                    <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$washqueue->count()}}</h4>
-                                    <small class="text-muted">Data Antrean per hari </small>
-                                </div>
-                            </div>
-                </div>
              <div class="col-lg-3 col-6">
                         <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
                             <div class="card-body py-3">
@@ -252,8 +256,8 @@ new class extends Component
                             <div  class="bg-white rounded-4 p-4 shadow-sm border border-light mb-4">
                                 <div class="row align-items-center g-4">
                                     
-                                    <!-- 1. ORDER HARI INI -->
-                                    <div class="col-md-4">
+                                    <!-- ORDER HARI INI -->
+                                    <div class="col-md-3">
                                         <div class="d-flex align-items-center">
                                             <!-- Icon Box dengan Background Soft Primary -->
                                             <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-4 me-3">
@@ -270,9 +274,25 @@ new class extends Component
                                             </div>
                                         </div>
                                     </div>
+                                    <!--  ANTREAN HARI INI -->
+                                    <div class="col-md-3">
+                                        <div class="d-flex align-items-center">
+                                            <!-- Icon Box dengan Background Soft Primary -->
+                                            <div class="p-3 bg-info bg-opacity-10 text-info rounded-4 me-3">
+                                                <i class="fa-solid fa-list-check"></i>
+                                            </div>
+                                            <div class="text-info">
+                                                <span class="d-block  text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Antrean Hari Ini</span>
+                                                <div class="d-flex align-items-baseline gap-2 mt-1">
+                                                    <h3 class="fs-4 fw-bold  mb-0">{{ $queueCount->count() ?? 0 }}</h3>
+                                                    <span  style="font-size: 12px;">Pasang Sepatu</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    <!-- 2. SEPATU SELESAI -->
-                                    <div class="col-md-4">
+                                    <!--  SEPATU SELESAI -->
+                                    <div class="col-md-3">
                                         <div class="d-flex align-items-center">
                                             <!-- Icon Box dengan Background Soft Success -->
                                             <div class="p-3 bg-success bg-opacity-10 text-success rounded-4 me-3">
@@ -284,14 +304,14 @@ new class extends Component
                                                 <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Siap Diambil/Kirim</span>
                                                 <div class="d-flex align-items-baseline gap-2 mt-1">
                                                     <h3 class="fs-4 fw-bold text-dark mb-0">{{ $finishedPairsToday->sum(function($finishedPairs) { return $finishedPairs->items->count(); }) }}</h3>
-                                                    <span class="text-success fw-medium" style="font-size: 12px;">Pasang Sepatu</span>
+                                                    <span class="text-secondary fw-medium" style="font-size: 12px;">Pasang Sepatu</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 3. JATUH TEMPO / OVERDUE -->
-                                    <div class="col-md-4">
+                                    <!-- JATUH TEMPO / OVERDUE -->
+                                    <div class="col-md-3">
                                         <div class="d-flex align-items-center">
                                             <!-- Icon Box dengan Background Soft Danger -->
                                             <div class="p-3 bg-danger bg-opacity-10 text-danger rounded-4 me-3 position-relative">

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 new class extends Component
 {
   
-   public $search = '';
+//    public $search = '';
     
     // Properti untuk modal/pilihan pembayaran jika ingin memilih metode (Cash, Transfer, QRIS)
     public $selectedOrderId = null;
@@ -67,12 +67,12 @@ new class extends Component
         $unpaidOrders = Orders::with('customers')
                             ->where('branch_id', $branchId)
                             ->where('payment_status', 'unpaid') 
-                            ->when($this->search, function($query) {
-                                $query->where('order_number', 'like', '%'.$this->search.'%')
-                                      ->orWhereHas('customers', function($query) {
-                                          $query->where('name', 'like', '%'.$this->search.'%');
-                                      });
-                            })
+                            // ->when($this->search, function($query) {
+                            //     $query->where('order_number', 'like', '%'.$this->search.'%')
+                            //           ->orWhereHas('customers', function($query) {
+                            //               $query->where('name', 'like', '%'.$this->search.'%');
+                            //           });
+                            // })
                             ->latest()
                             ->get();
                             
@@ -86,12 +86,11 @@ new class extends Component
 };
 ?>
 
-<div>
+
 
     <!--begin::App Content-->
-    <div class="app-content ">
-        <div class="container-fluid mb-5 mt-5 ">
-             <div class="row">
+<div class="container-fluid mb-5 mt-5 ">
+    <div class="row">
                 <div class="col-sm-6 mb-3">
                     <h5 class="fw-bold" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                         Konfirmasi Pembayaran
@@ -99,13 +98,13 @@ new class extends Component
                     <small class="text-muted">Kelola pembayaran seluruh customers</small>
                 </div>
             </div>
-            <!-- Alert Notifikasi -->
-            @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
-                    <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <!-- flash message -->
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
                 </div>
             @endif
+            <!-- end flash message -->
 
             <!-- Card Tabel Konfirmasi -->
             <div class="card border-0 shadow-sm bg-white">
@@ -113,18 +112,18 @@ new class extends Component
                     <h5 class="card-title mb-0 fw-semibold text-dark">Daftar Pesanan Belum Lunas (Unpaid)</h5>
                     
                     <!-- Kotak Pencarian -->
-                    <div class="input-group" style="width: 250px;">
+                    {{-- <div class="input-group" style="width: 250px;">
                         <input type="text" wire:model.live="search" class="form-control form-control-sm" placeholder="Cari Nota / Pelanggan...">
                         <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
-                    </div>
+                    </div> --}}
                 </div>
 
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0" id='paymentTable'>
-                            <thead class="table-light text-uppercase fs-7">
+<div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" id='updatestatusTable'>
+                <thead class="table-light text-uppercase fs-7">
                                 <tr>
-                                    <th class="ps-4">Order ID</th>
+                                    <th class="ps-4">ORDER ID</th>
                                     <th>CUSTOMERS</th>
                                     <th>ENTRY DATE</th>
                                     <th>TOTAL PRICE</th>
@@ -177,19 +176,17 @@ new class extends Component
                                     </tr>
                                 @endforelse
                             </tbody>
-                        </table>
-                    </div>
-                </div>
+            </table>
             </div>
-
         </div>
-    </div>
-    <!--end::App Content-->
+               
 </div>
+</div>
+        
 
- <script>
+<script>
     $(document).ready(function() {
-        let table = new DataTable('#paymentTable', {
+        let table = new DataTable('#updatestatusTable', {
             destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
             // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
             dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',
@@ -227,3 +224,4 @@ new class extends Component
         // });
     });
 </script>
+ 

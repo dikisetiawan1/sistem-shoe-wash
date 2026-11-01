@@ -56,22 +56,20 @@
                
               </li>
 
+                 <li class="nav-item ">
+                <a href="{{ route('sidebarcard.transactions.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.transactions.index') ? 'active' : '' }}">
+                  <i class="fa-solid fa-receipt"  style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                  <p>
+                    Transactions
+                  </p>
+                </a>               
+              </li>
 
               <li class="nav-item ">
                 <a href="{{ route('sidebarcard.masterdata.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.masterdata.index') ? 'active' : '' }}">
                   <i class="fa-solid fa-server" style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
                   <p>
                     Master Data
-                  </p>
-                </a>               
-              </li>
-
-
-              <li class="nav-item ">
-                <a href="{{ route('sidebarcard.transactions.index') }}" wire:navigate class="nav-link {{ request()->routeIs('sidebarcard.transactions.index') ? 'active' : '' }}">
-                  <i class="fa-solid fa-receipt"  style="background: linear-gradient(135deg, #0d6efd 30%, #6610f2 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
-                  <p>
-                    Transactions
                   </p>
                 </a>               
               </li>

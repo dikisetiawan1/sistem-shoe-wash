@@ -97,7 +97,7 @@ new class extends Component {
         return $this->view([
         ])
             ->layout('layouts::app')
-            ->title('Reports Daily'); 
+            ->title('Reports Monthly'); 
     }  
 }; ?>
 
