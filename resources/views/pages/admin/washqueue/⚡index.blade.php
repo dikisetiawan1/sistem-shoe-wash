@@ -75,7 +75,7 @@ new class extends Component {
         <div class="card-body py-3">
             <h6 class="text-white-50 mb-1">Total Order Masuk</h6>
             <h5 class="fw-bold mb-0 text-white">
-                {{ count($orders) }} Transaksi
+                {{ count($orders) }} Transaksi Hari ini
             </h5>
         </div>
     </div>
@@ -83,9 +83,9 @@ new class extends Component {
         <div class="col-md-4">
             <div class="card border-0 shadow-sm bg-white text-dark">
                 <div class="card-body py-3">
-                    <h6 class="text-dark mb-1 text-secondary" >Total Pasang Sepatu</h6>
+                    <h6 class="text-dark mb-1 text-secondary" >Total Item</h6>
                     <h5 class="fw-bold mb-0" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        {{ $orders->sum(function($order) { return $order->items->count(); }) }} Pasang
+                        {{ $orders->sum(function($order) { return $order->items->count(); }) }} Item
                     </h5>
                 </div>
             </div>

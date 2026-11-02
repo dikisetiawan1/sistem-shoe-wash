@@ -28,6 +28,7 @@ new class extends Component {
             ->whereHas('items', function($query){
                 $query->where('status','received');
             })
+            ->where('payment_status','paid')
             ->where('branch_id',$branchId)
             ->latest()
             ->get();
@@ -64,7 +65,7 @@ new class extends Component {
                         <th class="text-center">TOTAL PRICE</th>
                         <th>PAYMENT STATUS & METHOD</th>
                         <th class="text-center">STATUS</th>
-                        <th class="text-center">DUE DATE</th>
+                        <th class="text-center">ESTIMATED FINISH</th>
                     </tr>
                 </thead>
                 <tbody>

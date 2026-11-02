@@ -70,7 +70,7 @@ new class extends Component {
                         <th>CATEGORY & SERVICES</th>
                         <th>NOTED</th>
                         <th>STATUS</th>
-                        <th class="text-center">DUE DATE </th>
+                        <th class="text-center">ESTIMATED FINISH</th>
                     </tr>
                 </thead>
                 <tbody>

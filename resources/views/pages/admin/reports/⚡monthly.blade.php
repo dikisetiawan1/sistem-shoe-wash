@@ -250,7 +250,7 @@ new class extends Component {
                                 <tr>
                                     <td colspan="8" class="text-center py-5 text-muted">
                                         <i class="fa-solid fa-folder-open fa-2x mb-2 d-block text-secondary"></i>
-                                        Tidak ada data laporan transaksi pada tanggal <strong>{{ Carbon::parse($selectedDate)->translatedFormat('d F Y') }}</strong>.
+                                        Tidak ada data laporan transaksi pada tanggal <strong>{{ Carbon::parse($startDate)->translatedFormat('d F Y') }} - {{ Carbon::parse($endDate)->translatedFormat('d F Y') }}</strong>.
                                     </td>
                                 </tr>
                             @endforelse

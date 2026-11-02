@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracking Pengerjaan Shoe Wash - Resi #{{ $order->id }}</title>
+    <title>Tracking Pengerjaan Refresh - Resi #{{ $order->id }}</title>
     <!-- Gunakan Bootstrap 5 atau Tailwind sesuai template Anda -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -16,7 +16,7 @@
                 <!-- Card Informasi Utama Order -->
                 <div class="card shadow-sm mb-4">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">Status Pengerjaan Shoe Wash</h4>
+                        <h4 class="mb-0">Status Pengerjaan Refresh</h4>
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
@@ -45,7 +45,7 @@
                 <!-- Card Daftar Item Sepatu (Tabel Detail) -->
                 <div class="card shadow-sm">
                     <div class="card-header bg-secondary text-white">
-                        <h5 class="mb-0">Daftar Item Sepatu dalam Order Ini</h5>
+                        <h5 class="mb-0">Daftar Item dalam Order Ini</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -94,7 +94,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center text-muted">Tidak ada item sepatu pada order ini.</td>
+                                            <td colspan="5" class="text-center text-muted">Tidak ada item pada order ini.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

@@ -300,7 +300,7 @@ new class extends Component
                                                 <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Order Hari Ini</span>
                                                 <div class="d-flex align-items-baseline gap-2 mt-1">
                                                     <h3 class="fs-4 fw-bold text-dark mb-0">{{ $totalOrderToday ?? 0 }}</h3>
-                                                    <span class="text-secondary" style="font-size: 12px;">Nota ({{ $totalPairsToday->sum(function($pairsToday) { return $pairsToday->items->count(); }) }} Pasang)</span>
+                                                    <span class="text-secondary" style="font-size: 12px;">Nota ({{ $totalPairsToday->sum(function($pairsToday) { return $pairsToday->items->count(); }) }} item)</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -316,7 +316,7 @@ new class extends Component
                                                 <span class="d-block  text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Antrean Hari Ini</span>
                                                 <div class="d-flex align-items-baseline gap-2 mt-1">
                                                     <h3 class="fs-4 fw-bold  mb-0">{{ $queueCount->count() ?? 0 }}</h3>
-                                                    <span  style="font-size: 12px;">Pasang Sepatu</span>
+                                                    <span  style="font-size: 12px;">item</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -335,7 +335,7 @@ new class extends Component
                                                 <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Siap Diambil/Kirim</span>
                                                 <div class="d-flex align-items-baseline gap-2 mt-1">
                                                     <h3 class="fs-4 fw-bold text-dark mb-0">{{ $finishedPairsToday->sum(function($finishedPairs) { return $finishedPairs->items->count(); }) }}</h3>
-                                                    <span class="text-secondary fw-medium" style="font-size: 12px;">Pasang Sepatu</span>
+                                                    <span class="text-secondary fw-medium" style="font-size: 12px;">item</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,7 +354,7 @@ new class extends Component
                                                 <span class="d-block text-danger text-uppercase fw-semibold" style="font-size: 11px; letter-spacing: 0.5px;">Jatuh Tempo</span>
                                                 <div class="d-flex align-items-baseline gap-2 mt-1">
                                                     <h3 class="fs-4 fw-bold text-danger mb-0">{{ $overdueCount->sum(function($duedate) { return $duedate->items->count(); }) }}</h3>
-                                                    <span class="text-danger fw-medium" style="font-size: 12px;">Nota Terlambat selesai</span>
+                                                    <span class="text-danger fw-medium" style="font-size: 12px;">Nota Terlambat</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -375,7 +375,7 @@ new class extends Component
                     <!-- Judul Section & Keterangan Singkat -->
                     <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-light">
                         <div>
-                            <h5 class="fw-bold text-dark mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">TRACKING WORKFLOW PENGERJAAN</h5>
+                            <h5 class="fw-bold text-dark mb-1" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">TRACKING WORKFLOW REALTIME</h5>
                             <p class="text-muted small mb-0">Pantau posisi fisik sepatu di setiap tahapan proses secara real-time.</p>
                         </div>
                         <span class="badge bg-light text-secondary fw-normal">Live Auto-Refresh</span>
@@ -427,7 +427,7 @@ new class extends Component
                         <div class="col-md-3 col-6">
                             <div class="p-3 bg-info bg-opacity-10 rounded-3 text-center border border-info border-opacity-10 h-100 d-flex flex-column justify-content-between">
                                 <div>
-                                    <span class="d-block text-info text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Finishing </span>
+                                    <span class="d-block text-info text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.5px;">Done </span>
                                     <h3 class="fs-4 fw-bold text-info mt-2 mb-0">{{ $operationalOrders['completed']->count() ?? 0 }}</h3>
                                 </div>
                                 <div class="mt-2">
