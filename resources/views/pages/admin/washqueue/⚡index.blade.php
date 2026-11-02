@@ -61,10 +61,10 @@ new class extends Component {
         </div>
 
         {{-- Filter Tanggal --}}
-        <div class="d-flex align-items-center gap-2">
+        {{-- <div class="d-flex align-items-center gap-2">
             <label for="filterDate" class="fw-semibold text-muted small mb-0">Pilih Tanggal:</label>
             <input type="date" id="filterDate" wire:model.live="selectedDate" class="form-control form-control-sm">
-        </div>
+        </div> --}}
     </div>
 
     {{-- Kartu Ringkasan Cepat Antrean Hari Ini --}}
@@ -200,7 +200,7 @@ new class extends Component {
 <script>
     $(document).ready(function() {
         let table = new DataTable('#washqueueTable', {
-            pageLength:100,
+            pageLength:50,
             destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
             // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
             dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',

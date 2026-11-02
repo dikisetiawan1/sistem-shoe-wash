@@ -63,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/transactions/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.orders.edit');
     // order antrean
     Volt::route('/orders/washqueue', 'pages::admin.washqueue.index')->name('admin.washqueue.index');
+    // order antrean history
+    Volt::route('/orders/washqueue/history', 'pages::admin.washqueue.history')->name('admin.washqueue.history');
     // orders detail
     Volt::route('/transactions/orders/{id}', 'pages::admin.orderdetail.index')->name('admin.orderdetail.index');
     // orders print
