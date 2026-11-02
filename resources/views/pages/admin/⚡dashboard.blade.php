@@ -15,156 +15,176 @@ new class extends Component
 
 
     public $operationalOrders;
+    public $notifOrderDuedate;
 
     public function mount()
+    
     {
         $this->loadOperationalOrders();
+        $this->notificationOrderDuedate();
     }
-   public function loadOperationalOrders()
-    {
-        $branchId = Auth::user()->branch_id;
 
-        $this->operationalOrders = [
-            'pending' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
-                        $query->where('status', 'pending'); 
-                    })->get(),
-            'washing' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
-                        $query->where('status', 'washing'); 
-                    })->get(),
-            'drying' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
-                        $query->where('status', 'drying'); 
-                    })->get(),
-            'completed' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
-                        $query->where('status', 'completed'); 
-                    })->get(),
-            'received' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
-                        $query->where('status', 'received'); 
-                    })->get(),
-        ];
-    }
-    
-
-    public function render()
-          {
-
-            // Ambil branch_id user yang sedang login
-          $branchId = Auth::user()->branch_id;
-
-            $labels = [];
-            $data = [];
-
-        for ($i = 6; $i >= 0; $i--) {
-            $date = Carbon::now()->subDays($i);
-            $formattedDate = $date->format('Y-m-d');
-            
-            $chartLabels[] = $date->translatedFormat('d M Y');
-            
-            // Hitung order harian khusus untuk cabang user yang login
-            $count = Orders::where('branch_id', $branchId)
-                           ->whereDate('created_at', $formattedDate)
-                           ->count();
-            $chartData[] = $count;
+        public function notificationOrderDuedate()
+        {
+            $branchId = Auth::user()->branch_id;
+            $besok = Carbon::tomorrow('Asia/jakarta')->format('Y-m-d');
+            $notifOrderDuedate = Orders::with(['items' => function ($query) {
+                            $query->whereNotIn('status', ['completed','received']);}])
+                            ->where('branch_id', $branchId)
+                            ->whereDate('estimated_completion_date', $besok)
+                            ->whereHas('items', function ($query) {
+                            $query->whereNotIn('status', ['completed','received']); 
+                                })
+                            ->get();
+            $this->notifOrderDuedate = $notifOrderDuedate; 
         }
-            // ambil tanggal hari ini
-            $today = Carbon::today();
-            // ambil tanggal kemarin
-            $yesterday = Carbon::yesterday();
 
-            // 1. Total Pendapatan Hari Ini (Order yang status bayarnya 'paid'/'lunas')
-            $todayRevenue = Orders::whereDate('created_at', $today)
-                ->where('payment_status', 'paid')
-                ->where('branch_id', $branchId)
-                ->sum('total_price');
 
-            // 2. Pendapatan Kemarin (untuk perbandingan persentase)
-            $yesterdayRevenue = Orders::whereDate('created_at', $yesterday)
-                ->where('payment_status', 'paid')
-                ->where('branch_id', $branchId)
-                ->sum('total_price');
+    public function loadOperationalOrders()
+        {
+            $branchId = Auth::user()->branch_id;
 
-            // Hitung persentase kenaikan/penurunan
-            $percentageChange = 0;
-            if ($yesterdayRevenue > 0) {
-                $percentageChange = (($todayRevenue - $yesterdayRevenue) / $yesterdayRevenue) * 100;
-            } else {
-                $percentageChange = $todayRevenue > 0 ? 100 : 0;
-            }
+            $this->operationalOrders = [
+                'pending' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
+                            $query->where('status', 'pending'); 
+                        })->get(),
+                'washing' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
+                            $query->where('status', 'washing'); 
+                        })->get(),
+                'drying' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
+                            $query->where('status', 'drying'); 
+                        })->get(),
+                'completed' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
+                            $query->where('status', 'completed'); 
+                        })->get(),
+                'received' => Orders::where('branch_id', $branchId)->whereHas('items', function ($query) {
+                            $query->where('status', 'received'); 
+                        })->get(),
+            ];
+        }
+        
 
-            // 3. Breakdown per Metode Pembayaran (Cash, QRIS, Transfer)
-            $breakdown = Orders::whereDate('created_at', $today)
-                ->where('payment_status', 'paid')
-                ->where('branch_id', $branchId)
-                ->selectRaw('payment_method, sum(total_price) as total')
-                ->groupBy('payment_method')
-                ->pluck('total', 'payment_method')
-                ->toArray();
+        public function render()
+            {
 
-            // data setelah dashboard card
-           // 1. Total order hari ini & total pasang dari relasi items
-                $totalOrderToday = Orders::whereDate('created_at', $today)->count();
+                // Ambil branch_id user yang sedang login
+            $branchId = Auth::user()->branch_id;
+
+                $labels = [];
+                $data = [];
+
+            for ($i = 6; $i >= 0; $i--) {
+                $date = Carbon::now()->subDays($i);
+                $formattedDate = $date->format('Y-m-d');
                 
-                // Menghitung total pasang langsung via database query
-                $totalPairsToday = Orders::whereDate('created_at', $today)
-                    ->with('items')
+                $chartLabels[] = $date->translatedFormat('d M Y');
+                
+                // Hitung order harian khusus untuk cabang user yang login
+                $count = Orders::where('branch_id', $branchId)
+                            ->whereDate('created_at', $formattedDate)
+                            ->count();
+                $chartData[] = $count;
+            }
+                // ambil tanggal hari ini
+                $today = Carbon::today();
+                // ambil tanggal kemarin
+                $yesterday = Carbon::yesterday();
+
+                // 1. Total Pendapatan Hari Ini (Order yang status bayarnya 'paid'/'lunas')
+                $todayRevenue = Orders::whereDate('created_at', $today)
+                    ->where('payment_status', 'paid')
                     ->where('branch_id', $branchId)
-                    ->get();
+                    ->sum('total_price');
+
+                // 2. Pendapatan Kemarin (untuk perbandingan persentase)
+                $yesterdayRevenue = Orders::whereDate('created_at', $yesterday)
+                    ->where('payment_status', 'paid')
+                    ->where('branch_id', $branchId)
+                    ->sum('total_price');
+
+                // Hitung persentase kenaikan/penurunan
+                $percentageChange = 0;
+                if ($yesterdayRevenue > 0) {
+                    $percentageChange = (($todayRevenue - $yesterdayRevenue) / $yesterdayRevenue) * 100;
+                } else {
+                    $percentageChange = $todayRevenue > 0 ? 100 : 0;
+                }
+
+                // 3. Breakdown per Metode Pembayaran (Cash, QRIS, Transfer)
+                $breakdown = Orders::whereDate('created_at', $today)
+                    ->where('payment_status', 'paid')
+                    ->where('branch_id', $branchId)
+                    ->selectRaw('payment_method, sum(total_price) as total')
+                    ->groupBy('payment_method')
+                    ->pluck('total', 'payment_method')
+                    ->toArray();
+
+                // data setelah dashboard card
+            // 1. Total order hari ini & total pasang dari relasi items
+                    $totalOrderToday = Orders::whereDate('created_at', $today)->count();
                     
+                    // Menghitung total pasang langsung via database query
+                    $totalPairsToday = Orders::whereDate('created_at', $today)
+                        ->with('items')
+                        ->where('branch_id', $branchId)
+                        ->get();
+                        
 
-                // 2. Sepatu Selesai Hari Ini
-                $finishedPairsToday = Orders::with(['items' => function ($query) {
-                    $query->where('status', 'completed');}])
-                    ->whereDate('updated_at', $today)
-                    ->where('branch_id', $branchId)
-                    ->get();
-                    
+                    // 2. Sepatu Selesai Hari Ini
+                    $finishedPairsToday = Orders::with(['items' => function ($query) {
+                        $query->where('status', 'completed');}])
+                        ->whereDate('updated_at', $today)
+                        ->where('branch_id', $branchId)
+                        ->get();
+                        
 
-                // 3. Jatuh Tempo / Overdue
-                $overdueCount = Orders::with(['items' => function ($query) {
-                    $query->where('status', 'completed');}])
-                    ->whereDate('estimated_completion_date', '<', $today)
-                    ->whereHas('items', function ($query) {
-                        $query->where('status', 'completed'); 
-                    })
-                    ->where('branch_id', $branchId)
-                    ->get();
+                    // 3. Jatuh Tempo / Overdue
+                    $overdueCount = Orders::with(['items' => function ($query) {
+                        $query->where('status', 'completed');}])
+                        ->whereDate('estimated_completion_date', '<', $today)
+                        ->whereHas('items', function ($query) {
+                            $query->where('status', 'completed'); 
+                        })
+                        ->where('branch_id', $branchId)
+                        ->get();
 
-                // antrean hari ini
-                $queueCount = OrderDetail::whereNotIn('status', ['received', 'completed'])
-                    ->where('branch_id', $branchId)
-                    ->whereDate('created_at', $today)
+                    // antrean hari ini
+                    $queueCount = OrderDetail::whereNotIn('status', ['received', 'completed'])
+                        ->where('branch_id', $branchId)
+                        ->whereDate('created_at', $today)
+                        ->latest()
+                        ->get();
+
+
+
+            return $this->view([
+                'branchId' => $branchId,
+                'orders'   => Orders::where('branch_id', $branchId)->get(),
+                'services' => Services::get(),
+                'customers'=> Customers::where('branch_id', $branchId)->get(),
+                'washqueue' => OrderDetail::whereNotIn('status', ['received', 'completed'])
+                    ->where('branch_id', $branchId) 
                     ->latest()
-                    ->get();
+                    ->get(),
+                'labels'     => $chartLabels,
+                'data'       => $chartData,
+                'todayRevenue' => $todayRevenue,
+                'percentageChange' => round($percentageChange, 1),
+                'breakdown' => $breakdown,
+                'totalOrderToday' => $totalOrderToday,
+                'totalPairsToday' => $totalPairsToday,
+                'finishedPairsToday' => $finishedPairsToday,
+                'overdueCount' => $overdueCount,
+                'queueCount' => $queueCount,
+
+            ])
+            ->layout('layouts::app')
+            ->title('Dashboard');
+            
+        }
 
 
-
-          return $this->view([
-              'branchId' => $branchId,
-              'orders'   => Orders::where('branch_id', $branchId)->get(),
-              'services' => Services::get(),
-              'customers'=> Customers::where('branch_id', $branchId)->get(),
-              'washqueue' => OrderDetail::whereNotIn('status', ['received', 'completed'])
-                  ->where('branch_id', $branchId) 
-                  ->latest()
-                  ->get(),
-              'labels'     => $chartLabels,
-              'data'       => $chartData,
-              'todayRevenue' => $todayRevenue,
-              'percentageChange' => round($percentageChange, 1),
-              'breakdown' => $breakdown,
-              'totalOrderToday' => $totalOrderToday,
-              'totalPairsToday' => $totalPairsToday,
-              'finishedPairsToday' => $finishedPairsToday,
-              'overdueCount' => $overdueCount,
-              'queueCount' => $queueCount,
-
-          ])
-          ->layout('layouts::app')
-          ->title('Dashboard');
-          
-      }
-
-
-};
+    };
 
 ?>
 
@@ -179,12 +199,25 @@ new class extends Component
                <i class="fa-solid fa-circle fa-xs" style="color: rgb(14, 135, 2);"></i> <span class="text-secondary fw-semibold">Online</span>
                 
             </div>
-            <div>
+            <div class="row">
+                <div class="col-lg-2 mx-2">
+                   <div class="bg-white border px-2 py-1 shadow-sm rounded d-inline-flex align-items-center">
+                        <a href="{{ route('admin.orders.duedate-tomorrow') }}" class="text-dark text-decoration-none position-relative" aria-label="" data-bs-toggle="tooltip" data-bs-placement="left" title=' "{{$notifOrderDuedate->count() ?? 0}}"  Pesanan harus segera selesai Besok'>
+                            <i class="bi bi-bell-fill"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark fs-8">
+                                {{ $notifOrderDuedate->count() ?? 0}}
+                            </span>
+                        </a>
+                    </div>
+                
+                </div>
+                <div class="col-lg-6">
                 {{-- Menampilkan Tanggal Hari Ini --}}
-                <span class="badge bg-white text-dark border px-3 py-2 shadow-sm">
+                <span class="badge bg-white text-dark border px-3 py-2 shadow-sm fs-8">
                     <i class="fa-regular fa-calendar me-2 text-primary"></i>
                     {{ \Carbon\Carbon::now('Asia/Jakarta')->isoFormat('D MMMM Y') }}
                 </span>
+            </div>
             </div>
         </div>
           </div>
@@ -192,24 +225,23 @@ new class extends Component
         </div>
         <!--end::App Content Header-->
         <!--begin::App Content-->
-        <div class="app-content">
+<div class="app-content">
           <!--begin::Container-->
-          <div class="container-fluid">
+    <div class="container-fluid">
             <!--begin::Row-->
-        <div class="row mb-3">
-            <div class="col-lg-3 col-6">
-                        <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
-                            <div class="card-body py-3">
-                                <h6 class="text-uppercase text-muted mb-1 small fw-bold">
-                                    {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Total Pesanan 
-                                </h6>
-                                <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$orders->count()}}</h4>
-                                <small class="text-muted">Data Pesanan masuk </small>
+        <div class="row">
+                <div class="col-lg-3 col-6">
+                            <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
+                                <div class="card-body py-3">
+                                    <h6 class="text-uppercase text-muted mb-1 small fw-bold">
+                                        {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Total Pesanan 
+                                    </h6>
+                                    <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$orders->count()}}</h4>
+                                    <small class="text-muted">Data Pesanan masuk </small>
+                                </div>
                             </div>
-                        </div>
-              </div>
+                </div>
               <!--end::Col-->
-
               <!--end::Col-->
                 <div class="col-lg-3 col-6">
 
@@ -224,7 +256,7 @@ new class extends Component
                             </div>
                 </div>
 
-                 <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6">
                         <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
                             <div class="card-body py-3">
                                 <h6 class="text-uppercase text-muted mb-1 small fw-bold">
@@ -234,24 +266,23 @@ new class extends Component
                                 <small class="text-muted">Data Layanan tersedia </small>
                             </div>
                         </div>
-              </div>
-             <div class="col-lg-3 col-6">
-                        <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
-                            <div class="card-body py-3">
-                                <h6 class="text-uppercase text-muted mb-1 small fw-bold">
-                                    {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Total Customers 
-                                </h6>
-                                <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$customers->count()}}</h4>
-                                <small class="text-muted">Data customer Aktif</small>
+                </div>
+                <div class="col-lg-3 col-6">
+                            <div class="card border-0 shadow-sm bg-white text-dark border-start border-primary border-4">
+                                <div class="card-body py-3">
+                                    <h6 class="text-uppercase text-muted mb-1 small fw-bold">
+                                        {{-- <i class="fa-solid fa-users me-1 text-primary"></i>--}} Total Customers 
+                                    </h6>
+                                    <h1 class="fw-bold mb-0 text-dark" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{$customers->count()}}</h4>
+                                    <small class="text-muted">Data customer Aktif</small>
+                                </div>
                             </div>
-                        </div>
-            </div>
+                </div>
             <!--end::Row-->
-            <!--begin::Row-->
-    
+        </div>
             {{-- row realtime orders --}}
-                <div class="row mt-5">
-                        <div class="col-lg-12" wire:poll.30s wire:key="orders-today">
+        <div class="row mt-5">
+                <div class="col-lg-12" wire:poll.30s wire:key="orders-today">
                             <!-- Container Utama (Model Clean Bar / Tanpa Card Terpisah) -->
                             <div  class="bg-white rounded-4 p-4 shadow-sm border border-light mb-4">
                                 <div class="row align-items-center g-4">
@@ -331,13 +362,13 @@ new class extends Component
 
                                 </div>
                             </div>
-                        </div>
                 </div>
+        </div>
 
             {{-- tracking workflow realtime --}}
 
-            <div class="row mt-5">
-                <div class="col-lg-12">
+        <div class="row mt-3">
+            <div class="col-lg-12">
                 <!-- Container Status Operasional Sepatu (Tracking Workflow) -->
                 <div wire:poll.30s wire:key="operational-workflow-status" class="bg-white rounded-4 p-4 shadow-sm border border-light mb-4">
                     
@@ -422,10 +453,9 @@ new class extends Component
                 </div>
 
                 </div>
-            </div>
-            
+        </div>  
             {{--row grafik orderan perhari dan pendapatan perhari --}}
-            <div class="row mt-5">
+        <div class="row mt-3">
                         <!-- Start col -->
                 <div class="col-lg-7 connectedSortable" wire:poll.30s wire:key="grafik-chart">
                         <div class="card border-0 shadow-sm bg-white mb-4">
@@ -440,7 +470,7 @@ new class extends Component
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
                 
                 <div class="col-lg-5" wire:poll.30s wire:key="today-revenue" >
                     <!-- Card Utama dengan Background Gradient Glass -->
@@ -529,9 +559,9 @@ new class extends Component
                     </div>
                 </div>
 
+        </div>
             </div>
-</div>
-    </div>
+                </div>
            @script
             <script>
                 let myOrderChart = null;
@@ -602,17 +632,15 @@ new class extends Component
                 }
             </script>
             @endscript
-        
-                </div>
-                </div>
-                </div>
+    </div>
+</div>
               <!-- /.Start col -->
-            </div>
+</div>
             <!-- /.row (main row) -->
-          </div>
+</div>
           <!--end::Container-->
-        </div>
+</div>
         <!--end::App Content-->
-      </main>
+</main>
 </div>
 

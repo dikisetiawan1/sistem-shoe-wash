@@ -24,7 +24,7 @@
           <ul class="navbar-nav ms-auto ">
           
             <!--begin::Notifications Dropdown Menu-->
-            <li class="nav-item dropdown  " wire:ignore>
+            {{-- <li class="nav-item dropdown  " wire:ignore>
               <a
                 class="nav-link "
                 data-bs-toggle="dropdown"
@@ -55,7 +55,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
               </div>
-            </li>
+            </li> --}}
 
       
 

@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/transactions/orders/history', 'pages::admin.orders.history')->name('admin.orders.history');
     // orders update status
     Route::livewire('/transactions/orders/updatestatus', 'pages::admin.orders.updatestatus')->name('admin.orders.updatestatus');
+    // due date tomorrow
+    Route::livewire('/transactions/orders/duedate-tomorrow', 'pages::admin.orders.duedate-tomorrow')->name('admin.orders.duedate-tomorrow');
     // orders edit
     Route::livewire('/transactions/orders/edit/{id}', 'pages::admin.orders.edit')->name('admin.orders.edit');
     // order antrean

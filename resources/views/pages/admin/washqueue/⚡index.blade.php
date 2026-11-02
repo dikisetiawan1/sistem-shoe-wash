@@ -116,7 +116,7 @@ new class extends Component {
                         <th>MERK & COLOR</th>
                         <th>CATEGORY & SERVICES</th>
                         <th>NOTED</th>
-                        <th>STATU</th>
+                        <th>STATUS</th>
                         <th class="text-center">ESTIMATED FINISH </th>
                         <th class="text-center">ACTIONS</th>
                     </tr>
