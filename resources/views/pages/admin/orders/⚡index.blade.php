@@ -50,7 +50,7 @@ public function delete($id)
 };
 ?>
 
-<div class="container-fluid mt-5 mb-5">
+<div class="container-fluid mt-5 mb-5" wire:ignore >
     <div class="row">
         <div class="col-md-12">
            
@@ -77,7 +77,7 @@ public function delete($id)
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">
-                    <table id="ordersTable" class="display">
+                    <table id="ordersTable" class="display" style="width:100%">
                         <thead>
                             <tr>
                                 <th >#</th>
@@ -160,44 +160,46 @@ public function delete($id)
 
 
 {{-- data datatable --}}
+
 <script>
     $(document).ready(function() {
-        let table = new DataTable('#ordersTable', {
-            pageLength:50,
-            destroy: true, // Mengizinkan inisialisasi ulang jika tabel sudah ada
-            // Huruf 'l' ditambahkan di sebelah 'i' (menjadi 'li') agar dropdown entries per page muncul di kiri bawah
+        // Cek apakah tabel sudah pernah diinisialisasi, hancurkan dulu jika ada untuk cegah bug
+        if ($.fn.DataTable.isDataTable('#ordersTable')) {
+            $('#ordersTable').DataTable().destroy();
+        }
+
+        let table = $('#ordersTable').DataTable({
+            responsive: true,
+            scrollX: true,       // Mengaktifkan scroll horizontal
+            scrollCollapse: true,
+            pageLength: 50,
             dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>rt<"row mt-3 align-items-center"<"col-md-6"li><"col-md-6 d-flex justify-content-end"p>>',
             buttons: [
                 { 
                     extend: 'copy', 
-                    text: '<i class="fas fa-copy"></i>', // Ikon Salin
-                    titleAttr: 'Salin ke Clipboard',      // Tooltip saat kursor diarahkan ke tombol
+                    text: '<i class="fas fa-copy"></i>', 
+                    titleAttr: 'Salin ke Clipboard', 
                     className: 'btn btn-secondary btn-sm' 
                 },
                 { 
                     extend: 'excel', 
-                    text: '<i class="fas fa-file-excel"></i>', // Ikon Excel
+                    text: '<i class="fas fa-file-excel"></i>', 
                     titleAttr: 'Ekspor ke Excel',
                     className: 'btn btn-success btn-sm' 
                 },
                 { 
                     extend: 'pdf', 
-                    text: '<i class="fas fa-file-pdf"></i>', // Ikon PDF
+                    text: '<i class="fas fa-file-pdf"></i>', 
                     titleAttr: 'Ekspor ke PDF',
                     className: 'btn btn-danger btn-sm' 
                 },
                 { 
                     extend: 'print', 
-                    text: '<i class="fas fa-print"></i>', // Ikon Cetak
+                    text: '<i class="fas fa-print"></i>', 
                     titleAttr: 'Cetak Tabel',
                     className: 'btn btn-primary btn-sm' 
                 }
             ]
         });
-
-        // table.on('click', 'tbody tr', function () {
-        //     let data = table.row(this).data();
-        //     alert('You clicked on ' + data[0] + "'s row");
-        // });
     });
 </script>

@@ -66,7 +66,7 @@ new class extends Component
 
             <div class="card border-0 rounded shadow-sm">
                 <div class="card-body">
-                   <table id="customersTable" class="display">
+                   <table id="customersTable" class="display" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>

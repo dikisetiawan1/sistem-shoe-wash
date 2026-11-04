@@ -108,7 +108,7 @@ new class extends Component {
             </h5>
         </div>
         <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0" id='washqueueTable'>
+            <table class="table table-hover align-middle mb-0" id='washqueueTable' style="width:100%">
                 <thead class="table-light">
                     <tr>
                         <th style="width: 50px;" class="text-center">#</th>

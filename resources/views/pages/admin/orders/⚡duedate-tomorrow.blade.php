@@ -130,7 +130,7 @@ new class extends Component {
                         <tr>
                             <td colspan="7" class="text-center py-5 text-muted">
                                 <i class="fa-solid fa-mug-hot fa-2x mb-2 d-block text-secondary"></i>
-                                Tidak ada antrean sepatu pada tanggal <strong>{{ Carbon::parse($selectedDate)->translatedFormat('d F Y') }}</strong>.
+                                Tidak ada pesanan untuk selesai besok.
                             </td>
                         </tr>
                     @endforelse

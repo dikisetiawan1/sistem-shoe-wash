@@ -276,7 +276,7 @@ public function save()
                             </div>
 
                             {{-- Type wash --}}
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <label class="form-label fw-semibold">Type <span class="text-danger">*</span></label>
                                 <select class="form-select" wire:model="type">
                                     <option value="reguler">Reguler</option>
@@ -287,7 +287,7 @@ public function save()
                                     {{ $message }}
                                 </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
